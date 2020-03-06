@@ -1,0 +1,5 @@
+﻿vendor/clink.lua  42行{lamb}换成$    提示符λ换$方法
+
+Win + ALT + P 打开设置界面 monospce,去掉那勾勾即可  解决文字重叠问题
+
+在cmder所在目录打开cmd输入一下命令Cmder.exe /REGISTER ALL    添加右键菜单

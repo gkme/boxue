@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>浮点数精度问题</title>
+</head>
+<body>
+
+    <script>
+        function jsToFixed(total){
+            var count=total;
+            var index=(total+"").indexOf(".");
+            if(index!=-1){
+                var sarray=(total+"").split(".");
+                var slength=sarray[1].length;
+                if(slength>=6){
+                    count=total.toFixed(6);
+                }else if(slength>=5){
+                    count=total.toFixed(5);
+                }else if(slength>=4){
+                    count=total.toFixed(4);
+                }else if(slength>=3){
+                    count=total.toFixed(3);
+                }else if(slength>=2){
+                    count=total.toFixed(2);
+                }else if(slength>=1){
+                    count=total.toFixed(1);
+                }
+            }
+            return count;
+        }
+        $(function(){
+            console.log(jsToFixed(222));
+            console.log(jsToFixed(2));
+            console.log(jsToFixed(0.2));
+            console.log(jsToFixed(0.22));
+            console.log(jsToFixed(0.222));
+            console.log(jsToFixed(0.2222));
+            console.log(jsToFixed(0.22222));
+            console.log(jsToFixed(0.222222));
+            console.log(jsToFixed(0.2222222));
+            console.log(jsToFixed(0.22222222));
+        })
+    </script>
+</body>
+</html>

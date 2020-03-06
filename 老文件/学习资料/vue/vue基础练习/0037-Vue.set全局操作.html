@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{num}}
+        <ul>
+            <li v-for="item in arr">{{item}}</li>
+        </ul>
+    </div>
+    <button onclick="add()">按钮</button>
+</body>
+<script>
+    function add(){
+        app.num++;
+        Vue.set(app.arr,1,"更新的内容");
+    }
+    var arr1 = ["第一个","第二个","第三个"];
+    var app = new Vue({
+        el:"#app",
+        data(){
+            return {
+                num:1,
+                arr:arr1
+            }
+        }
+    })
+</script>
+</html>

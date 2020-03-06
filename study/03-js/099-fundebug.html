@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <!--  -->
+    <div>介绍说明：专业的应用错误监控平台，，，及时发现Bug，提高Debug效率&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：<input type="password" value="Qaz123.."/></div>
+    <a href="https://www.fundebug.com/project/integrate" target="_blank">插件控制页面</a>
+
+
+    <script src="https://js.fundebug.cn/fundebug.2.0.0.min.js" apikey="28bcef527b2b72e14e1b85b6711f95b14601a5778f0d9063265f9cab039ff36a" crossorigin="anonymous"></script>
+    <script src="https://js.fundebug.cn/fundebug.revideo.0.6.0.min.js"></script>
+
+    <button id="btn">点击发送错误报告</button>
+    <script src="../../cssjs/jquery.min.js"></script>
+    <script>
+        var obj={
+            "a":"b",
+            "c":"d",
+            "e":"f",
+            "g":"h"
+        }
+        $("#btn").on("click",function(){
+            throw JSON.stringify(obj);//传出去对象
+            
+            throw "错误进行一个监控";
+        })
+    </script>
+</body>
+</html>

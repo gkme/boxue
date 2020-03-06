@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>jq解绑多个点击事件中的一个</title>
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+    </style>
+</head>
+<body>
+    <button class="btn">点击查看事件</button>
+    <button class="clear-btn">解绑</button>
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function(){
+            function a(){
+                console.log("第一次调用");
+            }
+            function b(){
+                console.log("第二次调用");
+            }
+            function c(){
+                console.log("第三次调用");
+            }
+            $("body").on("click", ".btn", a);
+            $("body").on("click", ".btn", b);
+            $("body").on("click", ".btn", c);
+            $(".clear-btn").on("click",function(){
+                $("body").off("click", ".btn", b);
+            })
+
+        })
+    </script>
+</body>
+</html>

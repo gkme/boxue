@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Network</title>
+        <script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
+        <link href="http://visjs.org/dist/vis-network.min.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js"></script>
+        <style type="text/css">
+            #mynetwork {
+                width: 600px;
+                height: 400px;
+                border: 1px solid lightgray;
+            }
+        </style>
+    </head>
+    <body>
+
+        <p>
+            创建一个简单的网络拓扑图，双击实现节点的折叠与收缩.
+        </p>
+
+        <div id="mynetwork"></div><!-- 用户存放拓扑图的容器-->
+
+        <script type="text/javascript">
+
+            //定义需要生成的节点
+            var allnodes = [
+                {id: 1, label: 'Node 1', title: 'I have a popup 1!', level: 1, pid: 0, subids: [2, 3, 4]},
+                {id: 2, label: 'Node 2', title: 'I have a popup 2!', level: 2, pid: 1, subids: [5, 6]},
+                {id: 3, label: 'Node 3', title: 'I have a popup 3!', level: 2, pid: 1, subids: [7]},
+                {id: 4, label: 'Node 4', title: 'I have a popup 4!', level: 2, pid: 1, subids: [8]},
+                {id: 5, label: 'Node 5', title: 'I have a popup 5!', level: 3, pid: 2},
+                {id: 6, label: 'Node 6', title: 'I have a popup 6!', level: 3, pid: 2},
+                {id: 7, label: 'Node 7', title: 'I have a popup 7!', level: 3, pid: 3},
+                {id: 8, label: 'Node 8', title: 'I have a popup 8!', level: 3, pid: 4, subids: [9, 10]},
+                {id: 9, label: 'Node 9', title: 'I have a popup 9!', level: 4, pid: 8},
+                {id: 10, label: 'Node 10', title: 'I have a popup 10!', level: 4, pid: 8}
+            ];
+            //定义节点连接线
+            var alledges = [
+                {id: '1_2', from: 1, to: 2, title: 'test12!'},
+                {id: '1_3', from: 1, to: 3, title: 'test13!'},
+                {id: '1_4', from: 1, to: 4, title: 'test14!'},
+                {id: '2_5', from: 2, to: 5, title: 'test25!'},
+                {id: '2_6', from: 2, to: 6, title: 'test26!'},
+                {id: '3_7', from: 3, to: 7, title: 'test37!'},
+                {id: '4_8', from: 4, to: 8, title: 'test48!'},
+                {id: '8_9', from: 8, to: 9, title: 'test89!'},
+                {id: '8_10', from: 8, to: 10, title: 'test8to10!'}
+            ];
+            // 创建节点对象
+            var nodes = new vis.DataSet(allnodes);
+            // 创建连线对象
+            var edges = new vis.DataSet(alledges);
+            // 创建一个网络拓扑图
+            var container = document.getElementById('mynetwork');
+            var data = {nodes: nodes, edges: edges};
+            var options = {
+                interaction: {hover: true},
+                layout: {
+                        hierarchical: {direction: 'UD', sortMethod: 'hubsize'}
+                        //上下级结构显示,当定义上下级时候需要自定义层级显示时，需要对所有节点进行level属性进行定义
+                    },
+            };
+            var network = new vis.Network(container, data, options);
+            var nodes_data = network.body.data.nodes._data;
+            network.on("doubleClick", function(params) {//双击事件
+                if (params.nodes.length != 0) {//确定为节点双击事件
+                    var click_node_id = params.nodes[0];
+                    remove_all_sub_nodes(click_node_id);
+                }
+            });
+
+            //删除下级所有节点
+            function remove_all_sub_nodes(node_id) {
+                var sub_nodes = get_directly_sub_nodes(node_id);
+                if (sub_nodes.length == 0) {//当前点击的为叶子节点
+                    //判断是否有下级节点
+                    if (typeof (allnodes[node_id - 1]['subids']) != 'undefined') {
+                        $.each(allnodes[node_id - 1]['subids'], function(index, item) {
+                            nodes.add(allnodes[item - 1]);
+                            edges.add({id: node_id + '_' + item, from: node_id, to: item});
+                        });
+                    } else {
+                        alert('当前为叶子节点');
+                    }
+                } else {
+                    $.each(sub_nodes, function(index, item) {
+                        var sub_sub_nodes = get_directly_sub_nodes(item);
+                        if (sub_sub_nodes.length == 0) {
+                            nodes.remove({id: item});
+                            edges.remove({id: node_id + '_' + item});
+                        } else {
+                            remove_all_sub_nodes(item);
+                        }
+                        nodes.remove({id: item});
+                        edges.remove({id: node_id + '_' + item});
+                    });
+                }
+            }
+
+
+            //获取某节点直属下级节点
+            function get_directly_sub_nodes(node_id) {
+                var return_nodes = [];
+                var connectedNodes = network.getConnectedNodes(node_id);//获取所有连接节点
+                $.each(connectedNodes, function(index, item) {
+                    if (item != allnodes[node_id - 1]['pid']) {//当前节点的父节点 ，不操作
+                        return_nodes.push(item);
+                    }
+                });
+                return return_nodes;
+            }
+        </script>
+
+
+    </body>
+</html>

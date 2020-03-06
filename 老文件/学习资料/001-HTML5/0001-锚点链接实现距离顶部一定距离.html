@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>锚点链接实现距离顶部距离</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}ul,li{list-style:none;}
+        .box{
+            height: 500px;
+            margin-top: 20px;
+        }
+        #box1{background-color: red;}
+        #box2{background-color: green;}
+        #box3{background-color: blue;}
+        #box4{background-color: yellow;}
+    </style>
+</head>
+<body>
+    <a href="#box1" class="box2">1</a>
+    <a href="#box2" class="box2">2</a>
+    <a href="#box3" class="box2">3</a>
+    <a href="#box4" class="box2">4</a>
+    <div id="box1" class="box"></div>
+    <div id="box2" class="box"></div>
+    <div id="box3" class="box"></div>
+    <div id="box4" class="box"></div>
+    
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $(".box2").click(function(){
+                setTimeout(function(){
+                    var s = $(document).scrollTop();
+                    var s = s-68;
+                    if(s<0){
+                        s=0;
+                    }
+                    $(document).scrollTop(s);
+                },100)
+            })
+        })
+    </script>
+</body>
+</html>

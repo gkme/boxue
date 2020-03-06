@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<style>
+		
+	</style>
+</head>
+<body>
+    <div id="app">
+        <!-- 元素上的ref -->
+        <div ref="hello" @click="gotoshow">guo kun</div>
+
+        <!-- 组件上的ref -->
+        <child-component ref="one" @change="hanldchange" ></child-component>
+        <child-component ref="two" @change="hanldchange" ></child-component>
+        <br />
+        {{ total }}
+    </div>
+</body>
+<script>
+    Vue.component("childComponent",{
+        data(){
+            return {
+                number:0
+            }
+        },
+        template:"<p @click='childFunc'>{{ number }}</p>",
+        methods:{
+            childFunc(){
+                this.number++
+                this.$emit("change")
+            }
+        }
+
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            total:0
+        },
+        methods:{
+            gotoshow(){
+                console.log(this.$refs.hello);//<div>guo kun</div>
+            },
+            hanldchange(){
+                this.total = this.$refs.one.number +  this.$refs.two.number
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child :n="title"></child>
+        <child :n-s="title"></child>
+    </div>
+</body>
+<script>
+Vue.component("child",{
+    props:["n","nS"],
+    template:'<div><h1>{{n}}</h1><h2>{{nS}}</h2></div>'
+})
+var app=new Vue({
+    el:"#app",
+    data:{
+       title:"父亲到儿子动态数据" ,
+       el:"驼峰格式"
+    }
+})
+</script>
+</html>

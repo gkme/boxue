@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <script type="text/javascript">
+        function copy(){
+            var ts=document.getElementById("t");
+            ts.select(); // 选择对象
+            document.execCommand("Copy"); // 执行浏览器复制命令
+        }
+    </script>
+    <textarea cols="50" rows="30" id="t"></textarea>
+    <input type="button" onClick="copy()" value="点击复制" />
+</body>
+</html>

@@ -1,0 +1,4 @@
+npm init 
+cnpm install -g gulp
+cnpm install --save-dev gulp
+npm install  node-sass  -g

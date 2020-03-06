@@ -1,0 +1,20 @@
+vuex
+vuex大体可以看作四步，
+第一到action里面查到这个事件的触发，
+然后立马是mutaction里面查看对应处理，
+第三步改变store的状态，
+第四部getter视图渲染；
+
+state
+getters     储存的
+mutations   突变的
+actions     活动的
+
+
+state 状态管理 ，为单一状态树(用一个对象包含了全部的应用层级状态)，但与模块化并不冲突。关于状态值的获取，可以通过this.$store访问，当需要访问多个状态时，可以import mapState函数，来获取多个状态。
+
+Getters 相当于store的计算属性，可以从state中派生出一些状态。同时可以利用mapGetters来引入getters。
+
+Mutations 改变state状态的函数。每个mutation都有一个事件类型和一个回调函数。可以使用state.commit()提交相应的事件type驱动事件回调函数。且回调函数必须是同步函数。当需要同时调用两个包含异步回调的函数时，可以使用actions来异步调用mutations.
+
+Actions 主要是commit mutations,而不是用于直接更变状态，同时可以包含任何异步操作。Actions主要是通过store.dispatch触发。调用方式：1.在组件中分发actions;2.使用mapActions辅助函数将组建的methods映射为store.dispatch调用。

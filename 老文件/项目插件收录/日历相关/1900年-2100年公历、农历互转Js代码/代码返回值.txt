@@ -1,0 +1,38 @@
+参考网址：http://blog.jjonline.cn/userInterFace/173.html
+
+/**公历年月日转农历数据 返回json**/
+    calendar.solar2lunar(1987,11,01);
+/**农历年月日转公历年月日**/
+    calendar.lunar2solar(1987,9,10);
+
+{
+    Animal: "兔",
+    IDayCn: "初十",
+    IMonthCn: "九月",
+    Term: null,//是否是24节气
+    astro: "天蝎座",
+    cDay: 1,
+    cMonth: 11,
+    cYear: 1987,
+    gzDay: "甲寅",
+    gzMonth: "庚戌",
+    gzYear: "丁卯",
+    isLeap: false,
+    isTerm: false,
+    isToday: false,
+    lDay: 10,
+    lMonth: 9,
+    lYear: 1987,
+    nWeek: 7,
+    ncWeek: "星期日"
+}
+
+
+示例：
+var lunar = calendar.solar2lunar();
+$('.solarlunar').html('<strong>调用代码示例Demo</strong><br />阳历：'+lunar.cYear + '年' +lunar.cMonth +  '月' + lunar.cDay +'日（'+lunar.astro+'）<br />农历：'+lunar.lYear + '年' +lunar.IMonthCn+lunar.IDayCn+'，'+lunar.gzYear+'年'+lunar.gzMonth+'月'+lunar.gzDay+'日（'+lunar.Animal+'年）');
+
+结果返回：
+调用代码示例Demo
+阳历：2018年3月4日（双鱼座）
+农历：2018年正月十七，戊戌年甲寅月乙未日（狗年）

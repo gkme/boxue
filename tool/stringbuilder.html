@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>字符串拼接</title>
+     <link rel="shortcut icon" href="https://raw.githubusercontent.com/s209392599/img/master/zi.ico"/>
+    <style>
+        *{
+          box-sizing:border-box;
+        }
+        .clearfix:after{
+            content: ".";
+            display:block;
+            clear: both;
+            height: 0;
+            visibility: hidden;
+        }
+        .topString textarea{
+            float: left;
+        }
+        #content{
+            width: 55%;
+        }
+        #result{
+            width: 42%;
+        }
+    </style>            
+</head>
+<body>
+    <div class="clearfix topString">
+        <textarea id="content" rows="25" cols="110" onfocus="del()" placeholder="请输入要拼接的字符串"></textarea>
+        <textarea id="result" rows="25" cols="110" placeholder="输出结果"></textarea>
+    </div>
+    <input type="tetx" id="prefix" value="html">
+
+    <button id="btn">点击复制拼接的字符串</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="checkbox" id="ishtml" style="width:18px;height:18px;vertical-align:middle;"><label for="ishtml" style="cursor:pointer;">是否var开头</label>
+
+    <!-- https://www.html.cn/tool/html2js/  来源于这个网站 -->
+    
+    <script src="../cssjs/jquery.min.js"></script>
+    <script>
+        function del(){
+           $("#content").val("");
+       }
+
+        $("#btn").on("click",function(){
+            var prefix = $("#prefix").val();
+            var isHtml = $("#ishtml").is(":checked");
+            var htmlArr = $("#content").val().replace(/\\/g, "\\\\").replace(/\\/g, "\\/").replace(/\'/g, "\\\'").split('\n');
+            var outArr = [];
+            var len1 = prefix.length+5;
+            if(isHtml){
+                len1 = prefix.length+1;
+            }
+            var blankSpace = "";
+            for(var i=0;i<len1;i++){
+                blankSpace+=" ";
+            }
+            var htmlArrLen = htmlArr.length;
+            jQuery.each(htmlArr, function (index, value) {
+                if (value !== "") {
+                    if (index === htmlArrLen - 1) {
+                        outArr.push(blankSpace + "+ \'" + value + "\';");
+                    } else {
+                        if(index == 0){
+                            if(isHtml){
+                                outArr.push(""+ prefix +"+= \'" + value + "\'\n");
+                            }else{
+                                outArr.push("var "+ prefix +" = \'" + value + "\'\n");
+                            }
+                        }else{
+                            var str = value;
+                            var len = str.length;
+                            var space = "";
+                            for(var i=0;i<len;i++){
+                                if(str.charAt(i)!=" "){
+                                    console.log(i);
+                                    for(var j=0;j<i;j++){
+                                        space+=" ";
+                                    }
+                                    str = str.slice(i);
+                                    break;   
+                                }
+                            }
+                            outArr.push(blankSpace +"+ " + space + "\'" + str + "\'\n");
+                        }
+                        
+                    }
+                }
+                /*if (value !== "") {
+                    if (index === len - 1) {
+                        outArr.push(blankSpace + "+ \'" + value + "\';");
+                    } else {
+                        if(index == 0){
+                            console.log(index);
+                            console.log(len1);
+                            console.log(blankSpace);
+                            outArr.push("var "+ prefix +" = \'" + value + "\'\n");
+                        }else{
+                            outArr.push(blankSpace + "+ \'" + value + "\'\n");
+                        }
+                        
+                    }
+                }*/
+            });
+            $("#result").val(outArr.join(""));
+            $("#result").select();
+            document.execCommand("Copy");
+        })
+        
+    </script>
+</body>
+</html>

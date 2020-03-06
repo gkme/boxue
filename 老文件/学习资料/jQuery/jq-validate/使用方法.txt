@@ -1,0 +1,187 @@
+validation校验的是name属性,不是input的id
+
+基本验证方法:
+required 必填 true
+minlength 最小长度 
+maxlength 最大长度
+rangelength 长度范围
+min 最小值 max 最大值 range 值范围
+email  email格式
+url  url格式
+date 日期
+dateISO ISO日期
+number 数字
+digits 整数
+equalTo 与另一个元素值相等
+remote 远程校验
+debug为true时,表单不会提交,只进行检查,调试时十分方便
+
+valid() 检查表单元素是否有效
+rules() 获取表单元素(不能获取form)的校验规则 例：$("#q1").rules()
+rules("add",rules) 向表单元素增加校验规则 例:$("#q1").rules("add",{minlength:2})
+rules("remove",rules) 删除表单元素校验规则
+
+validator 对象方法：
+validator.form() true/false 验证表单是否有效
+validator.element("#username") true/false 验证表单元素是否有效
+validator.reserForm() 把表单恢复到验证前原来的状态
+validator.showErrors({
+    username:"你填错了"
+}) 
+validator.numberOfInvalids() 返回无效元素数量
+
+validator对象静态方法：
+$.validator.addMethod(name,method,message) 增加自定义的验证方法
+$.validator.format() 格式化字符串,用参数代替模板中的{n}
+$.validator.setDefaults(options) 修改插件默认设置 例:$.validator.setDefaults({debug:true}) 即为页面所有表单设置检查
+$.validator.addClassRules(name,rules) 为某些包含名为name的class增加组合验证类型 例:$.validator.addClassRules({
+    txt:{
+        required:true,
+        minlength:2
+    }
+})
+
+validate() 方法配置项
+rules 规则校验 messages 信息提示
+submitHandler 通过验证后云讯搞得函数,可以加上表单提交的方法
+    submitHandler:function(form){
+        //name=123&password=456
+        console.log($(form).serialize());
+    }
+invalidHandler 无效表单提交后运行的函数
+    invalidHandler:function(enent,validator){
+        console.log("错误数:"+validator.numberOfInvalids());
+    }
+ignore 对某些元素不进行验证 例: ignore:"#username"
+    注:ignore:":hidden" 不对隐藏的元素进行校验
+groups 对一组元素的验证,用一个错误提示,用errorPlacement控制把出错信息放在哪里
+    groups:{
+        login:"username password"
+    },
+    errorPlacement:function(error,element){
+        error.insertBefor($("#username"))
+    }
+
+onsubmit 是否在提交时验证 true/false
+onfocusout 是否在获取焦点时验证
+onkeyup 是否在敲击键盘时验证
+onclick 是否在鼠标点击时验证,一般用于checbox或者radio
+focusInvalid 提交表单后,未通过验证的表单(第一个或提交之前获得焦点的未通过验证的表单)是否会获得焦点
+focusCleanuo 当未通过验证的元素获得焦点时,是都移除错误提示
+
+errorClass 指定错误提示的css类名,可以自定义错误提示的样式 .error
+validClass 指定验证通过的css类名
+    $("#reg").valite({
+        errorClass:"wrong",
+        validClass:"right"
+    })
+errorElement 使用什么标签标记错误
+wrapper 使用什么标签把上边的errorElement包起来
+errorLabelContainer 把错误信息同意放在一个容器里面
+errorContainer 显示或隐藏验证信息,可以自动实现有错误信息出现时把容器属性变为显示,无错误时隐藏 注：errorContainer:"#info2" <p id="info2">额外自定义错误</p>
+
+显示总共有多少个未通过验证的元素
+showErrors:function(errorMap,errorList){
+    console.log(errorMap);
+    console.log(errorList);
+    this.default
+}
+errorPlacement 自定义错误信息放在哪里
+success 要验证的元素通过验证后的动作
+highlight 可以给未通过验证加效果
+unhighlight 去除未通过验证元素的效果,一般和highlight同时使用
+
+选择器扩展：
+:blank 选择所有值为空的元素
+:filled 选择所有值不为空的额元素
+:unchecked 选择所有没有被选中的元素
+
+additional-methods.js 包含了很多扩展验证方法
+
+扩展方法：
+$.validator.addMethod("phoneCheck", function(value, element, param){
+     return this.optional(element) || new RegExp(/^1[34587]\d{9}$/).test(value);
+    }, "手机号码非法");
+注：this.optional(element)  非必填时增加这句话
+$.validator.addMethod("userCheck", function(value, element, param){
+     return new RegExp(/^\w{6,12}$/).test(value);
+    }, "用户名存在非法字符");
+
+
+例:
+$(function(){
+    $("#reg").valite({
+        rules:{
+            username:{
+                required:true
+                rangelength:[6,12]
+            },
+            password:{
+                required:true
+            }
+        },
+        messages:{
+            username:{
+                required:'用户名必填'
+                rangelength:'长度不对'
+            },
+            password:{
+                required:'密码必填'
+            }
+        } 
+    })
+})
+
+异步验证：
+remote: {
+    url: "check-email.php",     //后台处理程序
+    type: "post",               //数据发送方式
+    dataType: "json",           //接受数据格式   
+    data: {                     //要传递的数据
+        username: function() {
+            return $("#username").val();
+        }
+    }
+}
+
+添加自定义校验：
+addMethod：name, method, message
+自定义验证方法
+
+// 中文字两个字节
+jQuery.validator.addMethod("byteRangeLength", function(value, element, param) {
+    var length = value.length;
+    for(var i = 0; i < value.length; i++){
+        if(value.charCodeAt(i) > 127){
+            length++; 
+        }
+    }
+  return this.optional(element) || ( length >= param[0] && length <= param[1] );   
+}, $.validator.format("请确保输入的值在{0}-{1}个字节之间(一个中文字算2个字节)"));
+
+// 邮政编码验证   
+jQuery.validator.addMethod("isZipCode", function(value, element) {   
+    var tel = /^[0-9]{6}$/;
+    return this.optional(element) || (tel.test(value));
+}, "请正确填写您的邮政编码");
+
+
+errorPlacement：Callback 更改错误信息显示的位置
+
+更改错误信息显示的样式：
+input.error { border: 1px solid red; }
+label.error {
+    background:url("./demo/images/unchecked.gif") no-repeat 0px 0px;
+    padding-left: 16px;
+    padding-bottom: 2px;
+    font-weight: bold;
+    color: #EA5200;
+}
+label.checked {
+    background:url("./demo/images/checked.gif") no-repeat 0px 0px;
+}
+
+网址：
+http://www.runoob.com/jquery/jquery-plugin-validate.html
+https://www.cnblogs.com/linjiqin/p/3431835.html
+https://www.cnblogs.com/errorif/archive/2012/09/03/2668892.html

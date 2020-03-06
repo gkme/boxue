@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{name}}
+    </div>
+</body>
+<script>
+var app=new Vue({
+    el:"#app",
+    data:{
+        name:"veblen",
+        arr:[]
+    },
+beforeCreate:function(){
+    console.log(this.name,document.getElementById("app").innerHTML,"beforeCreate");
+    //访问不了data数据,模板还未编译
+    //undefined ",{{name}},"beforeCreate"
+},
+created:function(){
+    //可以访问data数据
+    //veblen created
+    console.log(this.name,"created")
+},
+beforeMount:function(){
+    console.log(document.getElementById("app").innerHTML,"beforeMount")
+    //{{name}},beforeMount
+},
+mounted:function(){
+    console.log(document.getElementById("app").innerHTML,"mounted")
+    //模板已更新
+    //veblen,mounted
+},
+    beforeUpdate:function(){
+    alert("你想干啥")
+    //在页面数据更新前提示 
+},
+updated:function(){
+    alert("更新完成")
+    //在页面数据更新后提示 
+}
+})
+//小结：created时可以操作data,mounted可以操作dom
+</script>
+</html>

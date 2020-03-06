@@ -1,0 +1,36 @@
+﻿http://www.datatables.club/blog/2016/01/28/user-share-nbh1991.html  入门例子
+
+
+//选中一行 checkbox选中
+function checkbox(tableId) {
+    $('#' + tableId + ' tbody').off("click", "tr");
+    $('#' + tableId + ' tbody').on("click", "tr", function () {
+        $(this).toggleClass('selected');
+        if ($(this).hasClass("selected")) {
+            $(this).find("input").prop("checked", true);
+        } else {
+            $(this).find("input").prop("checked", false);
+        }
+    });
+}
+
+头部改为下拉
+ "initComplete": function(settings, json) {
+     var api = this.api();
+     api.columns().indexes().flatten().each( function ( i ) {
+         if(i == dataTypeIndex){
+             var column = api.column( i );
+             var select = $('<select class="datatableHeadSelect">'
+                   +'<option value="">'+ $.i18n.prop('planTaskFeedback.status') +'('+ $.i18n.prop('common.All') +')</option>'//状态(全部)
+                   +'<option value="1">'+ $.i18n.prop('planTaskFeedback.status') +'('+ $.i18n.prop('xpmProject.baseProject.Application') +')</option>'//状态(申请中)
+                   +'<option value="0">'+ $.i18n.prop('planTaskFeedback.status') +'('+ $.i18n.prop('xpmProject.baseProject.NotApplied') +')</option>'//状态(未申请)
+                   +'<option value="3">'+ $.i18n.prop('planTaskFeedback.status') +'('+ $.i18n.prop('homepage.rejected') +')</option>'//状态(被驳回)
+                   +'<option value="2">'+ $.i18n.prop('planTaskFeedback.status') +'('+ $.i18n.prop('xpmProject.baseProject.HasBecomeMyCustomer') +')</option></select>')//状态(已成为我的客户)
+            .appendTo( $(column.header()).empty() )
+            .on( 'change', function () {
+                state = $(this).val();
+                reloadList(state);
+            });
+         }
+     })
+ },

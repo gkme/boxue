@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>01-ztree基础示例</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <script src="./cssjs/jquery.min.js"></script>
+    <link rel="stylesheet" href="./cssjs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./cssjs/ztree/zTreeStyle/zTreeStyle.css">
+    <script src="./cssjs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./cssjs/ztree/js/jquery.ztree.all.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;box-sizing:border-box;}
+        #tree>li{
+            height:30px;
+            line-height:30px;
+        }
+        #tree>li:hover{
+            background-color: #ddd;
+        }   
+    </style>
+</head>
+<script>
+var filePath = 'D:/boxue/';
+//navigation 为根节点的导航页面
+var zNodes =[
+    {name: "copy0", open: true,navigation:"copy/001-index.html"},
+    {name: "copy1", open: true,navigation:"copy/001-index.html"},
+    {name: "copy2", open: true,navigation:"copy/001-index.html"},
+    {name: "copy3", open: true,navigation:"copy/001-index.html"},
+    {name: "copy4", open: true,navigation:"copy/001-index.html"},
+    {name: "copy5", open: true,navigation:"copy/001-index.html"},
+    {name: "copy6", open: true,navigation:"copy/001-index.html"},
+    {name: "copy7", open: true,navigation:"copy/001-index.html"},
+    {name: "copy8", open: true,navigation:"copy/001-index.html"},
+    {name: "copy9", open: true,navigation:"copy/001-index.html"},
+    {name: "copy10", open: true,navigation:"copy/001-index.html"},
+    {name: "copy11", open: true,navigation:"copy/001-index.html"},
+    {name: "copy12", open: true,navigation:"copy/001-index.html"},
+    {name: "copy0", open: true,navigation:"copy/001-index.html"},
+    {name: "copy1", open: true,navigation:"copy/001-index.html"},
+    {name: "copy2", open: true,navigation:"copy/001-index.html"},
+    {name: "copy3", open: true,navigation:"copy/001-index.html"},
+    {name: "copy4", open: true,navigation:"copy/001-index.html"},
+    {name: "copy5", open: true,navigation:"copy/001-index.html"},
+    {name: "copy6", open: true,navigation:"copy/001-index.html"},
+    {name: "copy7", open: true,navigation:"copy/001-index.html"},
+    {name: "copy8", open: true,navigation:"copy/001-index.html"},
+    {name: "copy9", open: true,navigation:"copy/001-index.html"},
+    {name: "copy10", open: true,navigation:"copy/001-index.html"},
+    {name: "copy11", open: true,navigation:"copy/001-index.html"},
+    {name: "copy12", open: true,navigation:"copy/001-index.html"},
+    {name: "copy0", open: true,navigation:"copy/001-index.html"},
+    {name: "copy1", open: true,navigation:"copy/001-index.html"},
+    {name: "copy2", open: true,navigation:"copy/001-index.html"},
+    {name: "copy3", open: true,navigation:"copy/001-index.html"},
+    {name: "copy4", open: true,navigation:"copy/001-index.html"},
+    {name: "copy5", open: true,navigation:"copy/001-index.html"},
+    {name: "copy6", open: true,navigation:"copy/001-index.html"},
+    {name: "copy7", open: true,navigation:"copy/001-index.html"},
+    {name: "copy8", open: true,navigation:"copy/001-index.html"},
+    {name: "copy9", open: true,navigation:"copy/001-index.html"},
+    {name: "copy10", open: true,navigation:"copy/001-index.html"},
+    {name: "copy11", open: true,navigation:"copy/001-index.html"},
+    {name: "copy12", open: true,navigation:"copy/001-index.html"},
+    {name: "copy0", open: true,navigation:"copy/001-index.html"},
+    {name: "copy1", open: true,navigation:"copy/001-index.html"},
+    {name: "copy2", open: true,navigation:"copy/001-index.html"},
+    {name: "copy3", open: true,navigation:"copy/001-index.html"},
+    {name: "copy4", open: true,navigation:"copy/001-index.html"},
+    {name: "copy5", open: true,navigation:"copy/001-index.html"},
+    {name: "copy6", open: true,navigation:"copy/001-index.html"},
+    {name: "copy7", open: true,navigation:"copy/001-index.html"},
+    {name: "copy8", open: true,navigation:"copy/001-index.html"},
+    {name: "copy9", open: true,navigation:"copy/001-index.html"},
+    {name: "copy10", open: true,navigation:"copy/001-index.html"},
+    {name: "copy11", open: true,navigation:"copy/001-index.html"},
+    {name: "copy12", open: true,navigation:"copy/001-index.html"},
+    {name: "copy0", open: true,navigation:"copy/001-index.html"},
+    {name: "copy1", open: true,navigation:"copy/001-index.html"},
+    {name: "copy2", open: true,navigation:"copy/001-index.html"},
+    {name: "copy3", open: true,navigation:"copy/001-index.html"},
+    {name: "copy4", open: true,navigation:"copy/001-index.html"},
+    {name: "copy5", open: true,navigation:"copy/001-index.html"},
+    {name: "copy6", open: true,navigation:"copy/001-index.html"},
+    {name: "copy7", open: true,navigation:"copy/001-index.html"},
+    {name: "copy8", open: true,navigation:"copy/001-index.html"},
+    {name: "copy9", open: true,navigation:"copy/001-index.html"},
+    {name: "copy10", open: true,navigation:"copy/001-index.html"},
+    {name: "copy11", open: true,navigation:"copy/001-index.html"},
+    {name: "copy12", open: true,navigation:"copy/001-index.html"},
+    {name: "copy0", open: true,navigation:"copy/001-index.html"},
+    {name: "copy1", open: true,navigation:"copy/001-index.html"},
+    {name: "copy2", open: true,navigation:"copy/001-index.html"},
+    {name: "copy3", open: true,navigation:"copy/001-index.html"},
+    {name: "copy4", open: true,navigation:"copy/001-index.html"},
+    {name: "copy5", open: true,navigation:"copy/001-index.html"},
+    {name: "copy6", open: true,navigation:"copy/001-index.html"},
+    {name: "copy7", open: true,navigation:"copy/001-index.html"},
+    {name: "copy8", open: true,navigation:"copy/001-index.html"},
+    {name: "copy9", open: true,navigation:"copy/001-index.html"},
+    {name: "copy10", open: true,navigation:"copy/001-index.html"},
+    {name: "copy11", open: true,navigation:"copy/001-index.html"},
+    {name: "copy12", open: true,navigation:"copy/001-index.html"},
+
+];
+</script>
+<body>
+    <textarea cols="50" rows="30" id="indext" style="position: fixed;left:-500px;"></textarea>
+    
+    <div style="position: fixed;right:0;bottom:0;width: 100%;height: 100%;">
+        <div id="left" style="position: absolute;left:0:top:0;height: 100%;width: 366px;border-right:1px dashed #999">
+            <input type="text" id="key" autocomplete="off" value="" class="empty" style="height:34px;line-height: 34px;width:230px;border-radius:8px;border:2px solid green;outline:none;"/>
+            <ul id="tree" class="ztree" style="width:366px;height: 565px; overflow:auto;margin-top:10px;"></ul>
+        </div>
+        <div id="right" style="position: absolute;left:366px;right:0;bottom:0;height: 100%;">
+            <iframe id="ifamesrc" src="" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+    <script>
+        var h = $(document).height() - 60;
+        $("#tree").css("height",h+"px");
+        var adress = "";
+        var setting = {
+            data: {
+                key: {
+                    url: "xUrl"//不让节点跳转
+                }
+            },
+            callback: {
+                onClick: zTreeOnClick //节点的点击事件
+            },
+            view: {
+                showIcon:false,//不显示图标
+                showLine:false,//不显示连接线
+                fontCss: getFontCss //加背景颜色
+            }
+        };
+        function focusKey(e) {
+            var zTree = $.fn.zTree.getZTreeObj("tree");
+            this.value = "";
+            zTree.expandAll(false);
+            if (key.hasClass("empty")) {
+                key.removeClass("empty");
+            }
+        }
+        function blurKey(e) {
+            if (key.get(0).value === "") {
+                key.addClass("empty");
+            }
+        }
+        var lastValue = "", nodeList = [];
+        function searchNode(e) {
+            var zTree = $.fn.zTree.getZTreeObj("tree");
+            var value = $.trim(key.get(0).value);
+            if (key.hasClass("empty")) {
+                value = "";
+            }
+            if (lastValue === value) return false;
+            lastValue = value;
+            updateNodes(false);
+            if (value === "") return false;
+            nodeList = zTree.getNodesByParamFuzzy("name", value);
+            updateNodes(true);
+        }
+
+        function updateNodes(highlight) {
+            var zTree = $.fn.zTree.getZTreeObj("tree");
+
+            zTree.expandAll(false);
+
+            for( var i=0, l=nodeList.length; i<l; i++) {
+                nodeList[i].highlight = highlight;
+                zTree.expandNode(nodeList[i], true ,false ,true, false);
+                var parent = nodeList[i].getParentNode();
+                if(null != parent && !parent.open){
+                    zTree.expandNode(parent, true, false, false, false);
+                }
+                zTree.updateNode(nodeList[i]);
+            }
+            zTree.refresh();
+        }
+        function getFontCss(treeId, treeNode) {
+            return (!!treeNode.highlight) ? {color:"#A60000", "font-weight":"bold"} : {color:"#333", "font-weight":"normal"};
+        }
+
+        var key;
+        $(document).ready(function(){
+            $.fn.zTree.init($("#tree"), setting, zNodes);
+            key = $("#key");
+            key.bind("focus", focusKey)
+            .bind("blur", blurKey)
+            .bind("input", searchNode);
+        });
+
+        function copy(){
+            if(!adress || adress==""){ alert("请先选中一个节点") }
+            $("#indext").val(adress);
+            var ts=document.getElementById("indext");
+            ts.select(); // 选择对象
+            document.execCommand("Copy"); // 执行浏览器复制命令
+        }
+        function copywang(){
+            if(!adress || adress==""){ alert("请先选中一个节点") }
+            var str = adress.replace(filePath,"");
+            var dizhi = "https://gkme.gitee.io/boxue/" + str;
+            $("#indext").val(dizhi);
+            var ts=document.getElementById("indext");
+            ts.select(); // 选择对象
+            document.execCommand("Copy"); // 执行浏览器复制命令
+        }
+
+        //节点的点击事件
+        function zTreeOnClick(event, treeId, treeNode, clickFlag) {
+            console.log("treeNode",treeNode);
+            var treeNodePath = treeNode.url+"/"+treeNode.name;
+            if(treeNode.navigation && treeNode.currentlevel>0){//是根节点，需要导航页面
+                treeNodePath = treeNode.navigation;
+            }
+            $("#ifamesrc").attr("src",treeNodePath)
+            adress = filePath+treeNodePath;
+        }
+        //全部展开
+        function expandAll() {
+            var treeObj = $.fn.zTree.getZTreeObj("tree");
+                treeObj.expandAll(true);
+        }
+    </script>
+</body>
+
+</html>

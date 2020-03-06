@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../学习资料/bootstrap/css/bootstrap-theme.min.css">
+    <script src="../../jquery.min.js"></script>
+    <script src="../../学习资料/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables_themeroller.css">
+    <script src="js/jquery.dataTables.js"></script>
+</head>
+<body>
+   
+    <table id="myTable">
+        <caption>table title and/or explanatory text</caption>
+        <thead>
+            <tr>
+                <th>header</th>
+                <th>header</th>
+                <th>header</th>
+                <th>header</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>data</td>
+                <td>data</td>
+                <td>data</td>
+                <td>data</td>
+            </tr>
+            <tr>
+                <td>data</td>
+                <td>data</td>
+                <td>data</td>
+                <td>data</td>
+            </tr>
+            <tr>
+                <td>data</td>
+                <td>data</td>
+                <td>data</td>
+                <td>data</td>
+            </tr>
+            <tr>
+                <td>data</td>
+                <td>data</td>
+                <td>data</td>
+                <td>data</td>
+            </tr>
+        </tbody>
+    </table>
+   
+    <script>
+        $(function(){
+            $('#myTable').DataTable({
+                "dom":"<'#datatableTopBox'<'#datatableTopCon'><'.fl.datableSearch'f>>rt<'info'l>p"
+            });
+
+            $.ajax({  
+                //请求方式  
+                type:"GET",  
+                //文件位置  
+                url:"test.json",  
+                //返回数据格式为json,也可以是其他格式如  
+                dataType: "json",  
+                //请求成功后要执行的函数，拼接html  
+                success: function(data){  
+                    var str="<ul>";  
+                    $.each(data.list[0].manage,function(i,n){  
+                        str+="<li>"+n.tool+"</li>";  
+                    });  
+                    str+="</ul>";  
+                    $("div").append(str);  
+                } 
+            })
+        })
+    </script> 
+</body>
+</html>

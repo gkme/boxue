@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <div v-bind:id="flag">{{message}}</div>
+       <button v-bind:disabled="isButtonDisabled">Button</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"显示出来",
+                flag:true,
+                isButtonDisabled:null
+            }
+        })
+
+        // null、undefined 或 false，则 disabled 特性甚至不会被包含在渲染出来的 <button> 元素中。
+        // <div id="app"><div id="true">显示出来</div> <button>Button</button></div>
+    </script>
+</body>
+</html>

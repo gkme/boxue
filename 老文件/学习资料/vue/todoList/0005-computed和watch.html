@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ fullname }}
+        <br />
+        {{ computedName }}
+        <br />
+        {{ computedName1 }}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                name1:"guo",
+                name2:"kun",
+                fullname:"guo kun",
+
+                computedName1:"好好学习",
+                computedName2:"天天向上"
+            },
+            methods:{
+                computedName1(){
+                    console.log("调用1");
+                    return this.computedName1 +' '+ this.computedName2
+                }
+            },
+            watch:{
+                name1(){
+                    this.fullname = this.name1 + this.name2
+                },
+                name2(){
+                    this.fullname = this.name1 + this.name2
+                },
+            },
+            computed:{
+                computedName(){
+                    console.log("调用");
+                    return this.computedName1 +' '+ this.computedName2
+                }
+            }            
+        })
+        // watch 和 computed都有缓存机制
+        // 推荐使用 computed  其次watch  最后methods
+    </script>
+</body>
+</html>

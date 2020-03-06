@@ -1,0 +1,47 @@
+《1》.div两遍固定中间自适应
+/*float法*/  
+.float .left{float:left;height:200px;}  
+.float .center{margin:0 400px;height:200px;}  
+.float .right{float:right;height:200px;}  
+
+/*position法*/  
+.position{position:relative;}  
+.position .left{position:absolute;top:0;left:0;height:200px;}  
+.position .center{height:200px;margin:0 400px;}  
+.position .right{position:absolute;top:0;right:0;height:200px;}  
+
+/*table法*/  
+.table{display:table}  
+.table .inner{display:table-cell;}  
+
+/*flex法*/  
+.flex {display:box;display:-webkit-box;display:-moz-box;display:-moz-box;}  
+.flex .left{height:200px;}  
+.flex .center{-webkit-box-flex:1;box-flex:1;-moz-box-flex:1;}  
+.flex .right{height:200px;}  
+
+
+《2》.div未知宽高居中
+1.
+position:absolute;
+top:50%;
+left: 50%;
+-webkit-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+2.
+display: flex;
+align-items: center;
+justify-content: center;
+3.只能垂直居中
+content:"";
+display: inline-block;  
+vertical-align: middle;  
+height: 100%;  
+
+
+《3》.div左边固定右边自适应
+1.触发bfc 右边设置 overflow:hidden;
+2.flex  父元素display:flex;  左边flex:none; 右边flex:1;
+3.table  父元素isplay:table;  左右display:table-cell;  
+4.css计算宽度calc  左边float:left;   右边float:right;  width:calc(100% - 200px); 
+5.margin-left方式  左边float:left;   右边float:left;  margin-left:200px; 

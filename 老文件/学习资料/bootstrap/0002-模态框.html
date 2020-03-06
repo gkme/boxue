@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no,viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .modal-footer:after{
+            content: ".";
+            display:block;
+            clear: both;
+            height: 0;
+            visibility: hidden;
+        }
+        .box{
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 14px;
+            border: 1px solid transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        头部
+    </button>
+
+    <!-- 
+        data-backdrop="true"   有背景遮罩,默认是true,static也是默认压黑
+        modal-dialog  在这个类名下margin-top 否则顶部点击无效
+        data-keyboard="false"  按键esc无效
+        z-index 默认1050
+        modal-xs modal-sm modal-md modal-lg
+     -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  data-backdrop="true" style="z-index: 10050">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    中间的内容
+                </div>
+                <div class="modal-footer">
+                    <span class="box">changes</span>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <button onclick="alert(1);">点击弹出1</button>
+
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        //调整模态框垂直居中显示
+        //此种方式，在使用动画第一次显示时有问题
+        //解决方案，去掉动画fade样式
+        // $('#myModal').on('shown.bs.modal', function () {    
+        //     var $this = $(this);    
+        //     var dialog = $this.find('.modal-dialog');
+        //     var top = ($(window).height() - dialog.height()) / 2;    
+        //     dialog.css({marginTop:top});
+        // });
+
+        // 关键代码，如没将modal设置为 block，则$modala_dialog.height() 为零            
+/*        $('#myModal').on('shown.bs.modal', function (e) {            
+            $(this).css('display', 'block');            
+            var modalHeight=$(window).height() / 2 - $('#myModal .modal-dialog').height() / 2;            
+            $(this).find('.modal-dialog').css({'margin-top': modalHeight});
+        });*/
+
+        //模态框出现禁止背景层滚动代码
+        /*$(function() {
+            $('#preview').on('show.bs.modal',function() {
+                $('body,html').css("overflow","hidden");
+            })
+            $('#preview').on('hide.bs.modal',function() {
+                $('body,html').css("overflow","auto");
+            })
+        });*/
+    </script>
+</body>
+</html>

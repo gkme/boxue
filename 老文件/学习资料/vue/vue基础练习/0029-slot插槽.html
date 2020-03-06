@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<style>
+		
+	</style>
+</head>
+<body>
+    <div id="app">
+        <child-component>
+            <!-- template slot-scope为固定写法 -->
+            <template slot-scope="varvar">
+                <h1>{{ varvar.item }}--{{ varvar.dex }}</h1>
+            </template>
+        </child-component>
+        <my-app></my-app>
+        <gk></gk>
+    </div>
+</body>
+<script>
+    Vue.component("childComponent",{
+        data(){
+            return {
+                list:[1,2,3,4,5]
+            }
+        },
+        // :item向外传递的参数变量
+        template:`<ul>
+                    <slot v-for="(item,index) in list" :item="item" :dex="index"></slot>
+                </ul>`,
+    })
+    
+    var child = {
+        template:`<p>
+            <slot name="two"></slot>
+            <slot name="one"></slot>
+        </p>`
+    }
+    Vue.component("zizujian",child)
+    var App = {
+        template:`<div>
+            <zizujian>
+                <h1 slot="one">我是第一个</h1>
+                <h3 slot="two">我是第二个</h3>
+            </zizujian>
+        </div>`
+    }
+
+
+    var juming = {
+        template:`<p>
+            <slot></slot>
+        </p>`
+    }
+    Vue.component("juming",juming)
+    var gk = {
+        template:`<div>
+            <juming>
+                <h1>直接使用的</h1>
+            </juming>
+        </div>`
+    }
+    var app = new Vue({
+        el:"#app",
+        components:{
+           "my-app":App,
+           "gk":gk 
+        }
+    })
+</script>
+</html>

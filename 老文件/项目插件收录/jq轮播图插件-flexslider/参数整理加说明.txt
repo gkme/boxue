@@ -1,0 +1,87 @@
+https://woocommerce.com/flexslider/ 官网
+https://github.com/woocommerce/FlexSlider  官网文件及参数说明github地址
+https://blog.csdn.net/u013176571/article/details/70154000?locationNum=9&fps=1  参考文档
+http://www.dowebok.com/56.html  参考文档
+https://www.helloweba.net/javascript/265.html   带缩略图等几种轮播
+防止重复初始化
+if (!$('.flexslider').data('flexslider')) {
+  $('.flexslider').flexslider({
+      animation: "slide"
+  });
+}
+
+
+
+
+animation: "slide",             // String: ["fade"|"slide"]，动画效果  
+easing: "swing",                // String: 滚动动画计时函数  
+direction: "horizontal",        // String: 滚动方向 ["horizontal"|"vertical"]  
+reverse: false,                 // Boolean: 翻转 slide 运动方向  
+animationLoop: true,            // Boolean: 是否循环播放  
+smoothHeight: false,            // Boolean: 当 slide 图片比例不一样时  
+                                // "true": 父类自动适应图片高度  
+                                // "false": 不自动适应，父类高度为图片的最高高度，默认为false  
+  
+startAt: 0,                     // Integer: 开始播放的 slide，从 0 开始计数  
+slideshow: true,                // Boolean: 是否自动播放  
+slideshowSpeed: 5000,           // Integer: ms 滚动间隔时间  
+animationSpeed: 600,            // Integer: ms 动画滚动速度  
+initDelay: 0,                   // Integer: ms 首次执行动画的延迟  
+randomize: false,               // Boolean: 是否随机 slide 顺序  
+  
+// Usability features  
+pauseOnAction: true,            // Boolean: 用户操作时停止自动播放  
+pauseOnHover: false,            // Boolean: 悬停时暂停自动播放  
+useCSS: true,                   // Boolean: 是否使用 css3 transition  
+touch: true,                    // Boolean: 允许触摸屏触摸滑动滑块  
+video: false,                   // Boolean: 使用视频的 slider，防止 CSS3 3D 变换毛刺  
+  
+// Primary Controls  
+controlNav: true,               // Boolean: 是否创建控制点  
+directionNav: true,             // Boolean: 是否创建上/下一个按钮（previous/next）  
+prevText: "Previous",           // String: 上一个按钮文字，可为html元素  
+nextText: "Next",               // String: 下一个按钮文字，可为html元素  
+  
+// Secondary Navigation  
+keyboard: true,                 // Boolean: 是否开启键盘左（←）右（→）控制  
+multipleKeyboard: false,        // Boolean: 是否允许键盘控制多个 slide  
+mousewheel: true,               // Boolean: 是否开启鼠标滚轮控制  
+pausePlay: false,               // Boolean: 是否创建暂停与播放按钮  
+pauseText: 'Pause',             // String: 暂停按钮文字  
+playText: 'Play',               // String: 播放按钮文字  
+  
+// Special properties  
+controlsContainer: "",          // jQuery Object/Selector  
+manualControls: "",             // jQuery Object/Selector 自定义控制 slider 的元素，  
+                                // 如 "#tabs-nav li img"，导航数量和 slide 数量一样  
+sync: "",                       // Selector: 关联 slide 与 slide 之间的操作。  
+asNavFor: "",                   // Selector: Internal property exposed for turning the slider into a thumbnail navigation for another slider  
+  
+// Carousel Options  
+itemWidth: 0,                   // Integer: slide 宽度，多个同时滚动时设置  
+itemMargin: 0,                  // Integer: slide 间距  
+minItems: 1,                    // Integer: 最少显示 slide 数, 与 `itemWidth` 相关  
+maxItems: 0,                    // Integer: 最多显示 slide 数, 与 `itemWidth` 相关  
+move: 0,                        // Integer: 一次滚动移动的 slide 数量，0 - 滚动可见的 slide  
+  
+// Callback API  
+start: function(){},            // Callback: function(slider) - 初始化完成的回调  
+before: function(){},           // Callback: function(slider) - 每次滚动开始前的回调  
+after: function(){},            // Callback: function(slider) - 每次滚动完成后的回调  
+end: function(){},              // Callback: function(slider) - 执行到最后一个 slide 的回调  
+added: function(){},            // Callback: function(slider) - slide 添加时触发  
+removed: function(){}           // Callback: function(slider) - slide 被移除时触发
+fadeFirstSlide: true,           //当动画类型为“淡出”时淡入第一幻灯片
+thumbCaptions: false,           //是否缩略图控制导航
+pauseInvisible: true,           //tab不见时关闭播放 可见时自动开始
+keyboard: true,                 //允许滑块通过键盘左/右键导航
+multipleKeyboard: false,        //允许键盘导航来影响多个滑块。
+mousewheel: false,              //是否通过鼠标滚轮控制，需要配合 jquery.mousewheel.js
+pausePlay: false,               //是否开启“播放/暂停”按钮
+pauseText: "Pause",             //“暂停”按钮的文字
+playText: "Play",               //“播放”按钮的文字
+customDirectionNav: "",         //自定义PREV/Next按钮 必须具有类  prev/next
+sync: "",                       //用另一个滑块镜像在这个滑块上执行的动作。小心使用。
+asNavFor: "",                   //内部属性暴露滑块到另一个滑块的缩略图导航
+allowOneSlide: true,           //是否允许由单个幻灯片组成的滑块
+rtl: false                     //支持滑块中的RTL功能。必须style="direction:rtl"  

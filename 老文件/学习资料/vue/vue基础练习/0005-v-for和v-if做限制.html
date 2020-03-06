@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="i in gk" v-if="i.text">
+                {{i.text}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                gk:[
+                    {text:"生活是面镜子"},
+                    {text:"不仅会记住你的微笑"},
+                    {yy:"不会出现"},
+                    {text:"还会记住你努力的背影"}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

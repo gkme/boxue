@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>01-ztree基础示例</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <script src="./cssjs/jquery.min.js"></script>
+    <link rel="stylesheet" href="./cssjs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./cssjs/ztree/zTreeStyle/zTreeStyle.css">
+    <script src="./cssjs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./cssjs/ztree/js/jquery.ztree.all.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;box-sizing:border-box;}
+    </style>
+</head>
+<script>
+var filePath = 'D:/boxue/';
+//navigation 为根节点的导航页面
+var zNodes =[
+    {
+        name: "study", open: false,
+        children: [
+            {   
+                name: "01-html", open: false,
+                children:[
+                    { name: "002-createDocumentFragment.html",url:"study/01-html"},
+                ] 
+            },
+            {   
+                name: "02-css", open: false,
+                children:[
+                    { name: "001-flex单列自适应.html",url:"study/02-css"},
+                    { name: "002-高度左右固定中间自适应.html",url:"study/02-css"},
+                ] 
+            },
+            {   
+                name: "03-js", open: false,
+                children:[
+                    { name: "098-桌面消息通知",url:"study/03-js"},
+                    { name: "099-fundebug.html",url:"study/03-js"},
+                ] 
+            },
+            { name: "jquery", open: false,navigation:"jquery/001-请求本地数据.html",currentlevel:2,
+                children:[
+                    { name: "001-请求本地数据.html",url:"study/jquery"},
+                ]
+            },
+            { name: "echarts", open: false,navigation:"echarts/0000-基础模板.html",currentlevel:2,
+                children:[
+                    { name: "0000-基础模板.html",url:"study/echarts"},
+                    { name: "0001中国地图主要城市标注.html",url:"study/echarts"},
+                    { name: "0002首页-我的任务-未开始已开始.html",url:"study/echarts"},
+                    { name: "0003首页-我的任务-待解决.html",url:"study/echarts"},
+                    { name: "0004-简单的折线面积图.html",url:"study/echarts"},
+                    { name: "0005-柱状图和折线图混合.html",url:"study/echarts"},
+                    { name: "0006-质量整改历史情况.html",url:"study/echarts"},
+                    { name: "0007-隐患数量.html",url:"study/echarts"},
+                    { name: "0008-多个柱状图.html",url:"study/echarts"},
+                    { name: "0009-折线图.html",url:"study/echarts"},
+                    { name: "0010-完成率柱状图.html",url:"study/echarts"},
+                    { name: "0011-新奥-饼状图-指引线.html",url:"study/echarts"},
+                    { name: "0012-新奥-柱状图-多颜色.html",url:"study/echarts"},
+                    { name: "0013-响应式饼状图.html",url:"study/echarts"},
+                    { name: "0014-图例换行.html",url:"study/echarts"},
+                    { name: "0015-漏斗图.html",url:"study/echarts"},
+                ]
+            },
+            { name: "百度地图", open: false,navigation:"百度地图/0001-平移+放大缩小.html",currentlevel:2,
+                children:[
+                    { name: "0000-使用参考.html",url:"study/百度地图"},
+                    { name: "0001-平移+放大缩小.html",url:"study/百度地图"},
+                    { name: "0002-文本框覆盖物.html",url:"study/百度地图"},
+                    { name: "0003-圆球形覆盖物.html",url:"study/百度地图"},
+                    { name: "0004-异步请求.html",url:"study/百度地图"},
+                    { name: "0005-常规地图请求.html",url:"study/百度地图"},
+                ]
+            },
+        ]
+    },
+    {
+        name: "jqplugin", open: false,navigation:"jqplugin/miniui/0002-表格300行.html",currentlevel:1,
+        children:[
+            { name: "miniui", open: false,navigation:"jqplugin/miniui/0002-表格300行.html",currentlevel:2,
+                children:[
+                    { name: "0000-模板.html",url:"jqplugin/miniui"},
+                    { name: "0001-表单：120控件.html",url:"jqplugin/miniui"},
+                    { name: "0002-表格300行.html",url:"jqplugin/miniui"},
+                    { name: "0003-表格10000行.html",url:"jqplugin/miniui"},
+                    { name: "0004-tree10000行.html",url:"jqplugin/miniui"},
+                    { name: "0005-treegrid10000行.html",url:"jqplugin/miniui"},
+                    { name: "0005-treegrid1000条数据.html",url:"jqplugin/miniui"},
+                    { name: "0006-treegrid10000行-全部展开.html",url:"jqplugin/miniui"},
+                    { name: "0007-简单的树列表.html",url:"jqplugin/miniui"},
+                    { name: "0008-选择的树状列表.html",url:"jqplugin/miniui"},
+                    { name: "0009-树网格展开到第几级.html",url:"jqplugin/miniui"},
+                    { name: "0010-合并单元格.html",url:"jqplugin/miniui"},
+                    { name: "0011-celledit.html",url:"jqplugin/miniui"},
+                    { name: "0012-模态框中编辑.html",url:"jqplugin/miniui"},
+                    { name: "0013-下拉框.html",url:"jqplugin/miniui"},
+                    { name: "0014-新增事件.html",url:"jqplugin/miniui"},
+                    { name: "0015-动态列.html",url:"jqplugin/miniui"},
+                    { name: "tasks.txt",url:"jqplugin/miniui"},
+                    { name: "常见摘录.txt",url:"jqplugin/miniui"},
+                ]
+            },
+            { name: "ztree", open: false,navigation:"jqplugin/ztree/01-基础示例.html",currentlevel:2,
+                children:[
+                    { name: "01-基础示例.html",url:"jqplugin/ztree"},
+                    { name: "02-属性赋值.html",url:"jqplugin/ztree"},
+                    { name: "03-节点的点击事件.html",url:"jqplugin/ztree"},
+                    { name: "04-勾选事件.html",url:"jqplugin/ztree"},
+                    { name: "05-增删改拖拽节点.html",url:"jqplugin/ztree"},
+                    { name: "06-同级拖拽排序.html",url:"jqplugin/ztree"},
+                    { name: "07-节点的超链接.html",url:"jqplugin/ztree"},
+                    { name: "08-搜索标红.html",url:"jqplugin/ztree"},
+                    { name: "09-官方搜索只显示搜索结果.html",url:"jqplugin/ztree"},
+                ]
+            },
+            { name: "Sortable-方块排序", open: false,navigation:"jqplugin/Sortable-方块排序/测试排序.html",currentlevel:2,
+                children:[
+                    { name: "测试排序.html",url:"jqplugin/Sortable-方块排序"},
+                ]
+            },
+            { name: "jQuery.print.js-jq打印插件", open: false,navigation:"jqplugin/jQuery.print.js/print.html",currentlevel:2,
+                children:[
+                    { name: "print.html",url:"jqplugin/jQuery.print.js"},
+                ]
+            },
+            { name: "bootstrap-select", open: false,navigation:"jqplugin/bootstrap-select/001-方法.html",currentlevel:2,
+                children:[
+                    { name: "000-说明.html",url:"jqplugin/bootstrap-select"},
+                    { name: "001-方法.html",url:"jqplugin/bootstrap-select"},
+                    { name: "002-正常的引用.html",url:"jqplugin/bootstrap-select"},
+                    { name: "003-隐藏副本-code.html",url:"jqplugin/bootstrap-select"},
+                    { name: "004-组件禁用.html",url:"jqplugin/bootstrap-select"},
+                ]
+            },
+            { name: "toastr", open: false,navigation:"jqplugin/toastr/demo.html",currentlevel:2,
+                children:[
+                    { name: "demo.html",url:"jqplugin/toastr"},
+                ]
+            },
+            { name: "pdf", open: false,navigation:"jqplugin/pdf/001-base.html",currentlevel:2,
+                children:[
+                    { name: "001-base.html",url:"jqplugin/pdf"},
+                ]
+            },
+        ] 
+    },
+    {
+        name: "plugin", open: false,navigation:"plugin/wow/index.html",currentlevel:1,
+        children:[
+            { name: "wow", open: false,navigation:"plugin/wow/index.html",currentlevel:2,
+                children:[
+                    { name: "index.html",url:"plugin/wow"},
+                ]
+            },
+        ] 
+    },
+    {
+        name: "tool", open: true,
+        children: [
+            { name: "baidutranslate.html",url:"tool"},
+            { name: "stringbuilder.html",url:"tool"},
+            { name: "translate.html",url:"tool"},
+            { name: "urlcollection.html",url:"tool"},
+            { name: "settimegoadress.html",url:"tool"},//定时打开某个网址
+        ]
+    },
+    {
+        name: "copy", open: true,navigation:"copy/001-index.html",currentlevel:1,
+        children:[
+            { name: "002-tfootsearch.html",url:"copy",},
+            { name: "003-控制台代码.html",url:"copy"},
+            { name: "004-datatables.html",url:"copy"},
+            { name: "005-cdn地址.html",url:"copy"},
+        ] 
+    },
+];
+/*
+{
+    name: "plugin", open: false,navigation:"plugin/wow/index.html",currentlevel:1,
+    children:[
+        { name: "wow", open: false,navigation:"plugin/wow/index.html",currentlevel:2,
+            children:[
+                { name: "index.html",url:"plugin/wow"},
+            ]
+        },
+    ] 
+},
+ */
+</script>
+<body>
+    <textarea cols="50" rows="30" id="indext" style="position: fixed;left:-500px;"></textarea>
+    
+    <div style="position: fixed;right:0;bottom:0;width: 100%;height: 100%;">
+        <div id="left" style="position: absolute;left:0:top:0;height: 100%;width: 366px;border-right:1px dashed #999">
+            <div>
+                <span>https://gkme.gitee.io/boxue/</span>
+                <button onClick="copywang()">复制网络地址</button>
+                <a href="https://www.yuque.com/guokun/vue/aa" target="_blank">语雀</a>
+            </div> 
+            <input type="text" id="key" autocomplete="off" value="" class="empty" style="height:34px;line-height: 34px;width:230px;border-radius:8px;border:2px solid green;outline:none;"/>
+            <button onClick="copy()">复制地址</button>
+            <button onClick="expandAll()">全部展开</button>
+            <ul id="tree" class="ztree" style="width:366px;height: 565px; overflow:auto;margin-top:10px;"></ul>
+        </div>
+        <div id="right" style="position: absolute;left:366px;right:0;bottom:0;height: 100%;">
+            <iframe id="ifamesrc" src="" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+    <script>
+        var h = $(document).height() - 60;
+        $("#tree").css("height",h+"px");
+        var adress = "";
+        var setting = {
+            data: {
+                key: {
+                    url: "xUrl"//不让节点跳转
+                }
+            },
+            callback: {
+                onClick: zTreeOnClick //节点的点击事件
+            },
+            view: {
+                fontCss: getFontCss //加背景颜色
+            }
+        };
+        function focusKey(e) {
+            var zTree = $.fn.zTree.getZTreeObj("tree");
+            this.value = "";
+            zTree.expandAll(false);
+            if (key.hasClass("empty")) {
+                key.removeClass("empty");
+            }
+        }
+        function blurKey(e) {
+            if (key.get(0).value === "") {
+                key.addClass("empty");
+            }
+        }
+        var lastValue = "", nodeList = [];
+        function searchNode(e) {
+            var zTree = $.fn.zTree.getZTreeObj("tree");
+            var value = $.trim(key.get(0).value);
+            if (key.hasClass("empty")) {
+                value = "";
+            }
+            if (lastValue === value) return false;
+            lastValue = value;
+            updateNodes(false);
+            if (value === "") return false;
+            nodeList = zTree.getNodesByParamFuzzy("name", value);
+            updateNodes(true);
+        }
+
+        function updateNodes(highlight) {
+            var zTree = $.fn.zTree.getZTreeObj("tree");
+
+            zTree.expandAll(false);
+
+            for( var i=0, l=nodeList.length; i<l; i++) {
+                nodeList[i].highlight = highlight;
+                zTree.expandNode(nodeList[i], true ,false ,true, false);
+                var parent = nodeList[i].getParentNode();
+                if(null != parent && !parent.open){
+                    zTree.expandNode(parent, true, false, false, false);
+                }
+                zTree.updateNode(nodeList[i]);
+            }
+            zTree.refresh();
+        }
+        function getFontCss(treeId, treeNode) {
+            return (!!treeNode.highlight) ? {color:"#A60000", "font-weight":"bold"} : {color:"#333", "font-weight":"normal"};
+        }
+
+        var key;
+        $(document).ready(function(){
+            $.fn.zTree.init($("#tree"), setting, zNodes);
+            key = $("#key");
+            key.bind("focus", focusKey)
+            .bind("blur", blurKey)
+            .bind("input", searchNode);
+        });
+
+        function copy(){
+            if(!adress || adress==""){ alert("请先选中一个节点") }
+            $("#indext").val(adress);
+            var ts=document.getElementById("indext");
+            ts.select(); // 选择对象
+            document.execCommand("Copy"); // 执行浏览器复制命令
+        }
+        function copywang(){
+            if(!adress || adress==""){ alert("请先选中一个节点") }
+            var str = adress.replace(filePath,"");
+            var dizhi = "https://gkme.gitee.io/boxue/" + str;
+            $("#indext").val(dizhi);
+            var ts=document.getElementById("indext");
+            ts.select(); // 选择对象
+            document.execCommand("Copy"); // 执行浏览器复制命令
+        }
+
+        //节点的点击事件
+        function zTreeOnClick(event, treeId, treeNode, clickFlag) {
+            console.log("treeNode",treeNode);
+            var treeNodePath = treeNode.url+"/"+treeNode.name;
+            if(treeNode.navigation && treeNode.currentlevel>0){//是根节点，需要导航页面
+                treeNodePath = treeNode.navigation;
+            }
+            $("#ifamesrc").attr("src",treeNodePath)
+            adress = filePath+treeNodePath;
+        }
+        //全部展开
+        function expandAll() {
+            var treeObj = $.fn.zTree.getZTreeObj("tree");
+                treeObj.expandAll(true);
+        }
+    </script>
+</body>
+
+</html>

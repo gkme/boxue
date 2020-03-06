@@ -1,0 +1,14 @@
+var object1 = {
+    "aa":"sdsf",
+    "bb":"ccc"
+}
+var object2 = {
+    "aa":"sdsf",
+    "ff":"sdfsdfs"
+}
+var s = $.extend( {}, object1, object2 )
+console.log(s);
+
+
+var h = Object.assign({},object1,object2);
+console.log(h);

@@ -1,0 +1,5 @@
+﻿http://rocha.la/jQuery-slimScroll?utm_source=caibaojian.com 官网
+
+http://blog.csdn.net/kane245/article/details/52457748   配置项说明
+
+http://www.jq22.com/jquery-info1425   jq插件库示例代码

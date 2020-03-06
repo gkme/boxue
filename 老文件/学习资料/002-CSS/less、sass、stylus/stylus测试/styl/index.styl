@@ -1,0 +1,38 @@
+//这样的注释不会被编译到css中
+/*要严格注意空格和缩进*/
+
+a1 = red //变量的使用方法
+a2 = #f00
+fos1 = 30px
+//混合定义 调用的时候 size()
+size()
+    width 200px
+    height 300px
+    border 1px solid #000
+//属性混合  跟属性名称一样
+border-radius(r)
+    -webkit-border-radius r
+    -moz-border-radius r
+    -o-border-radius r
+    -ms-border-radius r
+    border-radius r
+
+*
+    padding 0
+    margin 0
+body
+    h1
+        color a1
+        font-size fos1
+        text-align center
+    h2
+        color a2
+        font-size (fos1/1.5)//倍数的表示方法 *1.5不用括号,/还有-的时候要加括号
+        text-align right
+    h3
+        color red
+        text-align right
+        size()
+        border-radius 50%
+        &:hover 
+            color:green

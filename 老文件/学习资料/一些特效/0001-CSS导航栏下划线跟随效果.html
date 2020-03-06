@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS导航栏下划线跟随效果</title>
+    <style>
+        *{
+          margin: 0;
+          padding: 0;
+        }
+        ul,li{
+          list-style:none;
+        }
+        li {
+            position: relative;
+            float: left;
+            padding:0 10px;
+            border-bottom: 0px solid #000;
+            cursor: pointer;
+        }
+        li::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            border-bottom: 2px solid #000;
+            transition: 0.5s all linear;/* 控制时间 */
+        }
+        li:hover::before {
+            left: 0;
+            width: 100%;
+        }
+        li:hover ~ li::before {
+            left: 0;
+        }
+        li:active {
+            background: pink;/* 激活时背景 */
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+      <li>第一个</li>
+      <li>第二个</li>
+      <li>第三个</li>
+      <li>第四个</li>
+      <li>最后一个</li>
+    </ul>
+</body>
+</html>

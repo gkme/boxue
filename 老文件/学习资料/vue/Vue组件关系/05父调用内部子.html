@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child2 :title="title"></child2>
+    </div>
+</body>
+<script>
+var app=new Vue({
+    el:"#app",
+    data:{
+       title:"hello" 
+    },
+    components:{
+        child2:{
+            props:["title"],
+            data:function(){
+                return{
+                    el:"world"
+                }
+            },
+            template:'<div><h2>{{title}}</h2><h3>{{el}}</h3></div>'
+        }
+    }
+})
+</script>
+</html>

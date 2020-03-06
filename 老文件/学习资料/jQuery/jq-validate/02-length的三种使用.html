@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>基础应用</title>
+    <style>
+        .error{
+            color:red;margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+<form id="reg">
+    <p>用户名：<input type="text" name="username" /></p>
+    <p>密码：<input type="password" name="password" /></p>
+    <input type="submit" />
+</form>
+
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script>
+    $(function(){
+        $("#reg").validate({
+            rules:{
+                username:{
+                    required:true,
+                    rangelength:[2,6] 
+                },
+                password:{
+                    required:true,
+                    minlength:2,
+                    maxlength:16
+                }
+            },
+            messages:{
+                username:{
+                    required:"用户名必填",
+                    rangelength:"用户名为2-6位字符"
+                },
+                password:{
+                    required:'密码必填',
+                    minlength:'最少输入两位',
+                    maxlength:'最长只能输入16位'
+                }
+            }
+        })
+    })
+</script>
+
+</body>
+</html>

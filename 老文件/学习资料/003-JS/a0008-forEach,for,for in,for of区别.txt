@@ -1,0 +1,30 @@
+﻿var arr = [1,2,3,4,5];
+var arr.b = 6;
+for(var i=0;i<arr.length;i++){//编程式(运行过程一目了然)
+    console.log(arr[i]);
+}
+
+var arr1 = ["a","b","c"];
+arr1.forEach(function(v,k,s){
+    console.log(v,k,s);//s 指的是数组
+    console.log(this);
+},arr1)//不传arr1 this指向window,传了this代表当前数组
+
+
+arr.foreach(function(item,index){//声明式(不关心如何实现),不支持return
+    console.log(item,index);
+})
+for(let key in arr){//key是字符串类型,会打印arr.b
+    console.log(typeof key);
+    console.log(key);
+}
+for(let val of arr){//es6,支持return,并且值是of数组(不能遍历对象)
+    console.log(val);
+}
+
+// 扩充
+let obj = {school:"yh",age:"8"};//Object.keys讲对象的key做为一个新的数组
+    // ["school","age"]
+for(let val of Object.keys(obj)){
+    console.log(obj[val]);
+}

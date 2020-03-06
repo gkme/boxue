@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no,viewport-fit=cover">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html,body{
+            background-color: #000;
+        }
+        .tip{
+            position: fixed;
+            width: 100%;
+            left:0;
+            top:50%;
+            margin-top:-100px;
+        }
+
+        .progress{
+            overflow: visible;
+            border-radius: 20px;
+            margin-top: 60px;
+            position: relative;
+            left:50%;
+            width: 50%;
+            transform:translate(-50%, 0);
+        }
+        .progress .progress-bar{
+            border-radius: 20px;
+            position: relative;
+            background-color: #58c452;
+        }
+        .progress .progress-value{
+            display: block;
+            font-size: 20px;
+            color: #58c452;
+            border-radius: 4px;
+            position: absolute;
+            top: -21px;
+            right: 0px;
+        }
+
+
+        #roloadText{
+            text-align: center;
+            color:#fff;
+            font-size:30px;
+        }
+        .beat-char {
+            line-height: 40px;
+            position: relative;
+            display: inline-block;
+            background: transparent;
+
+        }
+
+        .rotate{
+            transform:rotate(360deg) ;
+            -ms-transform:rotate(360deg);   /* IE 9 */
+            -moz-transform:rotate(360deg);  /* Firefox */
+            -webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+            -o-transform:rotate(360deg);
+            -webkit-transition-duration: 0.7s;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="tip">
+        <p id="roloadText">正在处理操作请求，请稍后。。。</p>
+        <div class="progress progress-striped active">
+            <div class="progress-bar" style="width: 1%;">
+                <div class="progress-value">1%</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="jquery.beattext.js"></script>
+    <script src="easying.js"></script>
+    <script>
+        $(function(){
+            $('p#roloadText').beatText({isAuth:true,beatHeight:"1em",isRotate:false,upTime:100,downTime:100});
+            var w = 1;
+            var timer = setInterval(function(){
+                w+=1;
+                if(w >= 95){
+                    w = 95;
+                    clearInterval(timer);
+                    setTimeout(function(){
+                        var proWidth = "96%";
+                        $(".progress-bar").css("width",proWidth);
+                        $(".progress-value").html(proWidth);
+                    },500);
+                    setTimeout(function(){
+                        var proWidth = "97%";
+                        $(".progress-bar").css("width",proWidth);
+                        $(".progress-value").html(proWidth);
+                    },1000);
+                    setTimeout(function(){
+                        var proWidth = "98%";
+                        $(".progress-bar").css("width",proWidth);
+                        $(".progress-value").html(proWidth);
+                    },1500);
+                    setTimeout(function(){
+                        var proWidth = "99%";
+                        $(".progress-bar").css("width",proWidth);
+                        $(".progress-value").html(proWidth);
+                    },2000);
+                }
+                var proWidth = w + "%";
+                $(".progress-bar").css("width",proWidth);
+                $(".progress-value").html(proWidth);
+            },100)
+        })
+    </script>
+</body>
+</html>

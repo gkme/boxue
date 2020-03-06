@@ -1,0 +1,27 @@
+https://www.jianshu.com/p/094c2256c5ed  中文说明
+https://github.com/dabeng/OrgChart  github地址
+http://www.htmleaf.com/jQuery/Chart/201602233135.html  jq之家说明地址
+https://www.npmjs.com/package/orgchart#options  npm里面的说明
+
+
+http://www.jq22.com/jquery-info20597 jq22的下载地址(附加一些示例)
+http://www.jq22.com/jquery-info9760  jq22的下载地址(不要币)
+
+
+https://github.com/wesnolte/jOrgChart   jOrgChart的github地址 
+http://www.cnblogs.com/smivico/p/6259778.html   JOrgChart使用说明地址
+
+
+参考页面:
+光大国际有限公司 项目启动、策划---项目成员维护   /pages/xpmProject/projectMember/js/projectMemberTreeShow.js
+
+重载的方法：
+var oc = null;
+var newOptions = {
+    'data' : datascource, //数据
+    'pan': true,//允许平移
+if(oc){
+    oc.init(newOptions);//重载
+}else{
+    oc = $('#chart-container').orgchart(newOptions);
+}

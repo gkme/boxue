@@ -1,0 +1,90 @@
+方法	描述
+charAt()	返回指定索引位置的字符
+charCodeAt()	返回指定索引位置字符的 ASCII码
+concat()	连接两个或多个字符串，返回连接后的字符串
+fromCharCode()	将ASCII码转换为字符串
+indexOf()	返回字符串中指定字符串第一次出现的位置
+lastIndexOf()	返回字符串中指定字符串最后一次出现的位置
+localeCompare()	用本地特定的顺序来比较两个字符串 //out 1,0,-1
+match() 	找到一个或多个正则表达式的匹配  //以后讲到正则再讲
+replace()	替换与正则表达式匹配的子串
+search()	检索与正则表达式相匹配的值 //以后讲到正则再讲
+substring()	提取字符串中两个指定的索引号之间的字符
+slice()	提取字符串的片断，并在新的字符串中返回被提取的部分 //主要跟substring做下区分，一个初始值可以为负值，一个不可以
+substr()	
+split()	把字符串分割为子字符串数组
+toLowerCase()	把字符串转换为小写
+toString()	返回字符串对象值
+toUpperCase()	把字符串转换为大写
+trim()	移除字符串首尾空白
+
+================================数组
+方法	描述
+concat()	连接两个或更多的数组，并返回结果。
+indexOf()	搜索数组中的元素，并返回它所在的位置。
+join()	把数组的所有元素放入一个字符串。
+lastIndexOf()	返回一个指定的字符串值最后出现的位置，在一个字符串中的指定位置从后向前搜索。
+pop()	删除数组的最后一个元素并返回删除的元素。
+push()	向数组的末尾添加一个或更多元素，并返回新的长度。
+reverse()	反转数组的元素顺序。
+shift()	删除并返回数组的第一个元素。
+slice()	选取数组的一部分，并返回一个新数组。
+sort()	对数组的元素进行排序。
+splice()	从数组中添加或删除元素。
+toString()	把数组转换为字符串，并返回结果。
+unshift()	向数组的开头添加一个或更多元素，并返回新的长度。
+valueOf()	返回数组对象的原始值。
+创建新方法
+Array.prototype.ucase=function(){	for (i=0;i<this.length;i++) {
+		this[i]=this[i].toUpperCase();
+		}
+	}
+
+=========================MATH
+PI	返回圆周率（约等于3.14159）。
+abs(x)	返回数的绝对值。
+ceil(x)	对数进行上舍入。
+cos(x)	返回数的余弦。
+floor(x)	对数进行下舍入。
+max(x,y)	返回 x 和 y 中的最高值。
+random()	返回 0 ~ 1 之间的随机数。(重点)
+round(x)	把数四舍五入为最接近的整数。
+
+===============================计数器
+getFullYear()	从 Date 对象以四位数字返回年份。
+getYear()	从 Date 对象以四位数字返回年份，相对于1900年的年份，用处不大。
+getMonth()	从 Date 对象返回月份 (0 ~ 11)，0代表1月。
+getDate()	从 Date 对象返回一个月中的某一天 (1 ~ 31)。
+getDay()	从 Date 对象返回一周中的某一天 (0 ~ 6)，0代表星期日。
+getHours()	返回 Date 对象的小时 (0 ~ 23)。时间方法名中都有s
+getMinutes()	返回 Date 对象的分钟 (0 ~ 59)。
+getSeconds()	返回 Date 对象的秒数 (0 ~ 59)。
+getMilliseconds()	返回 Date 对象的毫秒(0 ~ 999)。
+getTime()	返回 1970 年 1 月 1 日至今的毫秒数。
+setFullYear()	设置 Date 对象中的年份（四位数字）。
+setYear()	请使用 setFullYear() 方法代替。
+setMonth()	设置 Date 对象中月份 (0 ~ 11)。
+setDate()	设置 Date 对象中月的某一天 (1 ~ 31)。 setDate(0)获取上月最后一天
+setHours()	设置 Date 对象中的小时 (0 ~ 23)。setMinutes()	设置 Date 对象中的分钟 (0 ~ 59)。
+setSeconds()	设置 Date 对象中的秒钟 (0 ~ 59)。
+setMilliseconds()	设置 Date 对象中的毫秒 (0 ~ 999)。
+setTime()	以毫秒设置 Date 对象。
+toString()	把 Date 对象转换为字符串。
+toTimeString()	把 Date 对象的时间部分转换为字符串。
+toDateString()	把 Date 对象的日期部分转换为字符串。
+
+常用方法
+setTimeout() 指定的毫秒数之后执行指定的代码setInterval() 间隔指定的毫秒数不停地执行指定的代码
+clearTimeout() 用于停止执行setTimeout()方法的函数代码。
+clearInterval() 用于停止 setInterval() 方法执行的函数代码
+
+
+==========================DOM操作
+var x=document.getElementById("intro");
+var y=x.getElementsByTagName(“p”);
+var hobby = document.getElementsByName(“hobby”); （针对表单）
+通过类名查找 HTML 元素在 IE 5,6,7,8 中无效。
+document.querySelector()
+document.querySelector("p"); document.querySelector(".example"); document.querySelector(“p.example”);  //获取标签为p,并且类名为example的元素document.querySelector(“a[target]”); //获取标签为a,并且有target属性的元素document.querySelector(“h2, h3”) // 获取标签为h2和h3的元素    不支持ie7
+语法：	1.   obj. 属性=新值	2.  Obj. setAttribute(“type”,“button”);    //添加、更改属性  		注释：Internet Explorer 8 以及更早的版本不支持此方法。 	3. Obj .getAttribute(属性名)     //   返回指定属性名的属性值 
+window.onload=function(){        var cont=document.getElementById("cont");            // alert(cont.currentStyle);            if (cont.currentStyle){                alert("height:"+cont.currentStyle["height"]);            }else{                alert("height:"+getComputedStyle(cont,null)["height"]);            }    }

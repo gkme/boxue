@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-if="flag" ref="input1"/>
+    </div>
+</body>
+<script>
+
+    var app = new Vue({
+        el:"#app",
+        data:{
+            flag:false,
+        },
+        mounted:function(){//在这时才能拿到dom
+            //以下两行代码会直接报错
+            //this.flag = true,
+            //this.$refs.input1.focus();
+            
+
+            this.flag = true
+            //我们希望在vue真正渲染dom到页面以后才做的事
+            this.$nextTick(function(){
+                this.$refs.input1.focus();    
+            })
+        }
+    })
+</script>
+</html>

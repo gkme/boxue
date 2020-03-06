@@ -1,0 +1,30 @@
+http://www.jq22.com/jquery-info10768
+
+https://github.com/zenorocha/clipboard.js/
+
+
+
+<body>
+    <button class="btn">Copy</button>
+    <p id="c">我是要被复制的内容</p>
+</body>
+
+<script src="../dist/clipboard.min.js"></script>
+
+<script>
+    var c = document.getElementById("c");
+    var s = c.innerHTML;
+    var clipboard = new Clipboard('.btn', {
+        text: function() {
+            return s;
+        }
+    });
+    clipboard.on('success',
+    function(e) {
+        alert("复制成功");
+    });
+    clipboard.on('error',
+    function(e) {
+        console.log(e);
+    });
+</script>

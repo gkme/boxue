@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../../jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../学习资料/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../学习资料/bootstrap/css/bootstrap-theme.min.css">
+    <script src="../../学习资料/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <h1>方案一：html自身的title换行方法</h1>
+    <div>参考地址一：<a href="https://blog.csdn.net/yusirxiaer/article/details/78581777">HTML元素title里面如何换行</a></div>
+    <div>参考地址二：<a href="http://www.divcss5.com/jiqiao/j510.shtml"> title换行方法 如a链接标签内title属性鼠标悬停提示内容换行</a></div>
+    <div>下面是示例: & #13;（回车）和& #10;（换行）都能起到换行的作用，& nbsp;在这里是显示空格</div>
+    <div title="说明一&#13;说明二&#13;说明三">示例一：& #13;换行</div>
+    <div title="第一排&#10;第二排&#10;&nbsp;&nbsp;&nbsp;&nbsp;第三排">示例二：& #10;换行</div>
+    <br />
+
+
+
+    <h1>方案二：Bootstrap的tooltip的使用 <a href="https://www.runoob.com/bootstrap/bootstrap-tooltip-plugin.html">菜鸟教程Tooltip地址</a></h1>
+    <div>$('[data-toggle="tooltip"]').tooltip();</div>
+    <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <!-- <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <style>
+        .tooltip{text-align:left;}
+    </style>
+    <div></div>
+    <span data-toggle="tooltip" data-html="true" title="第一排<br>第二排<br>第三排提示内容">示例：常规的多行br换行提示</span>
+    <br />
+    <div class="text-center" data-toggle="tooltip" data-html="true" title="<p align='left'>第一排<br>第二排<br>第三排提示内容第三排提示内容第三排提示内容</p>">示例：左对齐</div>
+    <br />
+    <button type="button" class="btn btn-default" data-toggle="tooltip"  title="默认的 Tooltip"> 默认的 Tooltip</button>
+    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="左侧的 Tooltip">左侧的 Tooltip</button>
+    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="顶部的 Tooltip">顶部的 Tooltip</button>
+    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="底部的 Tooltip">底部的 Tooltip</button>
+    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="右侧的 Tooltip">右侧的 Tooltip</button>
+    <script>
+        $(function () { $("[data-toggle='tooltip']").tooltip(); });
+    </script>
+    <br />
+
+    <h1>方案三：jcTitle <a href="http://www.jq22.com/jquery-info20952">jcTitle地址</a></h1>
+    <script src="jcTitle.js"></script>
+    <ul id="ulexample">
+        <li title="我是默认的样式">默认样式调用jcTitle</li>
+        <li title="我是默认的样式，不会随着鼠标移动">我也是默认样式调用jcTitle，但我不会随着鼠标移动</li>
+        <li title="我使用了自定义的样式">我使用了自定义的样式 font:18px border:solid 3px red;</li>
+        <li title="我将会被忽略">我直接传入内容，此时会忽略title标签内容</li>
+    </ul>
+    <h5 class="text-right" title="边缘自动识别，并调整位置">边缘自动识别，并调整位。边缘自动识别，并调整位置。</h5>
+
+    <script type="text/javascript">
+    $(function(){
+        $('#ulexample li').eq(0).jcTitle();
+        $('#ulexample li').eq(1).jcTitle({follow:false});
+        $('#ulexample li').eq(2).jcTitle({
+            'font-size': 18,
+            'border':'solid 3px red'
+        });
+        $('#ulexample li').eq(3).jcTitle({
+            content:'<p>我直接传入内容，此时会忽略title标签内容。</p><p>我直接传入内容，此时会忽略title标签内容。</p>'
+        });
+        $('h5').jcTitle();
+    });
+    </script>
+    
+    <br />
+    <br />
+    <div>Tippy.js-纯js tooltip工具提示插件  http://www.htmleaf.com/jQuery/Tooltips/201704054439.html </div>
+    <div>美化title属性，使title成为提示框  http://www.jq22.com/jquery-info21054</div>
+</body>
+</html>

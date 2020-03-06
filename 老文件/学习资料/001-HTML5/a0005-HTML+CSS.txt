@@ -1,0 +1,374 @@
+﻿前端人员的必备三项技能？
+  html:网页内容的载体(结构层)
+  css:对页面内容的装饰(表现层)
+  js:页面特效,可以跟用户交互(行为层)
+DOCTYPE的作用？
+  (1)不是html标签
+  (2)版本标识,可以区分使用是html还是xhtml标准
+  (3)浏览器在解析时，可以区分使用的HTML版本
+html标签？块元素,行内元素,行内快元素
+  块元素：(1)独占一行
+          (2)宽度默认100%,宽度由内容撑开
+          (3)支持宽高、padding、margin设置(即支持所有css样式)
+          代表标签:p,h1-h6,ul,li,ol,dl,dt,dd,div等
+  行内元素:(1)同一行出现
+           (2)宽和高由内容撑开
+           (3)不支持宽高、padding、margin设置(即不支持所有css样式)
+           代表标签:span,a标签,lable，格式化标签(b,strong,i,em,small,big,del,sup,sub)
+  行内块:  (1)同一行出现
+           (2)宽和高由内容撑开
+           (3)支持宽高、padding、margin设置(即支持所有css样式)
+           代表标签:img,input等
+    延伸:转化为块元素:display:block;
+       转化为行内块display:inline-block;
+                    *display:inline;
+                    *zoom: 1;
+        转化为行内元素:display:inline;
+缝隙问题：
+  行内和行内块元素都会解析换行符、空格、tab等空白字符,解析为一个空格
+  (1)去掉空白字符
+  (2)给父元素设置font-size为0,给自身设置font-size
+  (3)浮动
+title和alt的区别？
+  title是鼠标悬停的时候给用户的提示,alt是图片加载失败时出现的提示。在IE低版本，鼠标悬停的时候会提示alt的内容,通常title和alt内容一致
+  (title:图片介绍)
+
+当块元素使用了浮动或绝对定位时:宽度由内容撑开
+当行内元素使用了浮动或绝对定位时:可以设置宽和高,可以使用display属性将行内块转换为块元素或者行内块从而支持宽高设置
+
+格式化标签:
+  b和strong:(1)加粗(2)同一行显示(3)宽度由内容决定
+      区别:b：单纯具有加粗效果
+           strong:不仅仅是加粗,还有语义上的强调,会被搜索引擎搜索到
+  i和em:斜体
+  sub和sup 下标和上标
+  small和big 字体变大变小
+
+嵌套：
+  (1)行内标签是可以相互嵌套的，并且样式的结果会叠加
+  (2)块元素可以嵌套行内块元素
+  (3)不推荐使用行内块元素嵌套块元素
+
+div和span:不带有任何的语义,不具有任何的样式
+  div:块元素 可以嵌套任何的元素,用来做页面布局
+  span:行内元素 可以存放少量的文本,可以嵌套行内元素,不要去嵌套块元素
+
+列表标签：有序列表，无序列表，自定义列表
+  注:(1)ul,ol的第一层必须是li,不能是其它元素
+       (2)li的个数不限制
+       (3)li里面的内容不限制可以随便放
+       嵌套:(1)可以继续嵌套列表
+             (2)嵌套其它的任何元素
+      快捷键:ul>li*5 ctrl+e自动补全
+             ul>li{菜单$}*5
+  自定义列表:dl
+      dt:自定义列表的标题
+      dd:自定义列表描述
+      dl:里面的dt和dd的个数是不限制的，同时一个dt可以对应多个dd
+
+img:用来存放图片的(px是默认单位)
+    src是图片的路径：
+        (1)相对路径(推荐)
+        (2)绝对路径{1.盘符(不推荐)2.网络地址}
+    注:img(1)不设置宽高默认的是图片的大小
+          (2)单独设置宽和高图片会同比例缩小
+          (3)同时设置宽和高:有可能失真
+
+特殊字符：
+    空格 &nbsp;
+    小于 &lt;
+    大于 &gt;
+    和号& &amp;
+    人民币 &yen;
+    注册商标? &reg;
+    版权?  &copy;
+    摄氏度 &deg;
+    乘 &times;
+    除 &divide;
+    平方 &sup2;
+    立方 &sup3; 
+    正负号 &plusmn; 
+
+表格:table
+    表头:thead 数据:tbody(在表格中必须写)  表的底部:tfoot
+    thead中th具有加粗效果,文字居中
+    select下拉框 里面的选项是option
+     selected默认选择 size="4",指定同时显示的个数
+     multiple:表示多选，同时可以选中多个选项(网页选时按住shift)
+    单选和多选的默认选中使用的是checked下拉框中是selected
+    cellspacing:单元格之间的间距
+    cellpadding:单元格的内部填充
+    想要改变某一行的高度，可以直接给对应的tr设值;
+    给table设置宽度，可以修改行的宽度;
+    td默认的是靠左居中;
+    给td设置宽度，对应的所有td都生效;
+    caption属于table里面的标签，用来做表格的标题，默认居中
+    跨列合并列:colspan
+    跨行合并行:rowspan(合并的行或列位置不写)
+    fieldest将信息打包 legend作为标题
+    textarea多行文本输入框
+
+a标签:
+    超链接,做页面跳转使用的，默认是在当前窗口打开，在新窗口中打开是target="_blank"
+    href:要跳转的路径
+    空链接:不做任何的跳转
+        #会跳到页面的顶部
+        ###当前位置不变
+        javascript:; a不进行任何操作 使用比较多
+        javascript:void(0) a不进行任何操作
+LVHA的步骤顺序写法：
+① a:link：未访问链接 ,如 a:link {color:blue}
+② a:visited：已访问链接 ,如 a:visited{color:blue}
+③ a:hover：鼠标移到链接上时 ,如 a:hover {color:blue}
+④ a:active：激活时（链接获得焦点时）链接的颜色 ,如a:active{color:blue}
+ 
+
+    锚点链接:本页面内做的跳转
+
+        <a href="#ss">go</a>
+        <div id="ss">ss内容</div>
+第二种锚点链接：
+<div id="box">
+    <a name="一层" class="q2"></a>
+    <div>dfsf</div>
+</div>
+<div id="box1">
+    <a name="二层"></a>
+    <div>dfsf</div>
+</div>
+<div class="go">
+    <a href="#一层">去一层</a>
+    <a href="#二层">去二层</a>
+</div>
+注意：小div中必须有内容，不然去一层直接是去二层(一层标示的a标签值空) 。推荐使用第一种，方便省事不会出错
+不同页面跳转，同时存在锚点
+目标元素：a.html页面的<div id="test"/>   锚点超链接：<a href="a.html#test"></a>
+ （先跳到a.html页面，然后再寻找id=test的元素）
+ 不同页面带参数跳转，同时存在锚点
+ 目标元素：a.php?p=abc页面的<div id="test"/>   锚点超链接：<a href="a.php?p=abc#test"></a> 
+    快速书写方式: ul>li*10>a[###] ctrl+e
+form表单:
+    lable:用在form里面，可以跟input结合使用
+        lable的for属性的值跟input的id的属性的值保持一致，点击lable时,input也会获得焦点
+    form有两个重要属性action和method
+        action:form表单提交的地址(相对地址{推荐使用}和绝对地址)
+    method:主要两个取值 get和post 默认get
+            搜索使用的是get,注册和登陆使用的是post
+        区别:(1)表现形式上:get的参数和参数值会拼接到url后面,post不会
+             (2)安全性上:get没有post安全，get会将信息暴露给第三方
+             (3)效率上:get请求比post快
+             (4)参数:post对参数的个数没有限制，get参数个数不能过多是因为http请求对长度有限制
+    在网络传输中,name和value的作用：
+        必须指定nmae，否则数据传递不过去，name是作为参数的名字，value是作为参数的值
+        input文本输入框中输入的值给value了
+        <input type="file" name="filename">上传文件选项
+    input的type取值
+        text:文本输入框
+        password:密码输入框
+        submit:提交按钮
+        radio:单选
+        checked:多选
+        file:文件
+        image:图像域
+        hidden:隐藏域
+       reset :重置按钮
+        <input maxlength="20"> 最长输入20个字符
+
+========================CSS==============================
+
+    层叠样式表:用来控制页面的  
+    head里面:<link rel="stylesheet" href="路径">
+    link:可以做到结构和样式的完全分离;
+        style和link的权重一样,默认选择下面的，就近原则
+css的三种引入方式:
+    行内:只对自己生效
+    内嵌:只对所在的html生效
+    外链:只要链接,就会生效，提高代码的复用性{推荐}
+
+选择器
+    (1)*通配符选择器:选中所有的标签
+    (2)标签选择器:是选中名字在为该标签的所有元素
+    (3)类选择器:.class名
+    (4)行内样式:只对该标签生效
+    (5)id选择器:#id名
+    (6)组合选择器{群组选择器}:如div,p{wdith:200px;}
+    (7)!important:将属性升级到最大
+    (8)后代选择器:
+    (9)子代选择器:{只会选中孩子}
+    (10)伪类选择器:    
+        l-v-h-a
+        默认状态: a:link
+        访问过后的状态: a:visited
+        鼠标悬停: a:hover
+        鼠标按住不放： a:active
+        注:悬停在父元素上子元素发生变化 div:hover span{font-size:18px;}
+权重:!important > 行内样式(1000) > id选择器(100) > 类选择器{伪类}(10) > 标签选择器(1) > * > 继承(继承权重为0)
+
+css的三大特性:层叠性,继承性,优先级(权重高的生效){相等就近原则}
+class命名规则:
+    (1)不能使用数字开头{会让类不生效}
+    (2)不推荐使用特殊符号
+    (3)不要使用标签名{不会报错,不推荐使用}
+    (4)推荐使用驼峰格式{首个字母大写,其它单词的首字母大写}
+
+    快捷书写 div.box1 ctrl+e后会<div class="box1"></div>
+
+.box:before{content:"789";} 在div的默认内容前面添加content里面的内容(after后面)
+
+a标签的颜色不能继承
+
+颜色:红:red(#ff0000,#f00)
+     绿:green(#00ff00,#0f0)
+     蓝:blue(#0000ff,#00f)
+    黑:black(#000) 白:whit(#fff) 灰:grey 黄:yellow 紫:purple  粉:pink 橘黄色:orange
+    16进制:0-9 A(10)B(11)C(12)D(13)E(14)F(15)
+      rgb:255是最大
+      rgba:透明度css3属性,在ie低版本不兼容 color:rgba(0,0,255,0.5);
+    二进制转十进制:1001=1*2^0+0*2^1+0*2^2+1*2^3=9
+字体类型:font-family:Times,"微软雅黑","宋体";
+    中英文混合先写英文,英文字体是单个单词可以不用双引号,前面字体不生效自动选择下一个字体
+字体大小:浏览器默认的是16培训,font-size是可以继承的
+    注:em:相当于父元素字体大小的倍数
+       rem:相当于html根元素字体大小的倍数
+font-style:normal; 去掉i和em的斜体效果
+font-style:italic; 斜体
+font-weight:normal 将b和strong转换为正常样式
+font-weight:bold; 定义粗体字符 bolder比bold更粗一点(lighter更细的字符)
+font-weight:400;  100-900的整百(必须是整百) 定义由粗到细的字符 400等同于normal,700等同于bold
+text-decoration:none; 文本修饰,去a标签的下划线
+text-decoration:underline; 下划线
+text-decoration:line-through; 贯穿线
+text-decoration:overline; 上划线
+line-height 行高,通常用来居中
+text-align:文字居中方式
+vertical-align:middle; 图片与文字的对齐方式
+
+字体的组合写法:
+    font-style:italic border size/height family;
+         14px/200% 或 14px/2 行高是字体大小的2倍
+
+==文本属性:
+text-size:20px; 首行文本缩进,负值向左缩进
+    font-size:32px;text-indent:64px; (64px是32px的两倍,向右缩进两个字符)
+文本对齐方式:
+text-align:left/center/right; justify(左右两端对齐,ie和火狐不支持)
+letter-spacing:2px; 中文和中文之间,英文好英文之间的间距(文本间距)
+word-spacing:2px; 单词之间的间距,单词是按空格来区分
+    letter-spacing:1em; 1em一个字的大小
+vertical-align:top/middle/bottom 图片与文字的对齐方式(默认是基线对齐，也可以-10px,正值是相对基线向下)
+
+==盒子模型：    margin padding
+紧邻的两个块元素上下margin会重合,取最大值！！！
+padding会增大盒子宽度，必要时减去
+标准浏览器:(margin不占盒子的宽和高)
+    盒子实际宽度:content+width+左右padding+左右边框=contentW
+    盒子实际高度:content+height+上下padding+上下边框==contentH
+IE低版本浏览器(怪异盒子模型):
+    盒子实际宽度:width+左右padding+左右边框+contentW
+    盒子实际高度:height+上下padding+上下边框+contentH
+padding:5px 10px 20px; 上5下20左右20 (四个值的时候上右下左)
+transparent:透明色
+
+width:0;height:0;
+border:10px solid transparent;border-left:10px solid red; 左三角
+
+dashed:虚线 dottoed:点 solid:实线 double:双线
+margin:0 auto;只能让块元素居中
+text-align:center;可以让块，行内块居中
+
+    margin:50px auto; 上下margin50px 左右auto(浮动时margin还在)
+height: 20px;line-height:20px;  单行文本居中 行高和高数值得相等
+margin-top的穿透问题:
+    内部元素的margin-top会作用到父元素身上
+    解决方案:(1)给父元素设置边框
+        (2)给父元素设置overflow:hidden
+        (3)使用父元素的padding-top代替子元素的margin-top
+background-repeat:no-repeat; 不重复
+    repeat-x:水平方向上平铺
+    repeat-y:垂直方向上平铺
+background-position:url() no-repeat center center; 水平和垂直方向上平铺
+    默认repeat表示在x和y轴同时平铺
+background-attachment:fixed; 在浏览器的可视区域固定不动    
+    不会随着滚动条的运动而运动，默认是scroll
+精灵图(雪碧图):spirit
+    减少服务器的请求次数,进而减少服务器压力
+    background:red img repeat fixed position
+            颜色 图片 重复方式 滚动方式 位置
+    background:url(../images) no-repeat 0 -10px;{这种形式多见}
+    注意:如果元素有大背景颜色,用background-cplor
+==浮动:更好的布局
+页面分为三大块:流(动)模型{flow}
+               层模型(layer)
+               浮动模型(float)
+流模型:默认的样式:独占一行,行内和行内块在同一行显示
+浮动模型:主要用来布局,应用场景:商品列表..
+使用浮动:撑不开父元素的高度,导致高度塌陷
+清除浮动:(1)给父元素设置高度 缺点:不灵活,不能随着商品数量高度发生变化
+    (2)给父元素设置overflow:hidden; 缺点:超出父元素的内容会被隐藏不显示 
+    (3)额外标签法,给父元素最后添加块元素 <div class="clear:both"></div>
+        缺点:没有做到结构和样式的分离,不推荐使用 
+    (4) 使用伪类清除法
+        .clearfix{*zoom:1;} //兼容ie低版本
+        .clearfix:after{
+            content:".";
+            display:block;
+            clear:both;
+            height:0; //不让影响父元素高度
+            visibility:hidden;
+        }
+浮动:(1)只要有空间，就会往左自动排放;空间不足,自动换行
+    (2)如果浮动的同一层级元素没有浮动,并且在浮动元素后面 
+    (3)浮动元素会遮盖没有浮动元素的位置,不会遮盖内容
+        浮动元素会提升半个层级{文字环绕}
+    (4)浮动会脱离标准文档流
+    *(5)如果父元素也浮动,找祖先没有浮动的元素清除浮动
+    *(6)父元素如果是绝对定位,父元素不需要清除浮动
+    (7)块元素一旦使用了浮动,宽度由内容决定
+    (8)行内元素使用了浮动,可以设置宽高
+    (9)使用右浮动会颠倒显示顺序
+        {1.倒序2.ul向右浮动li向左浮动}
+overflow:visible 默认值,超出文本会显示
+         hidden  超出文本的会被隐藏
+         scroll  超出文本的会出现滚动条
+         auto  出现滚动条
+***visibility:hidden;内容隐藏,但是占位置
+   display:none; 内容隐藏,不占位置
+定位:(1)默认的 static
+    (2)相对的 relative
+    (3)绝对的 absolute
+    (4)固定的 fixed
+只有static 不支持left,right,top,bottom去移动
+默认的:文档顺序显示
+    注:相对定位,原来的位置会保留
+相对定位:相对于自身默认的位置去移动的,支持上下左右移动
+    注:上下和左右只用一种，如:上下一起用会撕裂
+绝对定位:相对于离它最近的具有定位属性的祖先元素去定位的
+    注:具有定位属性的 relative absolute fixed
+    如果祖先元素都没有定位属性,那么相对于body去定位
+    绝对定位的元素不能使用margin:0 auto;去居中
+    绝对定位元素居中方式:
+        水平方向:left50% (margin-left:-自身宽度一半)
+        垂直方向:top50% (margin-top:-自身高度一半)
+    绝对定位的特征:
+        绝对定位不占有父元素的宽度和高度:是脱离文档流的
+        而且是绝对脱离文档流,会遮盖标准文档流的位置和内容
+opacity:0.5 透明度-半透明 背景和内容都会透明
+rgba:只是背景透明(在ie低版本不兼容)
+绝对定位:越靠后离人眼越近(默认的)
+z-index:可以调整堆叠顺序,值越大离人眼越近
+z-index:默认0 整数
+    应用场景:页面logo内容微调
+固定定位:相对于浏览器窗口去定位的
+兼容问题:当a包裹img时,img在ie低版本有蓝色边框
+    ie浏览器 img{border:0 none;}
+display:inline-block;和float:left;不要重复使用,都是在同一行显示
+cursor:pointer; 移动到上面出现"手"的图标,代表可以点击
+border-radius: 圆角
+    width:12px; height:12px; border-radius:6px; 一个圆
+    或者border-radius:50%;  css3属性,ie78不支持
+SEO:(1)不要使用图片代替文字:logo
+    (2)使用img标签时,alt和title的内容一样
+    (3)标签的语义化:合适的标签做合适的事情
+    (4)TDK的使用:title discription keywords
+    (5)友情链接
+    (6)网站地图

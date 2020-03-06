@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+<div>点击链接去新地址查看效果：<a href="https://gkme.gitee.io/boxue/study/03-js/098-桌面消息通知" target="_blank">查看效果</a></div>
+
+<br />
+<div>文档参考地址：(注：请开启服务，若没有开启权限需要开启权限)</div>
+<a href="https://juejin.im/post/5dec99fbe51d45582d33f243#heading-6" target="_blank">Notification 浏览器桌面通知</a>    
+    
+<script>
+    // 判断浏览器是否支持Notification
+    if (window.Notification) {
+        switch (Notification.permission) {
+            case 'default':
+                console.log('用户暂未开启该网站消息通知');
+                defaultPermission();
+                break;
+            case 'granted':
+                console.log('用户已开启该网站消息通知');
+                showNotification();
+                break;
+            case 'denied':
+                console.log('用户拒绝该网站消息通知');
+                break;
+        }
+    }else {
+        alert('暂不支持消息通知');
+    }
+
+    function defaultPermission() {
+        Notification.requestPermission().then(function(permission) {
+            switch (permission) {
+                case 'default':  
+                    break;
+                case 'granted':
+                    showNotification();
+                    break;
+                case 'denied':
+                    console.log('用户还是拒绝了该网站消息通知');
+                    break;
+            }
+        });
+    }
+
+    function showNotification() {
+        new Notification('我是消息通知！');
+    }
+    setTimeout(function(){
+        new Notification('6秒后的消息通知');
+    },6000)
+</script>
+</body>
+</html>

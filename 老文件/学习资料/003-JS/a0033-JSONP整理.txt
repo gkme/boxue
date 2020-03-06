@@ -1,0 +1,153 @@
+﻿http://www.abc.com:8080/scripts/jquery.js
+http://(协议) www(子域名) abc.com(主域名) 8080(端口号) scripts/jquery.js(请求资源地址)
+当协议、子域名、主域名、端口号中任意一个不相同时，都算作不同域
+不同域之间相互请求资源，就算做跨域
+比如：http://abc.com/index.html请求http://feg.com/servic.php
+补充：map.baidu.com map是百度下面的一个子域
+
+AJAX应用注意事项:
+1、AJAX的调试必须结合WEB SERVER
+2、页面和AJAX接口都必须放在WEB SERVER里
+3、AJAX有跨域问题，即页面只能访问页面所在域名下的AJAX接口（跨子域也不行）
+为什么AJAX跨域问题呢？    答案：同源策略
+1、在JavaScript中，有一个很重要的安全性限制，被称为“Same-Origin Policy”（同源策略）。
+2、这一策略对于JavaScript代码通过ajax能够访问的页面内容做了很重要的限制，即JavaScript通过ajax只能访问与包含它的文档在同一域名下的数据。
+
+同源策略的优点和弊端：
+优点：安全性相对较高
+弊端：当进行一些比较深入的前端编程的时候，不可避免地需要进行跨域操作
+    可以跨域请求(的元素 三种)：<script src='http://www.aa.com/jquery.js'></script> <img src=""> <iframe src="http://www.baidu.com" frameborder="0" width="300" height="200"></iframe>
+怎么解决同源策略的问题呢?
+1、同域名下面的AJAX接口做一个代理 （在后端页面加入允许ajax访问数据的指令）
+加在php处理页面的第一行：header("Access-Control-Allow-Origin: *");
+2、JSONP ：
+    在Web页面中插入动态脚本元素，该页面源指向其他域中的url并且在自身脚本中获取数据
+（即利用在页面中创建<script>节点的方法向不同域提交HTTP请求），这种技术我们称之为JSONP
+JSON和JSONP的区别：
+JSON:
+1、JSON是一种基于文本的数据交换方式，或者叫做数据描述格式
+2、JSON只有两种数据格式，大括号{}（对象）和方括号[]（数组）
+
+JSONP:
+1、JSONP(JSON with Padding)是一个非官方的协议,主要来解决跨域问题。
+2、在客户端事先定义好一个处理函数
+3、通过script标签的src属性发起一个跨域的请求
+4、目标文件会以函数调用的形式传回数据，触发本地处理函数的执行。数据是以函数参数的形式进行传递回来的。
+(它允许在服务器端集成Script tags返回至客户端，通过javascript callback的形式实现跨域访问。)
+注意：在访问别的域名时加 http://
+
+JSONP原理：
+JSONP的最基本的原理是：
+动态添加一个<script>标签，而script标签的src属性是没有跨域的限制的。
+Jsonp的执行过程如下：//以JSONP接口http://www.b.com/search.html?jsonp=jsonpCallback为例 
+1、首先在客户端注册一个callback（回调函数）, 然后把callback的名字传给服务器。
+2、服务器先生成json数据,然后以JavaScript语法的方式，生成一个function,function的名字就是传递上来的参数jsonp的值，function的参数为服务器生成好的json数据,然后把用该语法写好的内容返回给客户端。(语法：callback(json数据))
+3、客户端浏览器，解析script标签，并执行返回的javascript文档，此时数据作为参数，传入到了客户端预先定义好的callback函数里.（动态执行回调函数）
+回调函数：（callback）一般是作为参数进行传递,当完成相应的任务后进行调用的函数
+例如：
+html代码如下：
+<p>输入：<input type="text" id="search"></p>
+<script>
+    function show(str){
+        var obj = JSON.parse(str);
+        alert(obj[0].bName);
+    }
+    var search = document.getElementById("search");
+        search.onkeyup=function(){
+            var queryString = "?callback=show&key="+this.value;
+            var sEle = document.createElement("script");
+                sEle.src = "http://www.b.com/json4.php"+queryString;
+                document.body.appendChild(sEle);
+        }
+</script>
+php代码如下：
+<?php
+    $callback = $_GET["callback"];
+    $key = $_GET['key'];
+    $result[] = array("id"=>1,"bName"=>"第一个显示");
+    $result[] = array("id"=>2,"bName"=>"第二个显示");
+    echo $callback ."('". json_encode($result) . "')";
+?>
+
+JSONP封装源码：
+Object.prototype.toQueryString= function(){
+    var queryArray = [];
+    for(var key in this){
+        if(this.hasOwnProperty(key)){
+            queryArray.push(key+"="+this[key]);
+        }
+    }
+    return queryArray.join("&");
+};
+var jsonp = function(options) {
+    options = options || {};
+    if (!options.url || !options.callback) {
+        throw new Error("参数不合法");
+    }
+
+    //创建 script 标签并加入到页面中
+    var callbackName = ('jsonp_' + Math.random()).replace(".", "");
+    var oHead = document.getElementsByTagName('head')[0];
+    var params = "";
+    if(options.data){
+        options.data[options.callback] = callbackName;
+        params += options.data.toQueryString();
+    }else{
+        params+=options.callback+"="+callbackName;
+    }
+    var oS = document.createElement('script');
+    oHead.appendChild(oS);
+//创建jsonp回调函数
+    window[callbackName] = function (json) {
+        oHead.removeChild(oS);
+        clearTimeout(oS.timer);
+        window[callbackName] = null;
+
+        options.success && options.success(json);
+      
+    };
+
+    //发送请求
+    oS.src = options.url + '?' + params;
+
+    //超时处理
+    if (options.time) {
+        oS.timer = setTimeout(function () {
+            window[callbackName] = null;
+            oHead.removeChild(oS);
+            options.fail && options.fail({ message: "超时" });
+        }, options.time);
+    }
+};
+//JSONP使用
+var containerNode = document.getElementById("container");
+var inputBox = document.getElementById("search-box");
+function getData(key){
+    //调用方法
+    jsonp({
+        url:"http://search.mi.com/search/expand",
+        callback:"jsonpcallback",   //跟后台协商的接收回调名
+        data:{
+            keyword:key,
+            b:"c"
+        },
+        success:function(json){
+            var str = [];
+            for(var i=0;i<json.length;i++){
+                var item = json[i];
+                str.push("<dl>");
+                str.push("<dt>"+ item.Key +"</dt>");
+                str.push("<dd>"+ item.Rst +"</dd>");
+                str.push("</dl>");
+            }
+            containerNode.innerHTML = str.join("");
+        },
+        fail:function(){
+            console.log("error")
+        },
+        time:10000
+    });
+}
+inputBox.onkeyup = function(){
+    getData(this.value);
+}

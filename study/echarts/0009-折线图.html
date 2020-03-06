@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+        #dangers-number{
+            border:1px solid #000;
+            margin:5px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="dangers-number" style="width:800px;height:500px;"> </div> 
+
+    <script src="../../cssjs/jquery.min.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+        $(function(){
+            //柱状图表函数 
+            function chartBar(id,arr){
+                var myChart = echarts.init($(id)[0]);
+                $(this).on('resize',function(){
+                    myChart.resize({});
+                })
+                var option = {
+                    color:["#4f81bd"],
+                    title : {
+                        text: '第一个标题',
+                        left:'center',
+                        top:"5px"
+                    },
+                    grid:{
+                        right:'15%'
+                    },
+                    tooltip : {
+                        trigger: 'axis',
+                        formatter:function(params){//自动提示工具
+                            return params[0].marker+params[0].axisValue+"&nbsp;&nbsp;完成率"+params[0].value+"%";
+
+                        }
+                    },
+                    legend: {
+                        data:['第一'],
+                        right:20,
+                        top:"center",
+                        selectedMode:false,//设置图例不可点击
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            axisLabel:{
+                                rotate:30,//x轴文字旋转的角度
+                            },
+                            
+                            data:[
+                                {value:'2017/5',textStyle:{align:'right'}},
+                                {value:'2017/6',textStyle:{align:'right'}},
+                                {value:'2017/7',textStyle:{align:'right'}},
+                                {value:'2017/8',textStyle:{align:'right'}},
+                                {value:'2017/9',textStyle:{align:'right'}}
+                            ]
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value',
+                            axisLabel: {
+                                formatter: '{value}%'
+                            },
+                            // min:function(){
+                            //     var min = Math.min.apply(null,arr)-5;
+                            //     min >= 1 ?  min : Math.min.apply(null,arr);
+                            //     return min;
+                            // },
+                            // max:function(){
+                            //     var max =  Math.max.apply(null,arr)+5;
+                            //     max <= 105 ? max : Math.max.apply(null,arr);
+                            //     return max;
+                            // }
+                            min:'dataMin',//y轴显示的最小值
+                            max:'dataMax',//y轴显示的最大值
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'第一',
+                            type:'line',
+                            data:arr,//数据
+                            // 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
+                            symbol:'diamond',//折线拐点处的标志
+                            symbolSize:20,//拐点标志的大小
+                        }
+                    ]
+                };
+                myChart.setOption(option);
+            }
+
+            var arr = [95,94,80,80.85,6];
+            chartBar("#dangers-number",arr);
+        })
+
+        //数组中最大值 最小值
+        // var arr= [5,5,5,5,1,1,1,2,3,4,5];
+        // console.log(Math.max.apply(null,arr));
+        // console.log(Math.min.apply(null,arr));
+
+    </script>
+</body>
+</html>

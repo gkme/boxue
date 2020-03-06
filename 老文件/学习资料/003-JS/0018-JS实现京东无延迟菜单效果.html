@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{box-sizing:border-box;}
+        ul,li{list-style:none;}
+        a{text-decoration:none;}
+        #warp{
+            position: relative;
+            width: 200px;
+        }
+        #menuFirst{
+            position: relative;
+            width: 200px;
+            padding: 15px 0;
+            background-color:#6c6669;
+        }
+        #menuFirst li{
+            height: 30px;
+            line-height: 30px;
+            padding-left: 12px;
+            cursor:pointer;
+            font-size:14px;
+        }
+        #menuFirst li.active{
+            background-color: #999395;
+        }
+        #menuFirst li span{
+            font-size:14px;
+        }
+        #menuFirst li span:hover{
+            color:#c81623;
+        }
+        .hidden{
+            display: none;
+        }
+        #sub{
+            position: absolute;
+            left:200px;
+            top:0;
+            width: 600px;
+            border:1px solid #f7f7f7;
+            border-radius:2px;
+            box-shadow:2px 0 5px rgba(0,0,0,.3);
+        }
+        .sub_content{
+            height: 418px;
+        }
+    </style>
+</head>
+<body>
+<h1>JS实现京东无延迟菜单效果: <a href="JS实现京东无延迟菜单效果">点击进入观看视频</a></h1>
+<br />
+    <div id="warp">
+        <ul id="menuFirst">
+            <li data-id="a" class="firstList">
+                <span>家用电器</span>
+            </li>
+            <li data-id="b" class="firstList">
+                <span>手机/运营商</span>
+            </li>
+            <li data-id="c" class="firstList">
+                <span>手机/运营商</span>
+            </li>
+            <li data-id="d" class="firstList">
+                <span>手机/运营商</span>
+            </li>
+            <li data-id="e" class="firstList">
+                <span>手机/运营商</span>
+            </li>
+            <li data-id="f" class="firstList">
+                <span>手机/运营商</span>
+            </li>
+            <li data-id="g" class="firstList">
+                <span>手机/运营商</span>
+            </li>
+            <li data-id="h" class="firstList">
+                <span>手机/运营商</span>
+            </li>
+            <li data-id="i" class="firstList">
+                <span>手机/运营商</span>
+            </li>
+            <li data-id="j" class="firstList">
+                <span>手机/运营商</span>
+            </li>
+            <li data-id="k" class="firstList">
+                <span>手机/运营商</span>
+            </li>
+            <li data-id="l" class="firstList">
+                <span>手机/运营商</span>
+            </li>
+            <li data-id="m" class="firstList">
+                <span>手机/运营商</span>
+            </li>
+        </ul>
+        <div id="sub" class="hidden">
+            <div id="a" class="sub_content hidden">
+                <div>菜单一的内容</div>
+            </div>
+            <div id="b" class="sub_content hidden">
+                <div>菜单二的内容</div>
+            </div>
+            <div id="b" class="sub_content hidden">
+                <div>菜单三的内容</div>
+            </div>
+            <div id="c" class="sub_content hidden">
+                <div>菜单四的内容</div>
+            </div>
+            <div id="d" class="sub_content hidden">
+                <div>菜单五的内容</div>
+            </div>
+            <div id="e" class="sub_content hidden">
+                <div>菜单六的内容</div>
+            </div>
+            <div id="f" class="sub_content hidden">
+                <div>菜单七的内容</div>
+            </div>
+            <div id="g" class="sub_content hidden">
+                <div>菜单八的内容</div>
+            </div>
+            <div id="h" class="sub_content hidden">
+                <div>菜单九的内容</div>
+            </div>
+            <div id="i" class="sub_content hidden">
+                <div>菜单十的内容</div>
+            </div>
+            <div id="j" class="sub_content hidden">
+                <div>菜单十一的内容</div>
+            </div>
+            <div id="k" class="sub_content hidden">
+                <div>菜单十二的内容</div>
+            </div>
+            <div id="l" class="sub_content hidden">
+                <div>菜单十三的内容</div>
+            </div>
+            <div id="m" class="sub_content hidden">
+                <div>菜单十四的内容</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src=".././../jquery.min.js"></script>
+    <script>
+        function sameSign(a,b) {
+            return (a^b) >= 0;
+        }
+
+        function vector(a,b){
+            return {
+                x:b.x - a.x,
+                y:b.y - a.y
+            }
+        }
+
+        function vectorProduct(v1,v2){
+            return v1.x * v2.y - v2.x * v1.y;
+        }
+
+        function isPointTrangle(p,a,b,c) {
+            var pa = vector(p,a);
+            var pb = vector(p,b);
+            var pc = vector(p,c);
+
+            var t1 = vectorProduct(pa,pb);
+            var t2 = vectorProduct(pb,pc);
+            var t3 = vectorProduct(pc,pa);
+
+            return sameSign(t1,t2) && sameSign(t2,t3)
+        }
+
+        function needDelay(elem,leftCorner,currMousePos) {
+            var offset = elem.offset();
+
+            var topLeft = {
+                x:offset.left,
+                y:offset.top
+            }
+            var bottmLeft ={
+                x:offset.left,
+                y:offset.top + elem.height()
+            }
+            return isPointTrangle(currMousePos,leftCorner,topLeft,bottmLeft)
+        }
+
+        $(function(){
+            var sub = $("#sub");
+            var activeRow;//进入的一级菜单
+            var activeMenu;//进入的二级菜单
+            var timer;//标识定时器
+            var mouseInSub = false;
+            sub.on("mouseenter",function(event) {
+                mouseInSub = true;
+            }).on("mouseleave",function(event) {
+                mouseInSub = false;
+            })
+            var mouseTrack = [];
+            var moveHanlder = function(e){
+                mouseTrack.push({
+                    x:e.pageX,
+                    y:e.pageY
+                })
+                if(mouseTrack.length >3) mouseTrack.shift();
+            }
+            $("#warp")
+                .on("mouseenter",function(e){
+                    sub.removeClass('hidden')
+                    $(document).bind("mousemove",moveHanlder)
+                })
+                .on("mouseleave",function(e) {
+                    sub.addClass('hidden')
+
+                    if(activeRow){
+                        activeRow.removeClass('active');
+                        activeRow = null;
+                    }
+                    if(activeMenu){
+                        activeMenu.addClass('hidden');
+                        activeMenu = null;
+                    }
+                    $(document).unbind("mousemove",moveHanlder)
+                })
+                .on("mouseenter",".firstList",function(e){
+                    if(!activeRow){
+                        activeRow = $(e.target);
+                        activeRow.addClass("active");
+                        activeMenu=$('#'+activeRow.data('id'))
+                        activeMenu.removeClass('hidden');
+                        return;
+                    }
+                    if(timer){ clearTimeout(timer) }
+                    var currMousePos = mouseTrack[mouseTrack.length - 1];
+                    var leftCorner = mouseTrack[mouseTrack.length - 2];
+                    var delay = needDelay(sub,leftCorner,currMousePos);
+                    if(delay){
+                        timer = setTimeout(function(){
+                            if(mouseInSub) return;
+                            if(activeRow){ activeRow.removeClass('active') }
+                            if(activeMenu){ activeMenu.addClass('hidden') };
+                            activeRow = $(e.target);
+                            activeRow.addClass('active');
+                            activeMenu=$('#'+activeRow.data('id'))
+                            activeMenu.removeClass('hidden');
+                        },300)
+                    }else{
+                        var preActiveRow = activeRow;
+                        var preActiveMenu = activeMenu;
+                        activeRow = $(e.target);
+                        activeMenu=$('#'+activeRow.data('id'))
+                        preActiveRow.removeClass("active");
+                        preActiveMenu.addClass('hidden');
+                        activeRow.addClass('active');
+                        activeMenu.removeClass('hidden');
+                    }
+                })
+        })
+    </script>
+</body>
+</html>

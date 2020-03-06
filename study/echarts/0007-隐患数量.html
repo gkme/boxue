@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+        #dangers-number{
+            border:1px solid #000;
+            margin:5px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="dangers-number" style="width:800px;height:500px;"> </div> 
+   
+    <script src="../../cssjs/jquery.min.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+        $(function(){
+            //柱状图表函数 
+            function chartBar(id,data){
+                var myChart = echarts.init($(id)[0]);
+                $(this).on('resize',function(){
+                    myChart.resize({});
+                })
+                var option = {
+                    color:["#4f81bd"],
+                    title : {
+                        text: '第一个标题',
+                        left:'center',
+                        top:"5px"
+                    },
+                    tooltip : {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data:['隐患数量'],
+                        right:0,
+                        top:"center",
+                        selectedMode:false,//取消图例的点击事件
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : ['博罗区域','杭州地区','南京地区','济南地区','苏州地区','成都地区']
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'隐患数量',
+                            type:'bar',
+                            data:[145,159,149,159,145,149],
+                            //barWidth: '50%',//柱子的宽度   
+                        }
+                    ]
+                };
+                myChart.setOption(option);
+            }
+            chartBar("#dangers-number");
+        })
+    </script>
+</body>
+</html>

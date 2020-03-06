@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../学习资料/bootstrap/css/bootstrap-theme.min.css">
+    <script src="../../jquery.min.js"></script>
+    <script src="../../学习资料/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables_themeroller.css">
+    <script src="js/jquery.dataTables.min.js"></script>
+
+    <style>
+        .dataTables_scrollHead .dataTables_scrollHeadInner table,
+        .dataTables_scrollBody table{
+            min-width:100%;
+        }
+    </style>
+</head>
+<body>
+   
+    <table id="myTable"></table>
+   
+    <button id="btn">添加一列</button>
+
+    <script>
+        $(function(){
+            var columns = [
+                    { "data": "name","title":"姓名","width":"100px"},
+                    { "data": "count","title":"数量","width":"200px"}
+                ];
+            var data = [
+                    {
+                        "name":"s1",
+                        "count":1
+                    },
+                    {
+                        "name":"s2",
+                        "count":2
+                    }
+                ];
+            var table;
+            function initTable(columns) {
+                table = $('#myTable').DataTable({
+                    destroy:true,
+                    data:data,
+                    //"autoWidth": true,
+                    "scrollX": true,
+                    "columns": columns,
+                    initComplete: function(settings, json) {
+
+                    }
+                });
+            }
+            initTable(columns);
+
+            var curNum = 3;
+            $("#btn").on("click",function(){
+                columns.push({ "data": "count","title":"数量","width":"200px"});
+                table.destroy();//重要   
+                $("#myTable").empty();//重要
+                // https://blog.csdn.net/zhangwenwu2/article/details/78893589   Datatables动态表头，动态列渲染，可用
+                // https://www.cnblogs.com/lyeo/p/4765514.html   jquery.dataTables动态列
+                initTable(columns);
+            })
+        })
+    </script> 
+</body>
+</html>

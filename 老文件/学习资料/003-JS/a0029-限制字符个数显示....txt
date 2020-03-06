@@ -1,0 +1,96 @@
+﻿1.常规单行文字不折行溢出显示...: 注意：要是块元素或者行内块
+white-space: nowrap;
+word-break: keep-all;
+overflow: hidden;
+text-overflow: ellipsis;
+ 
+2.//限制字符个数函数,多余显示...
+//id:类名 class或者id ".box"或者"#box"
+//num:最大的字符数  输入数字
+function carve(id,num){
+    $(id).each(function(){ 
+        var maxwidth=num; 
+        if($(this).text().length>maxwidth){ 
+            $(this).text($(this).text().substring(0,maxwidth)); 
+            $(this).html($(this).html()+'...'); 
+        }
+    });
+}
+
+3.限制中英文个数
+function carve(id,num){
+    $(id).each(function(){ 
+        var maxwidth=num; 
+        var str = $(this).text();
+        var len = str.length;   
+        var blen = 0;   
+        for(i=0; i<len; i++) {   
+            if ((str.charCodeAt(i) & 0xff00) != 0) {   
+                blen ++;   
+            }   
+            blen ++;   
+        }
+        if(blen>maxwidth){ 
+            $(this).text($(this).text().substring(0,Math.floor(maxwidth/2))); 
+            $(this).html($(this).html()+'...'); 
+        }
+    });
+}
+
+调用：
+<div class="box">我们一起说hello</div>
+<div class="box">测试说明看显示不显示</div>
+carve(".box",5) 
+4.获取个数
+var l = str.length;   
+var blen = 0;   
+for(i=0; i<l; i++) {   
+    if ((str.charCodeAt(i) & 0xff00) != 0) {   
+        blen ++;   
+    }   
+    blen ++;   
+}
+ 
+5.table表格显示...
+table{
+    width: 100%;
+    table-layout: fixed;
+}
+td{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.name{
+    width: 10%;
+}
+table-layout: fixed;(允许设置列宽,通过th) 默认为 table-layout: automatic 默认每一列列宽均分(不可设置列宽)
+td上加title可显示隐藏内容
+
+
+6.单行元素中间部分溢出隐藏 （自适应）
+div{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content:flex-start;
+}
+.qq,.ee{
+    white-space: nowrap;
+    word-break: keep-all;
+}
+.ww{
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align:left;
+    margin:0 10px;
+}
+<div>
+    <span class="qq">左侧内容</span>
+    <span class="ww">中间部分内容溢出隐藏</span>
+    <span class="ee">右侧内容</span>
+</div>

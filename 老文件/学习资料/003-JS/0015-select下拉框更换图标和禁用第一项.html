@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <style>
+        select{
+            width: 200px;
+            height:30px;
+            line-height:30px;
+            border-radius:6px;
+
+            outline:none;/* 选中时去掉边框 */
+            padding-left:20px;/* 让子选项也有padding-left */
+            appearance:none;  
+            -moz-appearance:none;  
+            -webkit-appearance:none; 
+            padding-right: 14px; 
+            background:url('xiala.png') no-repeat  scroll 175px center transparent; 
+        }
+        .select{
+            background:url('xiala-fangda.png') no-repeat  scroll 175px center transparent; 
+        }
+        select::-ms-expand { display: none; }/* 兼容IE */ 
+    </style>
+</head>
+<body>
+    <select>
+        <option value="" selected="true" disabled="true" style="display:none;">选择类型</option>
+        <option value="cat-1">cat-1</option>
+        <option value="cat-2">cat-2</option>
+        <option value="cat-3">cat-3</option>
+    </select>
+
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        var unSelected = "#999";
+        var selected = "#000";
+        $(function () {
+            $("select").css("color", unSelected);
+            $("option").css("color", selected);
+            $("select").mouseenter(function(){
+                $(this).addClass('select');
+            })
+            $("select").mouseleave(function(){
+                $(this).removeClass('select')
+            })
+            $("select").change(function () {
+                var selItem = $(this).val();
+                if (selItem == $(this).find('option:first').val()) {
+                    $(this).css("color", unSelected);
+                } else {
+                    $(this).css("color", selected);
+                }
+            });
+        })
+
+    </script>
+</body>
+</html>

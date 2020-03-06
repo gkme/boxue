@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>缩略图</title>
+    <link rel="stylesheet" href="css/flexslider.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}ul,li{list-style:none;}
+        .flexslider{
+            width: 400px;
+            height: 252px;
+            border:0;
+            margin:0;
+        }
+        #carousel{
+            width: 400px;
+            height: 126px;
+        }
+    </style>
+</head>
+<body>
+    <div id="slider" class="flexslider "> 
+        <ul class="slides">
+            <li><img src="./images/slider1.jpg" /></li>
+            <li><img src="./images/slider2.jpg" /></li>
+            <li><img src="./images/slider3.jpg" /></li>
+            <li><img src="./images/slider4.jpg" /></li>
+        </ul>  
+    </div>
+    <div id="carousel" class="flexslider "> 
+        <ul class="slides">
+            <li><img src="./images/slider1.jpg" /></li>
+            <li><img src="./images/slider2.jpg" /></li>
+            <li><img src="./images/slider3.jpg" /></li>
+            <li><img src="./images/slider4.jpg" /></li>
+        </ul>  
+    </div> 
+
+    <script src="../../jquery.min.js"></script>
+    <script src="js/jquery.flexslider.js"></script>
+    <script>
+        $(window).load(function(){
+            $('#carousel').flexslider({
+                animation: "slide",
+                controlNav: false,//是否创建控制点
+                animationLoop: true,//是否循环播放
+                slideshow: true,//是否自动播放
+                itemWidth: 210,
+                itemMargin: 5,
+                asNavFor: '#slider',
+                slideshowSpeed: 2000,          //间隔
+                thumbCaptions: true, //是否缩略图控制导航
+            });
+             
+            $('#slider').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: true,
+                slideshow: true,
+                sync: "#carousel",
+                slideshowSpeed: 2000,          //间隔
+                thumbCaptions: true,
+            });
+        });
+    </script>
+</body>
+</html>

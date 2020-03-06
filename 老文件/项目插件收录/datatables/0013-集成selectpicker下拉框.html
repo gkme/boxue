@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../学习资料/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../学习资料/bootstrap/css/bootstrap-theme.min.css">
+    <script src="../../jquery.min.js"></script>
+    <script src="../../学习资料/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables_themeroller.css">
+
+    <link rel="stylesheet" type="text/css" href="../bootstrap-select/bootstrap-select.min.css">
+    <script src="../bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+
+    <style>
+        .dataTables_scrollHead .dataTables_scrollHeadInner table,
+        .dataTables_scrollBody table{
+            min-width:100%;
+        }
+    </style>
+</head>
+<body>
+   
+    <table id="myTable"></table>
+
+    <script>
+        $(function(){
+            var table;
+            function initTable(columns) {
+                table = $('#myTable').DataTable({
+                    //destroy:true,
+                    //"autoWidth": true,
+                    "scrollX": true,//开启滚动条后就不能初始化selectpicker，会被遮盖
+                    data: [
+                        {
+                            "name":"s1",
+                            "count":1
+                        },
+                        {
+                            "name":"s2",
+                            "count":2
+                        }
+                    ],
+                    "columns":  [
+                        { "data": "name","title":"姓名","width":"200px"},
+                        { "data": null,"title":"下拉框","width":"600px"},
+                        { "data": "count","title":"数量","width":"400px"},
+                        { "data": "count","title":"数量","width":"400px"},
+                        { "data": "count","title":"数量","width":"400px"},
+                        { "data": "count","title":"数量","width":"400px"}
+                    ],
+                    "columnDefs": [//设置定义列的初始属性
+                        {
+                            "targets":[1],
+                            "searchable": false, //是否参与搜索
+                            "mRender": function (data) {
+                                var html = '<select class="selectpicker"><option>第一个</option><option>第二个</option><option>第三个</option><option>第四个</option><option>第五个</option><option>第六个</option><option>第七个</option><option>第八个</option><option>第九个</option><option>第十个</option></select>';
+                                return html;
+                            }
+                        },
+                    ],
+                    initComplete: function(settings, json) {
+                        //$('.selectpicker').selectpicker({ size:5 });
+                    }
+                });
+            }
+            initTable();
+
+        })
+    </script> 
+</body>
+</html>

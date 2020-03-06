@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/easyui.css">
+    <link rel="stylesheet" type="text/css" href="css/icon.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    
+    <table id="tg"></table>
+    <button id="btn">设置不显示图标</button>
+    <button id="btn1">设置显示图标</button>
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/jquery.easyui.min.js"></script>
+    <script>
+        $(function(){
+            $(function(){
+                $('#tg').treegrid({
+                    width:700,
+                    height:250,
+                    rownumbers: true,
+                    animate:true,
+                    collapsible:true,
+                    fitColumns:true,
+                    url:'treegrid_data2.json',
+                    method: 'get',
+                    idField:'id',
+                    treeField:'name',
+                    columns:[[
+                        {title:'Task Name',field:'name',width:180},
+                        {field:'persons',title:'Persons',width:60,align:'right'},
+                    ]]
+                });
+                $("#btn").on("click",function(){
+                    $('#tg').treegrid({
+                        rowStyler: function(i,row){
+                            i.iconCls = "empty-icons";
+                        }
+                    })
+                })
+                $("#btn1").on("click",function(){
+                    $('#tg').treegrid({
+                        rowStyler: function(i,row){
+                            console.log(i);
+                            i.iconCls = i.iconCls;
+                        }
+                    })
+                })
+            })
+        })
+    </script>
+</body>
+</html>

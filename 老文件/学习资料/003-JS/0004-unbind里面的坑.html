@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>unbind里面的坑</title>
+</head>
+<body>
+    <p class="item"><button>点击</button></p>
+    <button class="btn">取消点击</button>
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function(){
+            var a = function(){console.log(1);}
+            var b = function(){console.log(2);}
+
+            // $(".item").bind("click",a,b);//如果绑定a,b只有b生效
+
+            // $(".item").bind("click",function(){
+            //     a();
+            //     b();
+            // })      
+            
+            $(".item").bind("click",a);
+            $(".item").bind("click",b);
+
+            $(".btn").on("click",function(){
+                // $(".item").unbind('click');//取消全部的点击事件
+                // $(".item").unbind('click').click(function(){console.log("解绑后从新绑定事件")});//解绑后从新绑定事件
+                $(".item").unbind('click',a);//解绑单个事件
+            })
+        })
+    </script>
+</body>
+</html>

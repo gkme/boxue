@@ -1,0 +1,4 @@
+https://www.jianshu.com/p/b96f9319f6d5  datetimepicker的时区及多语言问题
+http://momentjs.cn/timezone/  JavaScript 时区处理类库
+http://eonasdan.github.io/bootstrap-datetimepicker/  官网
+https://github.com/Eonasdan/bootstrap-datetimepicker   github地址

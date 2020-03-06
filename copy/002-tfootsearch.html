@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+        html{
+            padding:10px;
+        }
+        .copybox{ margin-bottom:5px; }
+        xmp{
+            position: relative;
+        }
+        .copybox:hover{
+            background:#f00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="copybox"><xmp>
+$("#selectpicker-box").appendTo("#mainPage");//显示下拉框元素
+</xmp></div>
+
+<div class="copybox"><xmp>
+DatatablesDataHandle(setcolumns,'#findCustomerList');//tfoot以及数据处理
+</xmp></div>
+
+<div class="copybox"><xmp>
+"destroy":true,
+</xmp></div>
+
+<div class="copybox"><xmp>
+$XPMSYS.DatatableColumns
+</xmp></div>
+
+<div class="copybox"><xmp>
+DatatablesSearchHandle(this.api());//tfoot的搜索处理
+</xmp></div>
+
+<div class="copybox"><xmp>
+{"title":"<input type='checkbox' onclick='checkAll(this)'>","data":null,
+    "orderable": false,'searchable':false,"className":"datatableCheckbox",
+    render:function(data,type,row,meta){
+        return '<input type="checkbox" class="checkbox_select" data-id ="'+ data.contractId + '">';
+    },
+    "visible": true,"JMisMandatory":false,"JMdisabled":false,"JMcolumnAsign":"checkboxData","width":"60px"
+},//复选框
+</xmp></div>
+
+<div class="copybox"><xmp>
+{"title": $.i18n.prop('public.form.serialNumber'),"className":"center notitle",
+    render:function(data,type,row,meta){return meta.row+1 },
+    "visible": true,"JMisMandatory":false,"JMdisabled":false,"JMcolumnAsign":"serialNumberData","width":"70px"
+},//序号
+</xmp></div>
+
+
+<div class="copybox"><xmp>
+{"title":$.i18n.prop('TenderingManagement.RequisitionNumber'),"data": "purchaseCode","searchable": true,"className":"",
+    render:function(data,type,row,meta){return data },
+    "visible": true,"JMisMandatory":false,"JMdisabled":false,"JMcolumnAsign":"purchaseCode","width":"180px"
+},//请购单编号
+</xmp></div>
+
+
+<div class="copybox"><xmp>
+{ "title":$.i18n.prop('public.form.operate'),"data": null,"className": "notitle","searchable": false,
+    render:function(data,type,row,meta){
+        return "<a onclick='gotoXpmContractViewPage(\""+data.contractId+"\")'>"+ + $.i18n.prop('public.button.View') + +"</a>";//查看
+    },
+    "visible":true,"JMisMandatory":false,"JMdisabled":false,"JMcolumnAsign":"operatingData","width":"80px"
+}//操作
+</xmp></div>
+
+
+<div class="copybox"><xmp>
+
+</xmp></div>
+
+
+
+
+<script src="../cssjs/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $(".copybox").on("click",function(){
+        var html = $(this).html();
+            html = html.replace(/<xmp>/g,"");
+            html = html.replace(/<\/xmp>/g,"");
+            html = html.replace(/\n/,"");
+            html = html.replace(/(\n)$/,"");
+        var ts=document.getElementById("t");
+            $("#t").html(html);
+        ts.select(); // 选择对象
+    document.execCommand("Copy"); // 执行浏览器复制命令
+    })
+    $(".textareacopy").on("focus",function(){
+        var html = $(this).val();
+        $(this).select();
+        document.execCommand("Copy"); // 执行浏览器复制命令
+    })
+})
+
+</script>
+<textarea cols="50" rows="30" id="t" style="position:fixed;left:-99999px;"></textarea>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">第一种</div>
+       <div v-bind:style="styleObject">推荐这种写法</div>
+       <div v-bind:style="[baseStyles, overridingStyles]">第三种</div>
+       <div v-bind:style="[qianzhui]">会自动加前缀</div>
+       <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">自动识别前缀</div>
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data: {
+                activeColor: 'red',
+                fontSize: 30,
+                styleObject: {
+                   color: 'red',
+                   fontSize: '13px'
+                },
+                baseStyles:{
+                    color:'red'
+                },
+                overridingStyles:{
+                    fontSize:"30px"
+                },
+                qianzhui:{
+                    // 'border-radius':' 5px'
+                    "transform":'translate(2%,2%)'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

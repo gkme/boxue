@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div id="pageContent">
+        <div id="imgContainer"> 
+            <img id="imageFullScreen" src="assets/qq.png"/> 
+        </div>
+        <div id="positionButtonDiv">
+            <p>
+                <span> 
+                    <img id="zoomInButton" class="zoomButton" src="assets/zoomIn.png" title="zoom in" alt="zoom in" /> 
+                    <img id="zoomOutButton" class="zoomButton" src="assets/zoomOut.png" title="zoom out" alt="zoom out" /> 
+                </span> 
+            </p>
+            <p>
+                <span class="positionButtonSpan">
+                <map name="positionMap" class="positionMapClass">
+                    <area id="topPositionMap" shape="rect" coords="20,0,40,20" title="move up" alt="move up"/>
+                    <area id="leftPositionMap" shape="rect" coords="0,20,20,40" title="move left" alt="move left"/>
+                    <area id="rightPositionMap" shape="rect" coords="40,20,60,40" title="move right" alt="move right"/>
+                    <area id="bottomPositionMap" shape="rect" coords="20,40,40,60" title="move bottom" alt="move bottom"/>
+                </map>
+                <img src="assets/position.png" usemap="#positionMap" /> </span> 
+            </p>
+        </div>
+    </div>
+
+
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="e-smart-zoom-jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('#imageFullScreen').smartZoom({'containerClass':'zoomableContainer'});        
+            $('#topPositionMap,#leftPositionMap,#rightPositionMap,#bottomPositionMap').bind("click", moveButtonClickHandler);
+            $('#zoomInButton,#zoomOutButton').bind("click", zoomButtonClickHandler);
+            
+            function zoomButtonClickHandler(e){
+                var scaleToAdd = 0.8;
+                if(e.target.id == 'zoomOutButton')
+                    scaleToAdd = -scaleToAdd;
+                $('#imageFullScreen').smartZoom('zoom', scaleToAdd);
+            }        
+            function moveButtonClickHandler(e){
+                var pixelsToMoveOnX = 0;
+                var pixelsToMoveOnY = 0;
+            
+                switch(e.target.id){
+                    case "leftPositionMap":
+                        pixelsToMoveOnX = 50;   
+                    break;
+                    case "rightPositionMap":
+                        pixelsToMoveOnX = -50;
+                    break;
+                    case "topPositionMap":
+                        pixelsToMoveOnY = 50;   
+                    break;
+                    case "bottomPositionMap":
+                        pixelsToMoveOnY = -50;  
+                    break;
+                }
+                $('#imageFullScreen').smartZoom('pan', pixelsToMoveOnX, pixelsToMoveOnY);
+            } 
+        })
+    </script>
+</body>
+</html>

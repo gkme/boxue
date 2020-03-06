@@ -1,0 +1,12 @@
+展示地址：  http://inorganik.github.io/countUp.js/
+
+github下载地址：  https://github.com/inorganik/CountUp.js
+
+https://github.com/xlsdg/vue-countup-v2  vue组件地址
+
+jq插件库示例地址：
+http://www.jq22.com/jquery-info11331
+http://www.jq22.com/jquery-info10784
+http://www.jq22.com/jquery-info249
+
+参数参考地址：http://www.webzsky.com/?p=1016

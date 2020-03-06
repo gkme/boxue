@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>测试文件</title>
+    
+    <style>
+        *{margin: 0;padding: 0;box-sizing:border-box;}ul,li{list-style:none;}
+        ul{
+            height: 202px;
+            border:1px solid #000;
+        }
+        li{
+            height:20px;
+            line-height:20px;
+            text-align: center;
+            border-bottom:1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <ul class="qq">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+        <li>11</li>
+        <li>12</li>
+        <li>13</li>
+        <li>14</li>
+        <li>15</li>
+        <li>16</li>
+        <li>17</li>
+        <li>18</li>
+        <li>19</li>
+        <li>20</li>
+    </ul>
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
+    <script>
+        $(function(){
+            $('.qq').slimScroll({
+                height: "258px",
+                color:'green',
+                opacity:0.5
+            });
+            $('.qq').slimScroll({
+                scrollTo:"30px"//先初始化才能调整滚动的位置
+            });
+        })
+    </script>
+</body>
+</html>

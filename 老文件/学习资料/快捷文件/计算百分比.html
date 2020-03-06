@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>计算百分比</title>
+  <link rel="shortcut icon" href="Glyphicons字体图标直接点击复制/calculator.ico"/>
+  <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+  <link rel="shortcut icon" href="https://raw.githubusercontent.com/s209392599/img/master/%E8%AE%A1%E7%AE%97%E7%99%BE%E5%88%86%E6%AF%94.ico"/>
+</head>
+<body>
+  <span>px-rem：</span>
+  <input type="text" id="a1" autofocus placeholder="点击清空内容"/>
+  <button id="a3">计算</button>
+  <button id="f1" onfocus="copy()">复制到粘贴板</button>
+  <textarea cols="20" rows="1" id="a4" style="resize:none;"></textarea>
+  
+  <br />
+  <br />
+  <br />
+  <span>rem-px：</span>
+  <input type="text" id="b1" autofocus placeholder="点击清空内容"/>
+  <button id="b3">计算</button>
+  <span id="b4"></span>
+  
+  <br />
+  <br />
+  <br />
+  <span>计算百分比：</span>
+  <input type="text" id="q1" placeholder="点击清空内容"/>
+  <input type="text" id="q2" />
+  <button id="btn">计算</button>
+  <span id="q3"></span>
+  
+  <br />
+  <br />
+  <br />
+  <span>加法：</span>
+  <input type="text" id="q5" placeholder="点击清空内容"/>
+  <input type="text" id="q6" />
+  <button id="btn1">计算</button>
+  <span id="q7"></span>
+  <button id="q8">赋值到百分比1</button>
+  <button id="q9">赋值到百分比2</button>
+    
+	<br />
+	<br />
+	<br />
+	<span>减法：</span>
+	<input type="text" id="w1" placeholder="点击清空内容"/>
+	<input type="text" id="w2" />
+	<button id="w3">计算</button>
+	<span id="w4"></span>
+	<button id="w5">赋值到百分比1</button>
+	<button id="w6">赋值到百分比2</button>
+
+	<br />
+	<br />
+	<br />
+	<span>乘法</span>
+	<input type="text" id="w8" placeholder="点击清空内容"/>
+	<input type="text" id="w9" />
+	<button id="w10">计算</button>
+	<span id="w11"></span>
+  
+  <br />
+  <br />
+  <br />
+  <span>除法</span>
+  <input type="text" id="i8" placeholder="点击清空内容"/>
+  <input type="text" id="i9" />
+  <button id="i10">计算</button>
+  <span id="i11"></span>
+
+
+    <script>
+      $("#a3").focus(function(){
+        $("#a4").text(((Number($("#a1").val()))/46.875).toFixed(6)+"rem")
+      })
+      $("#b3").focus(function(){
+        $("#b4").text(((Number($("#b1").val()))*46.875).toFixed(6))
+      })
+      $("#w10").focus(function(){
+    	$("#w11").text(Number($("#w8").val())*Number($("#w9").val()));
+      })
+        $("#i10").focus(function(){
+        $("#i11").text(Number($("#i8").val())/Number($("#i9").val()));
+        })
+      $("#btn").focus(function(){
+        $("#q3").text($("#q1").val()/$("#q2").val()*100+"%");
+      })
+      $("#q1,#q5,#w1,#w8").click(function(){
+          $(this).val("");
+      });
+      $("#btn1").focus(function(){
+        $("#q7").text(Number($("#q5").val())+Number($("#q6").val()));
+      })
+      $("#q8").focus(function(){
+        $("#q1").val($("#q7").text())
+      })
+      $("#q9").focus(function(){
+        $("#q2").val($("#q7").text())
+      })
+      $("#w3").focus(function(){
+        $("#w4").text(Number($("#w1").val())-Number($("#w2").val()));
+      })
+      $("#w5").focus(function(){
+        $("#q1").val($("#w4").text())
+      })
+      $("#w6").focus(function(){
+        $("#q2").val($("#w4").text())
+      })
+
+      function copy(){
+          $("#a4").select();
+          document.execCommand("Copy");
+      }
+
+    </script>
+</body>
+</html>

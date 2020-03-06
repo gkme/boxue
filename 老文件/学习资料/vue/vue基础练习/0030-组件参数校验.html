@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<style>
+		
+	</style>
+</head>
+<body>
+    <div id="app">
+        <child-component content="hel"></child-component>
+    </div>
+</body>
+<script>
+    Vue.component("childComponent",{
+        props:{
+            content:{
+                type:String,//[Number,String],
+                //require:false,//content是否必传，true是必传
+                //default:'给出默认值，content="23"没有的时候显示值',
+                validator(value) {
+                    return (value.length > 5)
+                }
+            }
+        },
+        template:'<div>{{ content }}</div>'
+    })
+    var app = new Vue({
+        el:"#app"
+    })
+</script>
+</html>

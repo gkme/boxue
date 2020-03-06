@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            border: 1px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        repeating-linear-gradient(-45deg, black 0, black 25%, transparent 0, transparent 50%) 0 / .6em .6em;
+            animation: ants 36s linear infinite;
+        }
+        @keyframes ants { 
+            from { background-position: 0 0; }
+            to { background-position: 100% 100%; } 
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

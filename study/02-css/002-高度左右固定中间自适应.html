@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+        .clearfix:after{
+            content: ".";
+            display:block;
+            clear: both;
+            height: 0;
+            visibility: hidden;
+        }
+        .clearfix{
+            *zoom:1;
+        }
+    </style>
+</head>
+<body>
+    <div>假设高度已知，请写出三栏布局，其中左栏、右栏宽度各为300px,中间自适应</div>
+    <div>flex和table会自动撑高高度</div>
+    <br />
+    <div style="font-weight:700;">第一种方法：浮动的方法</div>
+    <style>
+        .layoutone .left-center-right>div{height: 100px;overflow:hidden;}
+        .layoutone .left{width: 300px;float: left;background-color: red;}
+        .layoutone .right{width: 300px;float:right;background-color: green;}
+        .layoutone .center{background-color: yellow;}
+    </style>
+    <section class="layoutone">
+        <article class="left-center-right clearfix">
+            <div class="left">左侧</div>
+            <div class="right">右侧</div>
+            <div class="center">
+                <h1>这是第一种方法:浮动</h1>
+                注意：left和right要先写,最后写center<br />
+                可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。
+            </div>
+        </article>
+    </section>
+    
+    
+    <br />
+    <div style="font-weight:700;">第二种方法：绝对定位的方法</div>
+    <style>
+        .layouttwo .left-center-right{position: relative;height: 100px;}
+        .layouttwo .left-center-right>div{position:absolute;height: 100px;overflow:hidden;}
+        .layouttwo .left{left:0;width: 300px;background-color: red;}
+        .layouttwo .right{right:0;width: 300px;float:right;background-color: green;}
+        .layouttwo .center{left:300px;right:300px;background-color: yellow;}
+    </style>
+    <section class="layouttwo">
+        <article class="left-center-right clearfix">
+            <div class="left">左侧</div>
+            <div class="right">右侧</div>
+            <div class="center">
+                <h1>这是第二种方法:绝对定位</h1>
+                可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。
+            </div>
+        </article>
+    </section>
+
+    <br />
+    <div style="font-weight:700;">第三种方法：flexbox的方法</div>
+    <style>
+        .layoutthree .left-center-right{display:flex;}
+        .layoutthree .left{width: 300px;background-color: red;}
+        .layoutthree .right{width: 300px;background-color: green;}
+        .layoutthree .center{flex:1;background-color: yellow;}
+    </style>
+    <section class="layoutthree">
+        <article class="left-center-right clearfix">
+            <div class="left">左侧</div>
+            <div class="center">
+                <h1>第三种方法：flexbox的方法</h1>
+                注意：left先写，其次center,最后right  内容会自动撑高<br />
+                可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。
+            </div>
+            <div class="right">右侧</div>
+        </article>
+    </section>
+
+    <br />
+    <div style="font-weight:700;">第四种方法：table的方法</div>
+    <style>
+        .layoutfour .left-center-right{display:table;width: 100%;}
+        .layoutfour .left-center-right>div{display:table-cell;height: 100px;overflow:hidden;}
+        .layoutfour .left{width: 300px;background-color: red;}
+        .layoutfour .right{width: 300px;background-color: green;}
+        .layoutfour .center{background-color: yellow;}
+    </style>
+    <section class="layoutfour">
+        <article class="left-center-right clearfix">
+            <div class="left">左侧</div>
+            <div class="center">
+                <h1>第四种方法：table的方法</h1>
+                注意：left先写，其次center,最后right<br />
+                可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。
+            </div>
+            <div class="right">右侧</div>
+        </article>
+    </section>
+
+    
+    <br />
+    <div style="font-weight:700;">第五种方法：grid的方法</div>
+    <style>
+        .layoutfive .left-center-right{display:grid;width: 100%;grid-template-rows: 100px;grid-template-columns: 300px auto 300px;overflow:hidden;}
+        .layoutfive .left{background-color: red;}
+        .layoutfive .right{background-color: green;}
+        .layoutfive .center{background-color: yellow;}
+    </style>
+    <section class="layoutfive">
+        <article class="left-center-right clearfix">
+            <div class="left">左侧</div>
+            <div class="center">
+                <h1>第五种方法：grid的方法</h1>
+                注意：溢出隐藏是在父元素上面写的！！！<br />
+                可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。可以调整浏览器宽度大小以观测效果。
+            </div>
+            <div class="right">右侧</div>
+        </article>
+    </section>
+
+</body>
+</html>

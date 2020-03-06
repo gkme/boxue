@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <select id="sel" style="width: 200px;">            
+        <option value="-1">请选择</option>         
+        <option value="2">总经理</option>          
+        <option value="3">技术经理</option>         
+        <option value="4">部门经理</option>     
+    </select>
+
+    <button id="btn">打印选择框的值</button>
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("#sel").on("change",function(){
+                $("#sel option:eq(0)").attr("disabled","disabled");
+                console.log($("#sel").val());
+            })
+
+            $("#btn").on("click",function(){
+                console.log($("#sel").val());
+            })
+        })
+    </script>
+</body>
+</html>

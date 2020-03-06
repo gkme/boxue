@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>全选/反选/全不选</title>
+</head>
+<body>
+    
+    <input type="checkbox" value="第一件商品" class="select" />第一件商品<br />
+    <input type="checkbox" value="第一件商品" class="select" />第二件商品<br />
+    <input type="checkbox" value="第一件商品" class="select" />第三件商品<br />
+    <input type="checkbox" value="第一件商品" class="select" />第四件商品<br /><br />
+
+    <input type="checkbox" value="全选" class="selectAll" />全选
+    <input type="checkbox" value="全不选" class="cancleAll" />全不选
+    <input type="checkbox" value="反选" class="inverse" />反选
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function(){
+            //全选
+            $(".selectAll").on("click",function(){
+                if(this.checked){
+                    $(".select").prop("checked",true);
+                    $(".cancleAll").prop("checked",false);
+                    $(".inverse").prop("checked",false);
+                }else{
+                    $(".select").prop("checked",false);
+                }
+            })
+            //全不选
+            $(".cancleAll").on("click",function(){
+                if(this.checked){
+                    $(".select").prop("checked",false);
+                    $(".selectAll").prop("checked",false);
+                    $(".inverse").prop("checked",false);
+                }
+            })
+            //反选
+            $(".inverse").on("click",function(){
+                if(this.checked){
+                    $(".selectAll").prop("checked",false);
+                    $(".cancleAll").prop("checked",false);
+                    $(".select").prop("checked", function (a,b) { 
+                        return !b;
+                    })
+                }
+            })
+            //判断是否全部选中
+            $(".select").on("click",function(){
+                if(this.checked){
+                    $(".cancleAll").prop("checked",false);
+                }else{
+                    $(".selectAll").prop("checked",false);
+                }
+            })
+        })
+    </script>
+</body>
+</html>

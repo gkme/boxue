@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div id="jRate"></div>
+	
+	<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="jRate.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function () {
+			$("#jRate").jRate({
+				rating: 3.56,
+				strokeColor: 'black',
+				width: 30,
+				height: 30,
+				startColor: "#d20001",
+  				endColor: "#d20001",
+  				shapeGap: '5px',
+  				readOnly: true
+			});
+		});
+	</script>
+</body>
+</html>

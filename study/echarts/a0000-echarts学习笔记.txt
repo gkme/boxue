@@ -1,0 +1,188 @@
+calculable 拖拽重计算 详情见echarts2配置项
+boundaryGap:true,//两边留白  用于x轴或者y轴的配置项
+
+//bootstrap模态框之后的函数回调【模态框出来之后再去渲染图表】
+$('#myModal').on('shown.bs.modal',function(){
+    myChart.resize()
+})
+
+//提示的时候轴坐标四周都会显示数据
+tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+        type: 'cross',
+        label: {
+            backgroundColor: '#283b56'
+        }
+    }
+},
+
+function chart2(x,y,z,m){
+     var num = x+y+z+m;
+    var myChart = echarts.init($("#dut")[0]);
+    $(this).on('resize',function(){
+        myChart.resize({});
+    })
+    var option = {
+        title: {
+
+        },
+        series: [
+        ]
+    };
+    myChart.setOption(option);
+}
+chart2(20,20,20,20)
+
+响应式的响应式：
+$(this).on('resize',function(){
+    var w = $("#dangers-number").width();
+    setTimeout(function(){
+        if(w < 700){
+            option.series[0].radius = "40%";
+            option.series[0].labelLine.normal.length = 10;
+            option.series[0].label.normal.fontSize = 12;
+        }else{
+            option.series[0].radius = "60%";
+            option.series[0].labelLine.normal.length = 30;
+            option.series[0].label.normal.fontSize = 20;
+        }
+        myChart.setOption(option);
+        myChart.resize();
+    },100)
+})
+
+//地图鼠标进入的回调
+myChart.on('mouseover', function (params) {
+    var dataIndex = params.dataIndex;
+    console.log(params);
+});
+
+//legend图标
+icon:'image://'+ $ctx+'/pages/kpi/planProgress/images/piancha.png'
+
+//legend点击的回调函数
+myChart.on('legendselectchanged', function (params) { 
+    if(params.name == "已开始"){
+        alert(3);   
+    }
+    if(params.name == "未开始"){
+        alert(4);   
+    }
+});
+
+return params.value + '\n' + params.name;  换行显示的写法
+
+tooltip : {
+    triggerOn:"click",//鼠标点击事件
+    formatter: function(a,b,c){
+        if(a.data.name == "已开始"){
+            alert(1)
+        }
+        if(a.data.name == "未开始"){
+            alert(2)
+        }
+    }
+},
+
+//自定义自动提示工具  ***注意要加[0]
+tooltip: {
+    trigger: 'axis',
+    axisPointer: {type: 'cross'},
+    formatter:function(params){//自动提示工具
+      return params[0].axisValue+'<br />'+ params[0].marker+'合格&nbsp;'+params[0].value
+                                +'<br />'+params[1].marker+'不合格&nbsp;'+params[1].value
+                                +'<br />'+params[2].marker+ txt +'&nbsp;'+params[2].value+'%';
+    }
+},
+
+
+//自定义柱状图上的数据
+itemStyle: {
+    normal: {
+        label: {
+            show: true,
+            position: 'top',
+            textStyle: {
+                color: '#000'
+            },
+            formatter:function(params){
+                if(params.value==0){
+                    return '';
+                }else
+                {
+                    return params.value;
+                }
+            }
+        }
+    }
+},
+formatter:function(params){
+    if(params.value==0){
+        return '';
+    }else
+    {
+        return params.value+"%";
+    }
+}
+
+selectedMode:false,//取消图例的点击事件
+
+//柱状图的点击事件
+myChart.on('click', function (params) {  
+    console.log(params);
+    console.log(params.value);//点击柱状图的数据
+    console.log(params.dataIndex);//点击X轴的下标
+    console.log(params.name);//点击X轴的名字
+    if(params.name){
+        alert(params.name)
+    }
+    if(params.value){
+        alert(params.value)
+    }
+}); 
+
+写在series里面
+label: {//柱子上面显示数字
+    normal: {
+        show: true,
+        position: 'top'
+    }
+},
+
+barMaxWidth:30,  设置柱状图柱子最大宽度
+
+//柱状图点击效果
+myChart.on('click', function (params) {  
+    
+});
+
+x轴文字添加点击事件：
+将xAxis或者yAxis的属性triggerEvent 置为 true;
+myChart.on('click', function (params) {  
+    if(params.componentType == "xAxis"){
+        console.log("单击了"+params.value+"x轴标签");
+    }else{
+        console.log("点击了柱状图");
+    }
+});
+
+echarts 数据重新加载,原数据依然存在图表上：
+解决方法一：myChart.setOption(option,true); // 加上true表示不合并配置
+解决方法二：var myChart = echarts.init($(id)[0]);后面加 myChart.clear(); //清空画布
+
+要渲染的元素是百分百宽度，遇到渲染图表达不到预定宽度，考虑setTimeOut来重新渲染函数
+
+axisTick: {
+    show: false,//不显示x轴或者y轴的刻度
+},
+
+splitLine:{
+　　show:false,//去掉网格线,写在Y轴配置里
+},
+
+axisLine:{
+    lineStyle:{
+        color:'#999',//x轴或者y轴的颜色(文字颜色默认是x轴颜色)
+    }
+}

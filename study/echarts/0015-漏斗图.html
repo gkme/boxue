@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>响应式饼图</title>
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+        #funnel{
+            border:1px solid #000;
+            margin:5px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="funnel" style="width:1100px;height:500px;"> </div> 
+    
+    <script src="../../cssjs/jquery.min.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+$(function(){
+    function chartFunnel(id){
+        var myChart = echarts.init($(id)[0]);
+        var option = {
+            color:['#f36119','#ff9921','#20c8ff','#2cb7ff','#1785ef'],//设置漏斗条颜色
+            series: [
+                {
+                    name:'漏斗图',
+                    type:'funnel',
+                    left: '10%',
+                    top: 15,
+                    bottom: 15,
+                    width: '80%',
+                    minSize: '20%',//设置平底
+                    sort: 'descending',
+                    label: {
+                        position: 'inside',
+                        fontSize:14,
+                        formatter:function(params){//自动提示工具
+                            return params.value+'个'+params.name;
+                        }
+                    },
+                    itemStyle: {
+                        borderColor: '#fff',
+                        borderWidth: 0
+                    },
+                    emphasis: {
+                        label: {
+                            fontSize: 20//悬停时文字大小
+                        }
+                    },
+                    data: [
+                        {value: 10, name: '项目线索',src:"/go/1"},
+                        {value: 8, name: '项目机会',src:"/go/2"},
+                        {value: 6, name: '投标项目',src:"/go/3"},
+                        {value: 4, name: '投标保证金总额',src:"/go/4"},
+                        {value: 2, name: '投标保证金未退还总额',src:"/go/5"}
+                    ]
+                }
+            ]
+        };
+        myChart.setOption(option);
+
+        myChart.on('click', function (params) {//图表的点击事件
+            console.log(params);
+            if(params.componentType == "series"){
+                console.log(params.data.src);
+            }
+        });
+    }
+    chartFunnel("#funnel");
+})
+    </script>
+</body>
+</html>

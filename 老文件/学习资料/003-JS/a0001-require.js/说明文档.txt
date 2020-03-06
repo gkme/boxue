@@ -1,0 +1,38 @@
+好处：
+1.有效防止命名冲突
+2.声明不用js文件之间的依赖
+3.可以让我们的代码模块化
+
+
+
+常用方法：
+1.requirejs.config
+2.requirejs   和上面1是对等的
+3.define
+
+
+
+使用方法：
+<script src="require.js" data-main="main1"></script>
+
+引入：
+requirejs.config({
+    path:{
+        main2:"main2"
+    }
+})
+
+使用：
+requirejs(["main2","main3"],function(main2,main3){
+    main2.gk();
+    main3.conname();
+})
+
+定义：
+define(["main4"],function(){
+    return{
+        jichu:function(){
+            console.log("我是main4.js,我被main3.js调用,从而被main1.js调用");
+        }
+    }
+});

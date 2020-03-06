@@ -1,0 +1,4 @@
+http://momentjs.cn/  官网主页
+http://momentjs.cn/docs/#/utilities/   官网
+https://www.helloweba.net/javascript/271.html   参考文档
+https://www.jianshu.com/p/94686fd4ae92 常见实例说明文档

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>flexslider1</title>
+    <link rel="stylesheet" href="css/flexslider.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}ul,li{list-style:none;}
+        .flexslider{
+            width: 400px;
+            height: 252px;
+            border:0;
+            margin:0;
+        }
+        .flex-control-nav{  
+            bottom:0;  
+        }
+        /* 改变左右显示的箭头开始 */
+        .flex-direction-nav a:before{
+            display: none;
+        }
+        .flex-direction-nav a{
+            width: 43px;
+            height: 58px;
+            margin:-29px 0 0;
+            background: url("./images/arrows.png") no-repeat 0 0;
+        }
+        .flex-direction-nav a.flex-next{
+            right:10px;
+            background-position:-43px 0;
+        }
+        /* 改变左右显示的箭头结束 */
+
+        /* 改变小圆点开始 */
+        .flex-control-paging li a{
+            background: #fff;
+        }
+        .flex-control-paging li a.flex-active{
+            background:green;
+        }
+        .flex-control-paging li a:hover{
+            background: purple;
+        }
+        /* 改变小圆点结束 */
+    </style>
+</head>
+<body>
+    <div id="slider" class="flexslider ">
+        <ul class="slides">
+            <li class="images">  
+                <img src="./images/slider1.jpg" />
+            </li>  
+            <li class="images">  
+                <img src="./images/slider2.jpg" /> 
+            </li> 
+            <li class="images">  
+                <img src="./images/slider3.jpg" /> 
+            </li> 
+            <li class="images">  
+                <img src="./images/slider4.jpg" />  
+            </li> 
+        </ul>  
+    </div> 
+
+    <script src="../../jquery.min.js"></script>
+    <script src="js/jquery.flexslider.js"></script>
+    <script>
+        $(function(){
+            $('#slider').flexslider({      
+                animation: "slide",            //动画效果  
+                animationLoop: true,           //是否循环播放 
+                pauseOnHover: true,            //悬停时暂停自动播放
+                slideshowSpeed: 3000,          //间隔
+                controlNav: true,              //是否创建控制点
+                prevText: "",          // String: 上一个按钮文字，可为html元素  
+                nextText: "",              // String: 下一个按钮文字，可为html元素 
+            })
+        })
+    </script>
+</body>
+</html>

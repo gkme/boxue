@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+    </style>
+</head>
+<body>
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        window.onload = function() {
+            var isSet = false
+            var inteval = setInterval(function() {
+                var search = location.search.replace('?', '')
+                if (isSet) {
+                    clearInterval(inteval)
+                    return  
+                }
+                if (search) {
+                    var height = search.split('=')[1]
+                    var doc = parent.parent.document
+                    var ifr = doc.getElementById('ifr')
+                    ifr.style.height = height + 'px'
+                    isSet = true
+                }
+            }, 500)
+        }
+    </script>
+</body>
+</html>

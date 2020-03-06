@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        a{color:#fff;}
+        .hang{
+            display: flex;
+            flex-flow:row;
+        }
+        .tiao{
+            flex:1;
+            background-color: green;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            overflow:hidden;
+        }
+        .times{
+            width: 100px;
+            background-color: red;
+        }
+
+        .gao{
+            flex:1;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div>说明：左侧去掉溢出显示点点点后就是高度自适应的代码</div>
+    <br />
+    <ul>
+        <li class="hang">
+            <a href="###" class="tiao">拉动窗口以检查自适应效果|拉动窗口以检查自适应效果拉动窗口以检查自适应效果拉动窗口以检查自适应效果拉动窗口以检查自适应效果</a>
+            <span class="times">2019-11-11</span>
+        </li>
+    </ul>
+
+    <br />
+    <ul>
+        <li class="hang">
+            <a href="###" class="gao">自适应高度的代码展示拉动窗口以检查自适应效果|自适应高度的代码展示拉动窗口以检查自适应效果自适应高度的代码展示拉动窗口以检查自适应效果</a>
+            <span class="times">2019-11-11</span>
+        </li>
+    </ul>
+</body>
+</html

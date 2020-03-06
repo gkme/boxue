@@ -1,0 +1,27 @@
+﻿1、异步加载的方式
+异步加载的三种方式——async和defer、动态脚本创建
+① async方式
+async属性是HTML5新增属性，需要Chrome、FireFox、IE9+浏览器支持
+async属性规定一旦脚本可用，则会异步执行
+async属性仅适用于外部脚本
+如果是多个脚本，该方法不能保证脚本按顺序执行
+<script type="text/javascript" src="xxx.js" async="async"></script>
+② defer方式
+兼容所有浏览器
+defer属性规定是否对脚本执行进行延迟，直到页面加载为止
+如果是多个脚本，该方法可以确保所有设置了defer属性的脚本按顺序执行
+如果脚本不会改变文档的内容，可将defer属性加入到script标签中，以便加快处理文档的速度
+③动态创建script标签
+在还没定义defer和async前，异步加载的方式是动态创建script，通过window.onload方法确保页面加载完毕再将script标签插入到DOM中,具体代码如下：
+function addScriptTag(src){  
+    var script = document.createElement('script');  
+    script.setAttribute("type","text/javascript");  
+    script.src = src;  
+    document.body.appendChild(script);  
+}  
+window.onload = function(){  
+    addScriptTag("js/index.js");  
+}  
+2、异步加载的区别
+1)defer是在HTML解析完之后才会执行，如果是多个，按照加载的顺序依次执行
+2)async是在加载完之后立即执行，如果是多个，执行顺序和加载顺序无关

@@ -1,0 +1,19 @@
+select {   
+    border: solid 1px #000;   
+    appearance:none;  
+    -moz-appearance:none;  
+    -webkit-appearance:none; 
+    background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent; 
+    padding-right: 14px;  
+}  
+select::-ms-expand { display: none; }
+
+
+
+
+注：
+https://blog.csdn.net/p312011150/article/details/78015801  参考网址
+https://blog.csdn.net/znysys520/article/details/78316722  
+
+http://ourjs.github.io/static/2015/arrow.png 这个图片似乎每天有访问次数限制，
+可用images里面的图片去替代  select_arrow.png

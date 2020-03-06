@@ -1,0 +1,12 @@
+// http://jquery.cuishifeng.cn/jQuery.grep.html
+// 滤函数过滤数组元素
+var arr = [0,1,2,3,4,5];
+var qq = $.grep(arr, function(n,i){
+    return n > 0;
+});
+var ww = $.grep( arr, function(n,i){
+    return n > 1;
+}, true);
+console.log(arr);//[0, 1, 2, 3, 4, 5]
+console.log(qq);//[1, 2, 3, 4, 5]
+console.log(ww);//[0, 1]

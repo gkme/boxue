@@ -1,0 +1,14 @@
+//includes 布尔类型
+let arr = [1,2,3,4,5];
+console.log(arr.includes(5));
+
+//find:返回找到的那一项,不会改变原数组,回调函数中返回true表示找到了,找到后停止循环,找不到返回undefined
+let arr = [1,2,3,4,56];
+let result = arr.find(function(item){
+    return item.toString().indexOf(6)>-1;
+})
+console.log(result);//56
+
+//some 找true,找到后停止,返回true
+//every 找false,找到后停止,返回false
+        

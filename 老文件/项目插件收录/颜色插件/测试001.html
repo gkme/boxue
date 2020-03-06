@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/colpick.css" type="text/css" />
+</head>
+<body>
+    <button id="picker">Show Color Picker</button>
+
+
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/colpick.js"></script>
+    <script>
+        $('#picker').colpick({
+            layout:'rgbhex',
+            onSubmit:function(hsb,hex,rgb,el){//ok之后的确认事件
+                console.log('#'+hex);
+                $(el).css('background-color', '#'+hex);
+                $(el).colpickHide();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>基础应用</title>
+    <style>
+        .error{
+            color:red;margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+<form id="reg">
+    <p>用户名：<input type="text" name="username" /></p>
+    <p>密码：<input type="password" name="password" /></p>
+    <p>
+        <button id="check">检查表单</button>
+    </p>
+    <input type="submit" />
+</form>
+
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script>
+    $(function(){
+        $("#reg").validate({
+            rules:{
+                username:{
+                    required:true
+                },
+                password:{
+                    required:true
+                }
+            },
+            messages:{
+                username:{
+                    required:"用户名必填"
+                },
+                password:{
+                    required:'密码必填'
+                }
+            }
+        })
+        //只要有错误信息就会显示错误 
+        $("#check").click(function(){
+            alert($("#reg").valid()?"填写正确!":"填写错误!");
+        })
+    })
+</script>
+
+</body>
+</html>

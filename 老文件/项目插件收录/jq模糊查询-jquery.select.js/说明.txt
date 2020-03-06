@@ -1,0 +1,45 @@
+http://www.jq22.com/jquery-info11384
+
+本插件已增加第四个参数项：具体使用如下
+
+<input id="testInput" type="text" />
+
+数据配置：
+var datas =[{"id":"2","text":"中国石油天然气股份有限公司"}, 
+....
+{"id":"21","text":"联想集团有限公司"}];
+
+参数说明：
+target, data,itemSelectFunction,opation
+id名,数组，回调函数，自定义方法
+
+$.selectSuggest('testInput',datas);  调用(直接写入id名字testInput)
+
+//点击后回调函数用法
+$.selectSuggest('id',data,function(){
+    console.log($(this).attr("id"),$(this).html());
+});
+
+//假如还有要更改的参数
+$.selectSuggest('id',data,function(){
+    console.log($(this).attr("id"),$(this).html());
+},{
+    suggestMaxHeight:'200px',//弹出框最大高度
+    itemColor : '#000000',//默认字体颜色
+    itemBackgroundColor:'RGB(199,237,204)',//默认背景颜色
+    itemOverColor : '#ffffff',//选中字体颜色
+    itemOverBackgroundColor : '#C9302C',//选中背景颜色
+    itemPadding : 3 ,//item间距
+    fontSize : 12 ,//默认字体大小
+    alwaysShowALL : true//点击input是否展示所有可选项
+});
+
+//默认参数
+suggestMaxHeight:'200px',//弹出框最大高度
+itemColor : '#000000',//默认字体颜色
+itemBackgroundColor:'RGB(199,237,204)',//默认背景颜色
+itemOverColor : '#ffffff',//选中字体颜色
+itemOverBackgroundColor : '#C9302C',//选中背景颜色
+itemPadding : 3 ,//item间距
+fontSize : 12 ,//默认字体大小
+alwaysShowALL : true //点击input是否展示所有可选项

@@ -1,0 +1,66 @@
+v-bind  简写为:
+v-on    简写为@
+v-text
+v-html
+
+v-model  双向绑定
+
+v-for  当v-if与v-for一起使用时，v-for具有比v-if更高的优先级
+
+v-if
+v-if v-else 必须紧邻写
+v-if v-else-if v-else 必须紧写
+
+v-show  只是简单地切换元素的 CSS 属性 display
+	非常频繁地切换用v-show,运行时条件很少改变用v-if
+
+is 特性
+
+
+事件修饰符：
+.stop
+.prevent
+.capture
+.self
+.once
+.passive  尤其能够提升移动端的性能
+不要把 .passive 和 .prevent 一起使用，因为 .prevent 将会被忽略，同时浏览器可能会向你展示一个警告。请记住，.passive 会告诉浏览器你不想阻止事件的默认行为。
+
+按键修饰符：
+.enter
+.tab
+.delete (捕获“删除”和“退格”键)
+.esc
+.space
+.up
+.down
+.left
+.right
+
+系统修饰符：
+.ctrl
+.alt
+.shift
+.meta
+
+.exact 修饰符 
+<!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- 有且只有 Ctrl 被按下的时候才触发 -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- 没有任何系统修饰符被按下的时候才触发 -->
+<button @click.exact="onClick">A</button>
+
+
+鼠标按钮修饰符
+.left
+.right
+.middle
+
+修饰符：
+.lazy 
+.number
+.trim
+

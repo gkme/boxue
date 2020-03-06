@@ -1,0 +1,468 @@
+﻿ransform:translate(-50%,-50%);和overflow: hidden;不要一起使用  注：谷歌在解析的时候有可能会出现拉伸挤压导致内容区模糊
+ 刷新,关闭,后退,F5 测试
+<body onload="RunOnBeforeUnload()">
+function RunOnBeforeUnload() {
+    window.onbeforeunload = function(){ return '将丢失未保存的数据!'; 
+    } 
+}
+
+谷歌浏览器设置不缓存：F12打开控制台--->Network---->Disable cache 打钩 
+F12--->F1--->network ----> Disable cache（while DevTools is open） 打钩
+
+select的padding-left子元素才会继承，option设置text-indent是无效的
+
+谷歌设置6px字体：
+width: 200%;font-size:12px;-webkit-transform: scale(0.5);-webkit-transform-origin: left center;
+
+max-width:100%\0; 只对ie8 9 10 11版本生效
+
+文字选中时改变背景颜色（3.0里面的属性）
+.demo1::selection{color:#fff;background:#ff5e2c;}
+.demo1::-moz-selection{color:#fff;background:#ff5e2c;}
+.demo1::-webkit-selection{color:#fff;background:#ff5e2c;}
+ 
+text-indent:2em; 缩进两个字符
+
+$("#id").is(':visible');        true 为显示 false 为隐藏
+$("#id").is(":hidden");         true 为隐藏 false 为显示
+
+vertical-align:-10px;  可以使图片下降，也可是是百分比
+
+Array.prototype.sum = function (){
+    var result = 0;
+    for(var i = 0; i < this.length; i++) {
+        result += this[i];
+    }
+    return result;
+};
+
+
+var arr = [ "xml", "html", "css", "js" ]; 
+$.inArray("js", arr);  //返回 3,  不包含返回 -1
+
+
+function contains(arr, obj) {  
+    var i = arr.length;  
+    while (i--) {  
+        if (arr[i] === obj) {  
+            return true;  
+        }  
+    }  
+    return false;  
+}
+// var arr = new Array(1, 2, 3);  
+contains(arr, 2);//返回true  
+contains(arr, 4);//返回false 
+
+//指定另外一种手型，加载失败时，auto
+cursor:url("http://www.zhaosoft.com/tool/cur/cur.cur"), auto;
+
+三边阴影的设置：
+box-shadow: 0px 8px 10px gray,-10px 8px 15px gray, 10px 8px 15px gray;
+
+去掉谷歌浏览器input的黄色背景：
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.5) inset !important;
+}
+
+0.5px边线的实现：
+div::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(0deg, transparent 50%, #e0e0e0 50%);
+}
+
+unicode编码区间： \u4e00-\u9fa5
+
+
+var myDate = new Date();
+myDate.getYear();        //获取当前年份(2位)
+myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+myDate.getMonth();       //获取当前月份(0-11,0代表1月)
+myDate.getDate();        //获取当前日(1-31)
+myDate.getDay();         //获取当前星期X(0-6,0代表星期天)
+myDate.getTime();        //获取当前时间(从1970.1.1开始的毫秒数)
+myDate.getHours();       //获取当前小时数(0-23)
+myDate.getMinutes();     //获取当前分钟数(0-59)
+myDate.getSeconds();     //获取当前秒数(0-59)
+myDate.getMilliseconds();    //获取当前毫秒数(0-999)
+myDate.toLocaleDateString();     //获取当前日期
+var mytime=myDate.toLocaleTimeString();     //获取当前时间
+myDate.toLocaleString( );        //获取日期与时间
+
+
+反选可以这么去写：
+$(".select").prop("checked", function (a,b) { 
+    return !b;
+})
+
+
+
+http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201504051631.html
+
+
+想让里面的文字不显示，line-height设置大一点，然后再设置溢出隐藏
+
+如何水平垂直居中div？（至少给出2种解决方法）
+1.absolute + transform:
+<div class="parent">
+  <div class="child">Demo</div>
+</div>
+
+<style>
+  .parent {
+    position: relative;
+  }
+  .child {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>2.inline-block + text-align + table-cell + vertical-align
+<div class="parent">
+  <div class="child">Demo</div>
+</div>
+
+<style>
+  .parent {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .child {
+    display: inline-block;
+  }
+</style>3.flex + justify-content + align-items
+<div class="parent">
+  <div class="child">Demo</div>
+</div>
+
+<style>
+  .parent {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /*垂直居中*/
+  }
+</style>
+ 
+禁止页面底部滚动：
+let bodyEl = document.body
+let top = 0
+function stopBodyScroll (isFixed) {
+  if (isFixed) {
+    top = window.scrollY
+    bodyEl.style.position = 'fixed'
+    bodyEl.style.top = -top + 'px'
+  } else {
+    bodyEl.style.position = ''
+    bodyEl.style.top = ''
+    window.scrollTo(0, top) // 回到原先的top
+  }
+}
+
+ 
+function appendText(){
+    var txt1="<p>Text.</p>";              // 以 HTML 创建新元素
+    var txt2=$("<p></p>").text("Text.");  // 以 jQuery 创建新元素
+    var txt3=document.createElement("p");
+    txt3.innerHTML="Text.";               // 通过 DOM 来创建文本
+    $("body").append(txt1,txt2,txt3);     // 追加新元素
+}
+
+text-decoration: line-through;  中划线
+
+重定向(3秒后跳转)：
+    <meta http-equiv="refresh" content="3; URL=http://www.csdn.net">
+        注：content的意思是指定3秒后
+    window.location="http://www.csdn.net";
+    window.history.back(-1);
+    window.history.back(0); 刷新
+    window.location.reload() 刷新/重载
+    window.history.forward() 前进
+    window.history.go(-1) 是返回上一页
+    window.location.go(-1) 是刷新上一页
+    window.navigate("http://www.csdn.net"); 注: 只适用于IE 
+    window.location.replace("http://www.csdn.net"); 注：2页面用这个方法重定向3,用back()或者go(-1)的话会直接到页面1
+
+禁止a标签跳转：
+$("a").each(function () {
+    var textValue = $(this).html();
+    if (textValue == "百度" || textValue == "服务导航") {
+        $(this).css("cursor", "default");
+        $(this).attr('href', '#');     /*修改<a>的 href属性值为 #  这样状态栏不会显示链接地址 */
+        $(this).click(function (event) {
+            event.preventDefault();   /* 如果<a>定义了 target="_blank“ 需要这句来阻止打开新页面 */
+        });
+    }
+});
+
+可能未传参数的三种处理方式：
+    arguments[0]?arguments[0]:50
+    arguments[0] || 50
+    参数较多时：
+        function example(setting){ 
+          var defaultSetting={ 
+            name:'小红', 
+            age:'30', 
+            sex:'女', 
+            phone:'100866', 
+            QQ:'100866', 
+            birthday:'1949.10.01'
+        }; 
+        $.extend(defaultSetting,settings);
+
+SVN报错：
+    previous operation has not finished
+    Please execute the 'Cleanup' command
+尝试用下面两种方法：
+    1.svn clean up 中有一个选项break lock勾选上
+    2.把对应的文件来里的.svn里面的lock文件删除。
+
+input中 readonly 和 disabled 区别：
+这两种写法都会使显示出来的文本框不能输入文字
+但disabled会使文本框变灰，而且通过request.getParameter("name")得不到文本框中的内容（如果有的话），
+而readonly只是使文本框不能输入，外观没有变化，而且通过request.getParameter("name")可以得到内容。
+
+$('.disableCss').removeAttr('onclick');//去掉标签中的onclick事件
+$('#button').attr('disabled',"true");//添加disabled属性
+$('#button').removeAttr("disabled"); //移除disabled属性
+
+隐藏域用来前后端传值：
+<input type="hidden" name="" value="20" class="hid">
+console.log(Number($(".hid").val()));  获得的值是字符串
+
+swiper-2.7.6版本的滑动后不能自动轮播
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+    </div>
+    <div class="pagination"></div>
+</div>
+.pagination{
+    position:absolute;
+    left:0;
+    bottom:20px;
+    text-align: center;
+    width: 100%;
+}
+.swiper-pagination-switch{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius:10px;
+    background-color: rgba(255,255,255,0.33);
+    margin:0 3px;
+    cursor: pointer;
+}
+.swiper-active-switch{
+    background-color: #fff;
+}
+
+$(function(){
+    var mySwiper = new Swiper('.swiper-container',{
+            pagination: '.pagination',
+            autoplay:2000,
+            loop:true,
+            autoplayDisableOnInteraction : false
+        })
+})
+注:
+autoplayDisableOnInteraction : false 用户操作页面或者分页器后不禁止autoplay
+wamp安装完成后phpmyadmin的初始帐户:root,密码为空
+
+被选元素里面的前面 prepend() prependTo()
+被选元素里面的后面 append()  appendTo()
+被选元素外面的前面 before()  insertBefore()
+被选元素外面的后面 after()   insertAfter()
+
+延时3秒后消失：
+$(".classify ul").show(0).delay(3000).hide(0); 
+不起用的生活会设置show(0) hide(0)
+
+jq宽度:
+width()          宽度
+innerWidth()     宽度+padding
+outerWidth()     宽度+padding+border
+outerWidth(true) 宽度+padding+border+margin
+
+height() innerHeight() outerHeight() outerHeight(true)
+
+$(function(){
+    var mydate = new Date();
+    mydate.getYear(); //获取当前年份(2位)
+    mydate.getFullYear(); //获取完整的年份(4位,1970-????)
+    mydate.getMonth(); //获取当前月份(0-11,0代表1月)
+    mydate.getDate(); //获取当前日(1-31)
+    mydate.getDay(); //获取当前星期X(0-6,0代表星期天)
+    mydate.getTime(); //获取当前时间(从1970.1.1开始的毫秒数)
+    mydate.getHours(); //获取当前小时数(0-23)
+    mydate.getMinutes(); //获取当前分钟数(0-59)
+    mydate.getSeconds(); //获取当前秒数(0-59)
+    mydate.getMilliseconds(); //获取当前毫秒数(0-999)
+    mydate.toLocaleDateString(); //获取当前日期
+    var mytime=mydate.toLocaleTimeString(); //获取当前时间
+    mydate.toLocaleString( ); //获取日期与时间
+})
+
+jq返回顶部
+$("#back-to-top").click(function() {
+    $('body,html').animate({
+        scrollTop : 0
+    }, 100);
+    return false;
+});
+jq滑动到底部
+$(".box2").click(function(){
+    var h = $(document).height()-$(window).height();
+    $("html,body").animate({
+        scrollTop:h
+    },300);console.log($(document).scrollTop());
+    return false;
+})
+注：$("html,body").scrollTop(10000); 页面加载时直接在底部 
+    10000即为页面不可能达到的高度
+
+滚动多少时出现返回顶部按钮：
+$(window).scroll(function(){
+    if($(window).scrollTop() > 100){
+        $(".toTop").fadeIn(300);
+    }else{
+        $(".toTop").fadeOut(300);
+    }
+})
+
+textarea{ resize:none;}  禁止缩放
+
+伪类添加一条横线：
+&:after{
+    content:"";
+    position: absolute;
+    height: 0.042667rem;
+    left:0;
+    top:0.256rem;
+    width: 100%;
+    background-color: #ddd;
+}
+
+.pictorial::-webkit-scrollbar {display:none}   移动端隐藏滚动条样式
+
+text-align:right; input等元素中内容在右侧显示
+
+获取焦点清楚默认值，有内容显示内容，没有值失去焦点还显示默认内容
+<input type="text" value="我是默认值" onblur="if(this.value==''){this.value='我是默认值'}" onfocus="if(this.value=='我是默认值'){this.value=''}"/>
+
+文字竖向排列：writing-mode: vertical-rl;
+
+jq 绑定多事件会依次执行
+
+js,jq获取/设置属性值
+<div id="box">
+    <div class="qq1" data="haha1">1</div>
+</div>
+<div id="box1">
+    <div class="qq2" data="haha2">2</div>
+</div>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    var box=document.getElementById("box").children[0];
+    box.setAttribute("class","ww");
+    console.log(box.getAttribute("class"),box.getAttribute("data"));
+    $("#box1 .qq2").attr("data","ee");
+    console.log($("#box1 .qq2").attr("data"));
+</script>
+
+竖排文字居中：
+div{
+    width: 0.682667rem;
+    line-height: 0.896rem;
+    font-size: 0.64rem;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+
+window.open("index.aspx",'top'); 只是表示打开这个页面，并不是打开并刷新index.aspx
+window.location.href="index.aspx"; 表示重新定向到新页面，同时刷新打开的这个页面；
+
+
+$(document.body).height()  文档高度
+
+移动端文档高度不够的时候铺满屏幕：fixed ；用absolute不行
+position: fixed;
+left:0;
+top:0;
+width: 100%;
+height: 100%;
+z-index: 1000;
+opacity: 0.6;
+background: #000000;
+
+html, body{ height:100%（没有这个，苹果手机的滚动条还存在）;overflow:hidden;overflow-y: scroll;}
+
+利用css设置滚动条宽度为0，具体代码：
+/* 设置滚动条宽度 */
+::-webkit-scrollbar {    width: 0px;
+}
+隐藏滚动条，具体代码：
+::-webkit-scrollbar {
+display: none;/*隐藏滚轮*/
+}
+
+!(/^((13[0-9])|(147)|(15[0-9])|(17[0-9])|(18[0-9]))[0-9]{8}$/.test(v))  手机号码匹配
+
+box-sizing:border-box;  内置边框{*如果遇到内容不能靠左显示，设置边框*}
+
+var c=$.base64.encode($("img").attr("src"));
+console.log(c);
+var d=$.base64.decode("c3Rhckljb25fMS5wbmc=");
+console.log(d);
+
+银行卡每4位1个空格：
+!function () {
+    $('#J_BankCard').on('keyup mouseout input',function(){
+        var $this = $(this),
+            v = $this.val();
+        /\S{5}/.test(v) && $this.val(v.replace(/\s/g,'').replace(/(\d{4})(?=\d)/g, "$1 "));
+    });
+}();
+原生js:
+!function () {
+    document.getElementById('bankCard').onkeyup = function (event) {
+        var v = this.value;
+        if(/\S{5}/.test(v)){
+            this.value = v.replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, "$1 ");
+        }
+    };
+}(); 
+
+遮罩层父元素使用rgba代替opacity解决背景穿透问题：
+opacity: 0.6;background-color: #000000;
+改变为：background:rgba(0, 0, 0, .6);
+
+去掉button,input,img点击时的蓝色边框
+outline:none; border:0 none;
+
+去掉a标签在移动端点击出现蓝色背景：
+a{
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-select: none;
+    -moz-user-focus: none;
+    -moz-user-select: none;
+}
+
+解决jq中resize触发两次：
+var n=0;
+$(window).resize(function(){
+    if(n%2==0){
+        alert("窗口缩小了");
+    }
+    n++;
+});

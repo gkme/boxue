@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        /*
+        https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651555258&idx=3&sn=e7aae654af90354359c3fc7a3665a770&chksm=8025527bb752db6dd1b62ee2404345c41c8f89df71913d46e5e48de9fdb2800ca48a7ee7bfbc&mpshare=1&scene=23&srcid=1105fu8B2DTjMbf5c1j8H7Ze#rd
+        
+         */
+        *{margin: 0;padding: 0;box-sizing:border-box;}
+        .wrap {
+          height: 40px;
+          line-height: 20px;
+          overflow: hidden;
+          word-break:break-all;
+        }
+        .wrap .text {
+            float: right;
+            margin-left: -5px;
+            width:100%;
+            word-break: break-all;
+        }
+        .wrap::before {
+            float: left;
+            width: 5px;
+            content: '';
+            height: 40px;
+        }
+        .wrap::after {
+            float: right;
+            content: "...";
+            height: 20px;
+            line-height: 20px; 
+            width: 16px;/* 为三个省略号的宽度 */
+            margin-left: -16px;/* 使盒子不占位置 */
+            position: relative;/* 移动省略号位置 */
+            left: 100%;
+            top: -20px;
+            padding-right: 5px;
+            background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), to(white), color-stop(50%, white));
+            background: -moz-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+            background: -o-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+            background: -ms-linear-gradient(to right, rgba(254, 254, 254, -1), white 49%, white);
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <!-- <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos labore sit vel itaque delectus atque quos magnam assumenda quod architecto perspiciatis animi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos labore sit vel itaque delectus atque quos magnam assumenda quod architecto perspiciatis animi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos labore sit vel itaque delectus atque quos magnam assumenda quod architecto perspiciatis animi.</div> -->
+        <div class="text">用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试用中文试试</div>
+    </div>
+</body>
+</html>

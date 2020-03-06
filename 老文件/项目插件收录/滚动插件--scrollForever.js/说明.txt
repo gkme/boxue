@@ -1,0 +1,9 @@
+官网地址： http://www.bootcss.com/p/unslider/
+
+github地址： https://github.com/s209392599/scrollForever
+
+jq22.com地址： http://www.jq22.com/jquery-info1940
+
+前端开发博客参数说明：  http://caibaojian.com/scrollForever
+
+前端开发博客示例地址：  http://caibaojian.com/demo/scrollforever/

@@ -1,0 +1,13 @@
+﻿start "" "C:\Users\Administrator\AppData\Local\Google\Chrome\Application\chrome.exe" & ping localhost -n 3
+
+
+注：
+3为开机后3秒后启动
+多个软件复制多次替换掉软件路径即可
+最终文件为.bat文件
+最终文件放在 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp 路径下
+
+
+
+
+

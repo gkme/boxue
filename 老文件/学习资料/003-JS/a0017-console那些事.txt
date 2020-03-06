@@ -1,0 +1,56 @@
+console.log();
+console.clear(); -->elear();
+console.table(); 
+console.dir();可以显示一个对象所有的属性和方法
+
+console.log 用于输出普通信息
+console.info 用于输出提示性信息
+console.error用于输出错误信息
+console.warn用于输出警示信息
+console.dirxml() 用来显示网页的某个节点（node）所包含的html/xml代码。
+console.assert()用来判断一个表达式或变量是否为真。如果结果为否，则在控制台输出一条相应信息，并且抛出一个异常
+console.trace()用来追踪函数的调用轨迹。
+console.time()和console.timeEnd()，用来显示代码的运行时间。
+console.profile 分析程序各个部分的运行时间，找出瓶颈所在
+console.count()统计代码被执行的次数
+
+
+console.group("第一组信息");
+　　　　console.log("第一组第一条");
+　　　　console.log("第一组第二条");
+console.groupEnd();
+console.group("第二组信息");
+　　　　console.log("第二组第一条");
+　　　　console.log("第二组第二条");
+console.groupEnd();
+
+
+function add(a,b){
+　　console.trace();
+　　return a+b;
+}
+var x = add3(1,1);
+function add3(a,b){return add2(a,b);}
+function add2(a,b){return add1(a,b);}
+function add1(a,b){return add(a,b);}
+调用结果是：
+add
+add1
+add2
+add3
+
+
+console.time("计时器一");
+　　for(var i=0;i<1000;i++){
+　　　　for(var j=0;j<1000;j++){}
+　　}
+console.timeEnd("计时器一");
+//9.0341796875ms
+
+
+function myFunction(){
+    console.count("myFunction 被执行的次数");
+}
+myFunction();       //myFunction 被执行的次数: 1
+myFunction();       //myFunction 被执行的次数: 2
+myFunction();       //myFunction 被执行的次数: 3

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child n="hello"></child>
+        <child n="world"></child>
+        <ul>
+            <li is="child" n="haha"></li>
+        </ul>
+    </div>
+</body>
+<script>
+Vue.component("child",{
+    props:["n"],
+    template:'<button>{{n}}</button>'
+})
+var app=new Vue({
+    el:"#app"
+})
+</script>
+</html>

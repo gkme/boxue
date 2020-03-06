@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <div v-if="ok">显示</div>
+       <div v-else>上面的不显示</div>
+
+       <div v-if="no">显示</div>
+       <div v-else>上面的不显示</div>
+
+       <!-- 最终的渲染结果将不包含template -->
+        <template v-if="no">
+            <h1>Title</h1>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+
+        <!-- v-else-if指令 -->
+        <div v-if="type === 'A'">
+          A
+        </div>
+        <div v-else-if="type === 'B'">
+          B
+        </div>
+        <div v-else-if="type === 'C'">
+          C
+        </div>
+        <div v-else>
+          Not A/B/C
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                ok:false,
+                no:true,
+                type:"d"
+            }
+        })
+    </script>
+</body>
+</html>

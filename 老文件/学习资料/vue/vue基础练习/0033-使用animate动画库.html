@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+    <style>
+        .colorred{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 
+        <transition name="fade">
+            .fade-enter   不写name的时候默认用v开头
+            enter-active-class  用于自定义class
+            appear appear-active-class="animated swing" 进入页面时动画效果,appear是class
+         -->
+        <transition name="fade"
+            appear appear-active-class="animated swing"
+            enter-active-class="animated swing colorred" 
+            leave-active-class="animated shake">
+            <div v-if="show">guokun</div>
+        </transition>
+        <button @click="handchange">改变</button>
+    </div>
+</body>
+<script>
+
+    var app = new Vue({
+        el:"#app",
+        data:{
+            show:true
+        },
+        methods:{
+            handchange(){
+                this.show = !this.show
+            }
+        }
+    })
+</script>
+</html>

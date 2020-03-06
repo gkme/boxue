@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../../jquery.min.js"></script>
+    <script src="moment-with-locales.js"></script>
+</head>
+<body>
+    当前时间：moment().format('YYYY-MM-DD HH:mm:ss');  2018-05-16 07:32:14 <br> 
+
+    今天是星期几：moment().format('d');  3 <br> 
+
+    Unix时间戳：moment().format('X');   1526427134 <br> 
+
+    相对时间：moment("20130101", "YYYYMMDD").fromNow(); 5 years ago <br> 
+   
+    相对时间：moment("20151010", "YYYYMMDD").fromNow();  3 years ago <br> 
+
+    7天后的日期：moment().add('days',7).format('YYYY年MM月DD日');    2018年05月23日 <br> 
+
+    9小时后：moment().add('hours',9).format('HH:mm:ss');    16:32:14 <br> 
+
+    明天moment().add(1, 'days').calendar();    Tomorrow at 7:32 AM <br> 
+
+    <b>更多内容请打开控制台看</b>
+
+    <script>
+        // console.log(moment()._d);  当前时间
+        console.log("当前时间：",moment().format('YYYY-MM-DD HH:mm:ss'));
+        console.log("相对时间：",moment("20151010", "YYYYMMDD").fromNow());
+        console.log(moment().format('M')); //当前月份
+
+        console.log(moment("12-25-1995", "MM-DD-YYYY")) // 1995-12-25
+
+        var a = moment([2007, 0, 29]);
+        var b = moment([2007, 0, 28]);
+        console.log(a.diff(b));//时差 毫秒 86400000
+        console.log(a.diff(b,"days"));//时差 天数 1
+        console.log(a.diff(b,"hour"));//时差 小时 24
+
+        //日历时间
+        console.log(moment().calendar()); //Today at 8:21 AM
+
+        //一月有多少天
+        console.log(moment("2012-02", "YYYY-MM").daysInMonth());  //29
+
+        console.log(moment().toDate());//Wed May 16 2018 08:24:20 GMT+0800 (中国标准时间)
+
+        console.log(moment().toArray()); //[2018, 4, 16, 8, 24, 56, 305]
+
+        // console.log(moment().toJSON()); //2018-05-16T00:26:04.307Z
+        
+        //查询是否之前
+        console.log(moment('2010-10-20').isBefore('2010-10-21'));  //true
+        console.log(moment('2010-10-20').isBefore('2010-12-31', 'year')); //false
+        //是否相同
+        console.log(moment('2010-10-20').isSame('2010-10-20'));//true
+        console.log(moment('2010-10-20').isSame('2009-12-31', 'year'));//false
+        // 是否之后
+        console.log(moment('2010-10-20').isAfter('2010-10-19'));//true
+        console.log(moment('2010-10-20').isAfter('2010-01-01', 'year')); // false
+        //是否之间
+        console.log(moment('2010-10-20').isBetween('2010-10-19', '2010-10-25'));//true
+        console.log(moment('2010-10-20').isBetween('2010-01-01', '2012-01-01', 'year'));//false
+        //是否闰年
+        console.log(moment().isLeapYear());
+        console.log(moment([2000]).isLeapYear());//true
+        //是否夏令时
+        console.log(moment().isDST());
+        console.log(moment([2011, 2, 12]).isDST());//false
+        //是否被夏令时转换
+        console.log(moment('2013-03-10 2:30', 'YYYY-MM-DD HH:mm').isDSTShifted());
+        console.log(moment('2013-03-10 2:30', 'YYYY-MM-DD HH:mm').format());//'2013-03-10T01:30:00-05:00'
+
+        console.log(moment.locale());//en
+        console.log(moment.locale('zh-cn'));//en
+        console.log(moment('2013-03-10 2:30', 'YYYY-MM-DD HH:mm').format('llll'));//2013年3月10日星期日 02:30
+        //是否Moment对象
+        // moment.isMoment() // false
+        // moment.isMoment(new Date()) // false
+        // moment.isMoment(moment()) // true
+        //是否Date对象
+        //moment.isDate(); // false
+        // moment.isDate(new Date()); // true
+        // moment.isDate(moment()); // false
+
+        var m = moment();
+        console.log(m.get('y'));//2018
+        console.log(m.get('year'));//2018
+        console.log(m.get('years'));//2018
+    </script>
+</body>
+</html>

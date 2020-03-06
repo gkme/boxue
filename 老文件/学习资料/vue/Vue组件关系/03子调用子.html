@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child></child>
+    </div>
+</body>
+<script>
+Vue.component("child",{
+    template:'<div><child2></child2></div>'
+})
+Vue.component("child2",{
+    data:function(){
+        return{
+            name:"第二个子组件"
+        }
+    },
+    template:'<h1>{{name}}</h1>'
+})
+var app=new Vue({
+    el:"#app"
+})
+</script>
+</html>

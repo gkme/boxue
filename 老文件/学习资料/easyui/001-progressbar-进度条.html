@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/easyui.css">
+    <link rel="stylesheet" type="text/css" href="css/icon.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    
+    <div id="p" class="easyui-progressbar" data-options="value:60" style="width:400px;"></div>
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/jquery.easyui.min.js"></script>
+    <script>
+        $(function(){
+            var value = $('#p').progressbar('getValue');
+            if (value < 100){
+                value += Math.floor(Math.random() * 10);
+                $('#p').progressbar('setValue', value);
+                $('#p').progressbar('resize', 350);
+                console.log($('#p').progressbar('options'));
+            }
+        })
+    </script>
+</body>
+</html>

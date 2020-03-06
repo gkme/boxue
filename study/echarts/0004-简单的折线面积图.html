@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="main" style="width: 600px;height:400px;border:1px solid #000;"></div>
+    
+    <script src="../../cssjs/jquery.min.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+        var option = {
+                tooltip : {
+                    trigger: 'axis'
+                },
+                grid:{
+                    left:"3%",
+                    right:"3%",
+                    top:"50%",
+                    bottom:"10%"
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        boundaryGap : false,
+                        data : ['2013','2014','2015','2016','2017'],
+                        axisTick: {
+                            show: false,//不显示x轴的刻度
+                        },
+                        axisLine:{
+                           show:false,//隐藏x轴不显示
+                        }, 
+                    }
+                ],
+                 yAxis : [
+                    {
+                        type : 'value',
+                        show:false, //去掉y轴  
+                        max:150,//设置y最大显示刻度
+                        min: function(value) {
+                            return value.min - 20;
+                        }
+                    }
+                ],
+                series : [
+                    {
+                        type:'line',
+                        areaStyle:{
+                            color:"#d5f0fc",//面积区域的颜色
+                        },
+                        color:"#42bff4",//折线图颜色
+                        label:{
+                            normal: {
+                                show: true,
+                                position: 'bottom',
+                                color:"#3497cb",//设置数字的位置和颜色
+                            }
+                        },
+                        smooth:true,//是否平滑处理值0-1,true相当于0.5
+                        data:[1,30,70,40,50]
+                    }
+                ]
+        };
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

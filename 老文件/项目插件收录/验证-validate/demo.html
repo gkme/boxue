@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>验证</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}ul,li{list-style:none;}
+        input.error{ border: 1px dotted red; }
+
+        /*
+        label.error {
+            background: url('images/unchecked.gif') no-repeat;
+            padding-left: 16px;
+            margin-left: .3em;
+        }
+        */
+    </style>
+</head>
+<body>
+    <form id="yanzheng" type="get">
+        <p>
+            <label for="name">输入</label>
+            <input type="text" name="name" id="name" required/>
+        </p>
+        <p>
+            <label for="pass">重输</label>
+            <input type="text" name="pass" id="pass" required/>
+        </p>
+
+        <input type="submit" value="提交" />
+    </form>
+    <div class="container"></div>
+
+    <script src="../../jquery.min.js"></script>
+    <script src="jquery.validate.min.js"></script>
+    <!-- <script src="messages_zh.js"></script> -->
+
+    <script>
+        //下面是国际化提示
+        $.extend(true, $.validator.messages,{
+            required: "required"
+        });
+
+        $(function(){
+            /* 错误只显示在一个地方 页面上写required*/
+            /*
+            $("#yanzheng").validate({
+                invalidHandler: function (ev, validator) {
+                  $(".container").html("表单验证错误数量是" + validator.numberOfInvalids());
+                },
+                debug:true,
+                errorContainer: $("div.container")
+            });
+            */
+
+            $("#yanzheng").validate({
+                rules:{
+                    name:{
+                        required:true,
+                        rangelength:[2,10]
+                    },
+                    pass:{
+                        equalTo:"#name"
+                    }
+                },
+                messages:{
+                    name:{
+                        required:"必填项",
+                        rangelength:"2--10个字符"
+                    },
+                    pass:"和输入的不相同",
+                },
+                errorPlacement: function(error, element) {  
+                    error.appendTo(element.parent());
+                    //error.insertAfter( element.parent() );//插入到下一行
+                    console.log(error[0].innerHTML);
+                },
+                submitHandler: function(form) { 
+                    console.log("调用了提交方法");
+                    alert("提交事件!");
+                    form.submit(); 
+                }
+            })
+        })
+
+
+
+        /*
+        https://blog.csdn.net/a1091220321/article/details/40043821  jquery.metadata.js 方式验证用户输入框功能
+
+         */
+    </script>
+</body>
+</html>
+

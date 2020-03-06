@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+        .chartbox{
+            position: relative;
+        }
+        #main{
+            border:1px solid #000;
+        }
+        .msy{
+            position: absolute;
+            right:20px;
+            top:20px;
+            width: 101px;
+            height: 20px;
+            border:1px solid #000;
+        }
+        .msy span{
+            float: left;
+            width: 33px;
+            height:20px;
+            line-height:20px;
+            text-align: center;
+            border-right:1px solid #000;
+            cursor: pointer;
+        }
+        .msy span:last-child{
+            border-right:0 none;
+        }
+        .msy span.active{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="chartbox" style="width: 826px;height: 456px;">
+        <div id="main" style="width: 826px;height:456px;"></div>
+        <div class="msy clearfix">
+            <span class="active" data-id="month">月</span>
+            <span data-id="season">季</span>
+            <span data-id="year">年</span>
+        </div>
+    </div>
+    
+    <script src="../../cssjs/jquery.min.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+        var option = {
+                title: {
+                    text: '质量检查合格率统计',
+                    left:'26px',
+                    top:'10px'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {type: 'cross'}
+                },
+                legend: {
+                    data:['合格','不合格','合格率'],
+                    selectedMode:false,//取消图例的点击事件
+                    left:"30px",
+                    top:"40px"
+                },
+                grid: {
+                    left: '7%',
+                    bottom:'15%',
+                    top:100,
+                    right:'9%'
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: ['南通一建','南通二建','南通三建','南通四建','南通五建','南通六建','南通七建','南通八建','南通九建'],
+                        axisTick: {
+                            show: false,//不显示x轴的刻度
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                color:'#333',//x轴的颜色
+                            },
+                        },
+                        axisLabel:{
+                            rotate:30,//x轴文字旋转的角度
+                        },
+                        interval:0,//0强制显示所有类目轴
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        name: '数量',
+                        min: 0,
+                        axisLabel: {
+                            formatter: '{value}'
+                        },
+                        axisTick: {
+                            show: false,//不显示y轴的刻度
+                        },
+                        splitLine:{
+                    　　    show:false,//去掉网格线,
+                    　　},
+                        axisLine:{
+                            lineStyle:{
+                                color:'#999',//y轴的颜色
+                            }
+                        } 
+                    },
+                    {
+                        type: 'value',
+                        name: '合格率',
+                        min: 0,
+                        axisLabel: {
+                            formatter: '{value} %'
+                        },
+                        axisTick: {
+                            show: false,//不显示y轴的刻度
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                color:'#999',//y轴的颜色
+                            }
+                        } 
+                    }
+                ],
+                series: [
+                    {
+                        name:'合格',
+                        type:'bar',
+                        itemStyle:{
+                            normal:{
+                                color:'#58b174'
+                            }
+                        },
+                        data:[2.0, 4.9, 7.0, 4.9, 7.0, 4.9, 7.0, 4.9, 7.0]
+                    },
+                    {
+                        name:'不合格',
+                        type:'bar',
+                        itemStyle:{
+                            normal:{
+                                color:'#c3c3c3'
+                            }
+                        },
+                        data:[2.6, 5.9, 9.0, 4.9, 7.0, 4.9, 7.0, 4.9, 7.0]
+                    },
+                    {
+                        name:'合格率',
+                        type:'line',
+                        itemStyle:{
+                            normal:{
+                                color:'#f4972d'
+                            }
+                        },
+                        yAxisIndex: 1,
+                        data:[2.0, 2.2, 3.3, 4.9, 7.0, 4.9, 7.0, 4.9, 20.6]
+                    }
+                ]
+        }
+        myChart.setOption(option,true);
+
+        $(".msy").on("click","span",function(){
+            $(".msy span").removeClass('active');
+            $(this).addClass('active');
+            var dataid = $(this).attr("data-id");
+            if(dataid == "month"){
+                console.log("加载是月的数据");
+            }
+            if(dataid == "season"){
+                console.log("加载是季的数据");
+            }
+            if(dataid == "year"){
+                console.log("加载是年的数据");
+            }
+        })
+    </script>
+</body>
+</html>

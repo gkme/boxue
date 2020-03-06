@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<style>
+		
+	</style>
+</head>
+<body>
+    <div id="app">
+        <child-component content="guo"></child-component>
+        <child-component content="kun"></child-component>
+    </div>
+</body>
+<script>
+    Vue.prototype.bus = new Vue()
+
+    Vue.component("childComponent",{
+        data(){
+            return {
+                shuju:this.content
+            }
+        },
+        props:["content"],
+        template:'<div @click="handclick">{{ shuju }}</div>',
+        methods:{
+            handclick(){
+                this.bus.$emit("change",this.shuju)
+            }
+        },
+        mounted(){
+            var _this = this;
+            this.bus.$on("change",function(msg){
+                _this.shuju = msg
+            })
+        }
+    })
+    var app = new Vue({
+        el:"#app"
+    })
+</script>
+</html>

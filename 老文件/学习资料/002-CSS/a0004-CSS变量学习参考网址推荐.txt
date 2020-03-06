@@ -1,0 +1,32 @@
+http://www.ruanyifeng.com/blog/2017/05/css-variables.html   阮一峰
+
+http://www.zhangxinxu.com/wordpress/2016/11/css-css3-variables-var/comment-page-1/#comment-382617  张鑫旭
+
+https://www.w3cplus.com/css3/css-properties-in-depth.html?utm_source=tuicool&utm_medium=referral  静如秋月的博客
+
+https://funteas.com/topic/5a97dd0137621be1429268d1  五分钟了解css变量
+
+http://www.webhek.com/post/css-variables-and-sass-variables.html  css变量与sass比较
+
+https://zhidao.baidu.com/question/26885495.html  css文件中能使用变量吗(CSS中使用expression有ie才能识别...)
+
+兼容性处理：
+对于不支持 CSS 变量的浏览器，可以采用下面的写法。
+a {
+  color: #7F583F;
+  color: var(--primary);
+}
+也可以使用@support命令进行检测。
+
+@supports ( (--a: 0)) {
+  /* supported */
+}
+
+@supports ( not (--a: 0)) {
+  /* not supported */
+}
+
+
+css升级为sass网址：
+http://css2sass.w3ci.com/   
+https://www.sass.hk/css2sass/

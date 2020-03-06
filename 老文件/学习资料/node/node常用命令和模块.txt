@@ -1,0 +1,45 @@
+1，node常用的命令。
+	1、npm install moduleNames：安装Node模块
+	2、npm view moduleNames 查看node模块的package.json文件夹
+	3、npm list：查看当前目录下已安装的node包
+	4、npm help：查看帮助命令
+	5、npm view moudleName dependencies：查看包的依赖关系
+	6、npm view moduleName repository.url：查看包的源文件地址
+	7、npm view moduleName engines：查看包所依赖的Node的版本
+	8、npm help folders：查看npm使用的所有文件夹
+	9、npm rebuild moduleName：用于更改包内容后进行重建
+	10、npm outdated：检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新
+	11、npm update moduleName：更新node模块
+	12、npm uninstall moudleName：卸载node模块
+	15、npm init：会引导你创建一个package.json文件，包括名称、版本、作者这些信息等
+	16、npm root：查看当前包的安装路径
+	npm root -g：查看全局的包的安装路径
+	17、npm -v：查看npm安装的版本
+2，node常用的模块，内置的模块有哪些？
+	常用内置模块：
+	fs 提供对文件的操作。http://nodejs.org/api/fs.html    http://nodejs.org/api/stream.html
+	path 简化路径相关操作，并提升代码可读性。http://nodejs.org/api/path.html
+	http 提供两种使用方式：http://nodejs.org/api/http.html
+	作为服务端使用时，创建一个HTTP服务器，监听HTTP客户端请求并返回响应。
+	作为客户端使用时，发起一个HTTP客户端请求，获取服务端响应。
+	https 与 http 模块极为类似，区别在于 https 模块需要额外处理SSL证书。http://nodejs.org/api/https.html
+	url 解析URL、生成URL，以及拼接URL。http://nodejs.org/api/url.html
+	querystring 用于实现URL参数字符串与参数对象的互相转换。http://nodejs.org/api/querystring.html
+	zlib 提供了数据压缩和解压的功能。http://nodejs.org/api/zlib.html
+	net 用于创建Socket服务器或Socket客户端。http://nodejs.org/api/net.html
+
+	推荐使用的框架和包：npm install *** --save
+	express 是 Node.js 应用最广泛的 web 框架，现在是 4.x 版本，它非常薄。跟 Rails 比起来，完全两个极端。  http://expressjs.com/
+	utility 提供了很多常用且比较杂的辅助方法，如 utility.md5()。 https://github.com/node-modules/utility
+	superagent 是个 http 方面的库，可以发起 get 或 post 请求。http://visionmedia.github.io/superagent/
+	cheerio 可以理解成一个 Node.js 版的 jquery，用来从网页中以 css selector 取数据，使用方式跟 jquery 一样。https://github.com/cheeriojs/cheerio
+	eventproxy 将串行等待变成并行等待，提升多异步协作场景下的执行效率，可用于控制并发数。https://github.com/JacksonTian/eventproxy
+	iconv-lite 转换编码，如GBK转UTF8。https://github.com/ashtuchkin/iconv-lite
+	async 流程控制、并发控制。https://github.com/caolan/async
+	
+
+3，node  --save  --save-dev区别
+	--save-dev 是你开发时候依赖的东西，--save 是你发布之后还依赖的东西。
+
+	比如，你写 ES6 代码，如果你想编译成 ES5 发布那么 babel 就是devDependencies。
+	如果你用了 jQuery，由于发布之后还是依赖jQuery，所以是dependencies。

@@ -1,0 +1,48 @@
+\s+$  批量删除空白行 
+ctrl+shift+p 后输入 install package
+localization -- language  汉化
+HTML-CSS-JS Prettify  代码格式化插件
+emmet  代码提示
+emmet css snippets css代码提示
+autofilename 路径提示
+注意：node.js没有安装在c盘，HTMLPrettify.sublime-settings里面
+"windows": "C:/Program Files/nodejs/node.exe",
+改为："windows":"D:/nodejs/node.exe",
+jsformat  js格式化插件
+ConvertToUTF8  转换文件格式为utf8格式
+FileDiffs  文件比较工具
+GBK Support  自动识别GBK和ANSI
+SideBarEnhancements  侧边栏增强插件
+Terminal  从当前位置打开终端 ctrl+shift+t （调试文件非常方便）
+SublimeCodeIntel  js,php等提示插件
+
+
+// chrome
+{ "keys": ["f1"], "command": "side_bar_files_open_with",
+    "args": {
+        "paths": [],
+        "application": "C:/Users/Administrator/AppData/Local/Google/Chrome/Application/chrome.exe",
+        "extensions":".*"
+    }
+ },
+// firefox
+{ "keys": ["f2"], "command": "side_bar_files_open_with",
+    "args": {
+        "paths": [],
+        "application": "C:/Program Files/Mozilla Firefox/firefox.exe",
+        "extensions":".*"
+    }
+},
+// ie
+ { "keys": ["f3"], "command": "side_bar_files_open_with",
+    "args": {
+        "paths": [],
+        "application": "C:/Program Files/Internet Explorer/iexplore.exe",
+        "extensions":".*"
+    }
+},
+
+
+
+"save_on_focus_lost": true,//自动保存
+"update_check": false,//关闭自动更新

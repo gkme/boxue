@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="inputVal"/>
+        <button @click="tijiao">提交</button>
+
+        <ul>
+            <li v-for="(item,index) in list" :key="item" @click="shanchu(item,index)">{{ item }}</li>
+        </ul>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                list:[],
+                inputVal:''
+            },
+            methods:{
+                tijiao(){
+                    this.list.push(this.inputVal)
+                    this.inputVal = ''
+                },
+                shanchu(item,index){
+                    this.list.splice(index,1)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

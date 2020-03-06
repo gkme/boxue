@@ -1,0 +1,8 @@
+https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs  github中文说明
+
+http://fullpage.81hu.com/  参数参考文档
+
+http://www.dowebok.com/143.html  特效参考+参数说明
+
+https://blog.csdn.net/a460550542/article/details/71727805 参数参考文档
+

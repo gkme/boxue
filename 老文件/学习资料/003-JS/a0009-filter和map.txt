@@ -1,0 +1,14 @@
+//filter:不会操作原数组,返回过滤后的新数组,回调函数的返回结果:如果返回true,表示这一项放到新数组中
+let newArray = [1,2,3,4,5].filter(function(index) {
+    return index>2 && index<5;
+});
+console.log(newArray);//[3,4]
+
+
+//map:映射 将原有数组映射成一个新的数组
+//[1,2,3] ==> <li>1</li><li>2</li><li>3</li>
+let arr = [1,2,3].map(function(item){
+    return `<li>${imem}</li>`;
+})
+console.log(arr.join(''));
+//``是es6中模板字符串,遇到变量用${}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <div v-bind:class="{one:yi}">第一种</div>
+       <div class="wo" v-bind:class="{two:er,three:san}">第二种</div>
+       <div v-bind:class="[si,wu]">第三种</div>
+       <div class="wo" v-bind:class="[si,wu]">第四种</div>
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                yi:true,
+                er:true,
+                san:false,
+                si:"box",
+                wu:"big"
+            }
+        })
+
+        // <div id="app">
+        //     <div class="one">第一种</div> 
+        //     <div class="wo two">第二种</div> 
+        //     <div class="box big">第三种</div> 
+        //     <div class="wo box big">第四种</div>
+        // </div>
+        
+        // app.san = true 后  <div class="wo two three">第二种</div>
+    </script>
+</body>
+</html>

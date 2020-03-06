@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+        html{
+            padding:10px;
+        }
+        .copybox{ margin-bottom:5px; }
+        xmp{
+            position: relative;
+        }
+        .copybox:hover{
+            background:#f00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="copybox"><xmp>
+"order": [],
+"bStateSave":true,
+"stateLoadParams": function (settings, data) {
+    data.search.search="";//清除搜索框信息
+    data.order = [ ];//进入页面乱序
+    if(!commonRentruJson.info.isReturn){
+       data.start=0;//显示第一页数据
+    }
+},
+</xmp></div>
+
+<div class="copybox"><xmp>
+dataTableConfig.checkBoxColumn(),//复选框列
+dataTableConfig.serialNumberColumn,//序号列
+</xmp></div>
+
+<!-- <div class="copybox"><xmp>
+render:function(data){
+    if(data=='0'){
+        return '新增';
+    }else if(data=='1'){
+        return '审批中';
+    }else if(data=='2'){
+        return '驳回';
+    }else if(data=='3'){
+        return '已批准';
+    }
+    return '';
+}
+</xmp></div> -->
+<div class="copybox"><xmp>
+,
+                         "render":function(data,type,row,meta){
+                             if(!data){return ''};
+                             return newEnumRenderJdrowdata(data,'handoverStatus');
+                         }
+
+</xmp></div>
+<div class="copybox"><xmp>
+,
+                         "render":function(data,type,row,meta){
+                             if(!data){return ''};
+                             return dateFtt(data,"yyyy-MM-dd hh:mm:ss");
+                         }
+
+</xmp></div>
+
+<div class="copybox"><xmp>
+"className":"notitle",'orderable':false,"searchable": false,
+</xmp></div>
+
+<div class="copybox"><xmp>
+"className":"notitle",
+</xmp></div>
+
+<div class="copybox"><xmp>
+newmoneyRender(data);//"￥" +
+</xmp></div>
+
+
+<div class="copybox"><xmp>
+dataTableOrdinalFunction(this);//序号列12345顺序显示
+</xmp></div>
+
+<div class="copybox"><xmp>
+render:function(data,type,row,meta){
+   var id = data.enterpriseId;
+   var str;
+   if(data.auditState=="3"){//查看 编辑
+       str = '<a onclick="gotoDetail(\"'+id+'\")">'+ $.i18n.prop('public.button.View')+'</a>&nbsp;<a onclick="gotoEdit(\"'+id+'\")">'+ $.i18n.prop('swal.Edit') +'</a>';
+   }else{
+       str = '<a onclick="gotoDetail(\"'+id+'\")">'+ $.i18n.prop('public.button.View')+'</a>';//查看
+   }
+   return str;
+}
+</xmp></div>
+
+
+
+<div class="copybox"><xmp>
+           
+</xmp></div>
+
+
+
+<div class="copybox"><xmp>
+
+</xmp></div>
+
+
+
+<div class="copybox"><xmp>
+
+</xmp></div>
+
+
+
+
+<script src="../cssjs/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $(".copybox").on("click",function(){
+        var html = $(this).html();
+            html = html.replace(/<xmp>/g,"");
+            html = html.replace(/<\/xmp>/g,"");
+            html = html.replace(/\n/,"");
+            html = html.replace(/(\n)$/,"");
+        var ts=document.getElementById("t");
+            $("#t").html(html);
+        ts.select(); // 选择对象
+    document.execCommand("Copy"); // 执行浏览器复制命令
+    })
+    $(".textareacopy").on("focus",function(){
+        var html = $(this).val();
+        $(this).select();
+        document.execCommand("Copy"); // 执行浏览器复制命令
+    })
+})
+
+</script>
+<textarea cols="50" rows="30" id="t" style="position:fixed;left:-99999px;"></textarea>
+</body>
+</html>

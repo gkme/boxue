@@ -1,0 +1,14 @@
+var s = 'qwert';
+console.log(s[0]);//q
+console.log(s[s.length-1]);//t
+
+console.log(0+true);//Êý×Ö 1
+console.log(0+false);//Êý×Ö 0
+console.log(0+"");//×Ö·û´® 0
+console.log(0+"1.2");//×Ö·û´® 01.2
+console.log(0+"one");//×Ö·û´® 0one
+console.log(0+{});//0[object object]
+console.log(0+[]);//×Ö·û´® 0
+console.log(0+[9]);//×Ö·û´® 09
+console.log(0+["a"]);//×Ö·û´® 0a
+console.log(0+function(){});//×Ö·û´®0function(){}

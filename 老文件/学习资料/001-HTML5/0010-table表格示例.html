@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+
+        
+    </style>
+</head>
+<body>
+    <!-- colspan、rowspan -->
+    <table border="1" cellspacing="0" width="50%" height="150">
+        <thead>
+            <tr> 
+                <th colspan="2">姓名和年龄</th> 
+                <th>电话</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr> 
+                <td>Jack</td> 
+                <td>24</td> 
+                <td>1351234567</td> 
+            </tr>
+            <tr> 
+                <td colspan="2">Tom</td> 
+                <td>22</td>             
+            </tr>
+            <tr> 
+                <td>Rose</td> 
+                <td>22</td> 
+                <td rowspan="2">1351234567</td>  
+            </tr>
+            <tr> 
+                <td>张三</td> 
+                <td>25</td> 
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function(){
+            
+        })
+    </script>
+</body>
+</html>

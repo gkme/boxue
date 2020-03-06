@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../../jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../学习资料/bootstrap/css/bootstrap.min.css">
+    <script src="../../学习资料/bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="summernote.css">
+    <script src="summernote.min.js"></script>
+    <script src="summernote-zh-CN.min.js"></script>
+</head>
+<body>
+    <div id="summernote"></div>
+    <button id="insertImg">插入图片</button>
+    <button id="getCon">点击获取内容</button>
+    <button id="getCon1">点击获取纯文本内容</button>
+    <button id="setCon">点击设置内容</button>
+    <button id="destroyEdit">销毁编辑器</button>
+    <button id="resetEdit">重置编辑器</button>
+    <button id="ifEdit">判断内容是否为空</button>
+    <button id="outEdit">编辑器不可用</button>
+    <button id="inEdit">编辑器可用</button>
+    <script>
+        $(function(){
+            var HelloButton = function (context) {
+                var ui = $.summernote.ui;   
+                var button = ui.button({
+                    contents: '<i class="fa fa-child"/> Hello',
+                    tooltip: 'hello',
+                    click: function () {
+                        context.invoke('editor.insertText', 'hello');
+                    }
+                });
+                return button.render();   // return button as jquery object
+            }
+            $('#summernote').summernote({
+                lang: 'zh-CN',  
+                width: 800,           
+                height: 300,      
+                disableDragAndDrop:true,
+                focus: true,   
+                toolbar: [
+                    ['operate', ['undo','redo']],//撤销 重做
+                    ['magic',['style']],//样式 标题123456
+                    ['style', ['bold', 'italic', 'underline', 'clear']],//粗体 斜体 下划线 清除格式
+                    ['para', ['height','fontsize','ul', 'ol', 'paragraph']],//行高 字号 无序列表 有序列表 段落
+                    ['font', ['strikethrough', 'superscript', 'subscript']],//删除线 上标 下标
+                    ['color', ['color']],//颜色
+                    ['insert',['picture','video','link','table','hr']],//图片 视频 链接 表格 水平线
+                    ['layout',['fullscreen','codeview','help']],//全屏 源代码
+                    ['fontname', ['fontname']],//字体选择
+                    ['mybutton', ['hello']]
+                ],
+                buttons: {
+                    hello: HelloButton
+                },
+                callbacks: {
+                    // onImageUpload: function(files) {
+                    //     $summernote.summernote('insertNode', imgNode);
+                    // },
+                    onChange: function(contents, $editable) {
+                      console.log('onChange:', contents, $editable);
+                    }
+                }
+            });
+            //$('#summernote').next().find('.note-toolbar button').addClass('disabled');//禁止头部按钮的点击事件
+            /*
+            $('.summernote').summernote({
+                 toolbar: [
+                    ['mybutton', ['hello']]
+                 ],
+                 buttons: {
+                    hello: HelloButton
+                 }
+            });
+            */
+            //$('#summernote').summernote('insertImage', url, filename);//插入图片
+            //$('#summernote').summernote('insertText', 'Hello, world');//插入文本
+            $("#insertImg").on("click",function(){//插入图片
+                $('#summernote').summernote('insertImage', "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554785645572&di=c629a868eccd773f6ed8317f52f85daa&imgtype=0&src=http%3A%2F%2Fimgtu.5011.net%2Fuploads%2Fcontent%2F20170426%2F9148901493184444.jpg", "三顿饭");
+            })
+            $("#getCon").on("click",function(){//获取内容的方法
+                var markupStr = $('#summernote').summernote('code');
+                console.log(markupStr);
+                var noMarkupStr=$("<div>").html(markupStr).text();
+                noMarkupStr=noMarkupStr.replace(/(\r\n|\n|\r)/gm,"");
+                noMarkupStr=noMarkupStr.replace(/^\s+/g,"");
+                noMarkupStr=noMarkupStr.replace(/\s+$/g,"");
+                noMarkupStr=noMarkupStr.replace(/\s+/g," ");
+                console.log(noMarkupStr);
+            })
+            $("#getCon1").on("click",function(){//获取内容的方法
+                var markupStr = $('#summernote').summernote('code');
+                console.log(getNoMarkupStr(markupStr));
+            })
+            $("#setCon").on("click",function(){//设置内容的方法
+                var markupStr = 'hello world';
+                $('#summernote').summernote('code', markupStr);
+            })
+            $("#destroyEdit").on("click",function(){//编辑器的销毁（destroy）
+               $('#summernote').summernote('destroy');
+            })
+            $("#resetEdit").on("click",function(){//重置内容
+                $('#summernote').summernote('reset');
+            })
+            $("#ifEdit").on("click",function(){//判断是否为空
+                if ($('#summernote').summernote('isEmpty')) {
+                    alert('contents is empty');
+                }
+            })
+            $("#outEdit").on("click",function(){//编辑器不可用
+                $('#summernote').summernote('disable');
+            })
+            $("#inEdit").on("click",function(){//编辑器可用
+                $('#summernote').summernote('enable');
+            })
+
+            function getNoMarkupStr(markupStr) {
+                //console.log(markupStr);
+                var noMarkupStr=$("<div>").html(markupStr).text();/* 得到可视文本(不含图片),将&nbsp;&lt;&gt;转为空字符串和<和>显示,同时去掉了换行,文本单行显示 */
+                //console.log("1--S" + noMarkupStr + "E--");
+                noMarkupStr=noMarkupStr.replace(/(\r\n|\n|\r)/gm,"");/* 去掉可视文本中的换行,(没有用,上一步已经自动处理) */
+                //console.log("2--S" + noMarkupStr + "E--");
+                noMarkupStr=noMarkupStr.replace(/^\s+/g,"");/* 替换开始位置一个或多个空格为一个空字符串 */
+                //console.log("3--S" + noMarkupStr + "E--");
+                noMarkupStr=noMarkupStr.replace(/\s+$/g,"");/* 替换结束位置一个或多个空格为一个空字符串 */
+                //console.log("4--S" + noMarkupStr + "E--");
+                noMarkupStr=noMarkupStr.replace(/\s+/g," ");/* 替换中间位置一个或多个空格为一个空格 */
+                //console.log("5--S" + noMarkupStr + "E--");
+                return noMarkupStr;
+            }
+
+            //提交文件到服务器处理
+            // function sendFile(file) {
+            //     $.ajax({
+            //         type: "POST",
+            //         url: "/FileUpload/Upload",
+            //         cache: false,
+            //         contentType: false,
+            //         processData: false,
+            //         success: function (json) {
+            //             var data = $.parseJSON(json);
+            //             var url = data.urls[0];
+            //             $("#Note").summernote('insertImage', url, 'image name'); // the insertImage API  
+            //         }
+            //     });
+            // }
+            
+        })
+    </script>
+</body>
+</html>

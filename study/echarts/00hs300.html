@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>沪深300 & 中证500</title>
+    <link rel="shortcut icon" href="../../favicon.ico"/>
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+    </style>
+</head>
+<body>
+    <a href="https://www.baidu.com/s?ie=UTF-8&wd=沪深300指数">百度-沪深300</a>
+    <div id="funnel" style="width:96%;height:400px;"></div> 
+    
+    <a href="https://www.baidu.com/s?ie=UTF-8&wd=中证500[000905]">百度-中证500</a>
+    <div id="zz500" style="width:96%;height:400px;"></div>
+    
+
+    <script src="../../cssjs/jquery.min.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+$(function(){
+    /* 沪深300 */
+    var list = [];
+    $.ajax({
+        url:"./js/hs300.json",
+        async:false,
+        dataType: "json",
+        success: function(data){
+            list = data.data;
+        }
+    });
+    var data11 = [],data12 = [];
+    for(var i=list.length-1;i>=0;i--){
+        data11.push(list[i].d);
+        data12.push(list[i].p);
+    }
+    var title1 = '沪深300 ('+ list[0].d +') 收盘价走势图，共'+ data11.length +'期';
+
+    /*中证500*/
+    var zzlist = [];
+    $.ajax({
+        url:"./js/zz500.json",
+        async:false,
+        dataType: "json",
+        success: function(data){
+            zzlist = data.data;
+        }
+    });
+    var data21 = [],data22 = [];
+    for(var i=zzlist.length-1;i>=0;i--){
+        data21.push(zzlist[i].d);
+        data22.push(zzlist[i].p);
+    }
+    var title2 = '中证500 ('+ list[0].d +') 收盘价走势图，共'+ data21.length +'期';
+
+    function chartFunnel(id,xdata,ydata,title,start){//start:缩放开始的位置
+        var myChart = echarts.init($(id)[0]);
+        var option = {
+            title: {
+               text: title,
+               left: 'center'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            xAxis: {
+                type: 'category',
+                data: xdata
+            },
+            yAxis: {
+                type: 'value',
+                scale:true,
+            },
+            dataZoom: [
+                {
+                    show: true,
+                    realtime: true,
+                    start: start,
+                    end: 100
+                },
+                {
+                    type: 'inside',
+                    realtime: true,
+                    start: start,
+                    end: 100
+                }
+            ],
+            series: [{
+                data: ydata,
+                type: 'line'
+            }]
+        };
+
+        myChart.setOption(option);
+
+        myChart.on('click', function (params) {//图表的点击事件
+            console.log(params);
+            if(params.componentType == "series"){
+                console.log(params.data.src);
+            }
+        });
+    }
+    chartFunnel("#funnel",data11,data12,title1,98);
+    chartFunnel("#zz500",data21,data22,title2,97);
+})
+    </script>
+</body>
+</html>

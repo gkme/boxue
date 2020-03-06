@@ -1,0 +1,97 @@
+﻿datetimepicker  http://www.bootcss.com/p/bootstrap-datetimepicker/index.htm 官方说明文档
+                https://blog.csdn.net/hizzyzzh/article/details/51212867  
+                https://blog.csdn.net/u011127019/article/details/51725081
+		https://www.cnblogs.com/chenlizhi/p/7737790.html
+
+language:'zh-CN',//中文显示
+format: 'yyyy',//日期格式 yyyy-mm-dd hh:ii:ss 
+autoclose: true,//选择日期后自动关闭
+startView: 4,//选完时间首先显示的视图 0-分("hour") 1-时 2-日 3-月 4-年
+maxView: 4, //最高能展示的时间        0-分("hour") 1-时 2-日 3-月 4-年  默认值4:'decade'
+minView: 4, //最精准的时间选择为日期  0-分("hour") 1-时 2-日 3-月 4-年
+todayBtn:true,//当天日期按钮 "linked":当天的日期被选中,true仅仅跳转到当天
+todayHighlight:true,//当天的日期高亮
+pickerPosition:"bottom-right",//选择框位置 "bottom-left","top-right","top-left"
+startDate:'2018-04-05',//开始时间  可以选的时间范围  例:dateToStr(new Date())
+endDate:'2018-06-04',//结束时间  可以选的时间范围
+daysOfWeekDisabled:'0,6',//一周中停用的天数 [0,6]也可,代表周六周日不能被选择
+weekStart:0,//一周从哪一天开始,默认周日
+minuteStep:5,//最小的视图是每5分钟可选一次,是以分钟为单位的
+keyboardNavigation:true,//方向键改变日期
+forceParse:true,//强制解析格式
+showMeridian:true,//显示上下午
+initialDate:new Date(),//初始化日期时间,默认值是当前 例:"2012-03-15 03:05"
+clearBtn:true, //清除按钮
+
+startView:
+值   意义
+0   从小时视图开始，选分
+1   从天视图开始，选小时
+2   从月视图开始，选天
+3   从年视图开始，选月
+4   从十年视图开始，选年
+
+format:
+符号  意义
+p     12小时制且小写(‘am’ or ‘pm’)
+P     12小时制且大写(‘AM’ or ‘PM’)
+s     秒，前面不补0
+ss    秒，前面补0
+i     分，前面不补0
+ii    分，前面补0
+h     时，24小时制，前面不补0
+hh    时，24小时制，前面补0
+H     时，12小时制，前面不补0
+HH    时，12小时制，前面补0
+d     日，前面不补0
+dd    日，前面补0
+m     月，数字表示，前面不补0 如：4
+mm    月，数字表示，前面补0 如：04
+M     月，缩写表示，前面补0 如：Apr
+MM    月，全称表示，前面补0 如：April
+yy    年，后两位 如：16
+yyyy  年，全部 如：2016
+
+
+update方法：会根据input的value值更新时间选择视图
+    $('#datetimepicker').datetimepicker('update');
+    $(this).val("2018-01-02").datetimepicker('update');//对输入框从新赋值一个新的时间
+setStartDate方法：给日期时间选择器设置一个新的起始日期
+    $('#datetimepicker').datetimepicker('setStartDate','2012-01-01');
+setEndDate：给日期时间选择器设置结束日期
+    $('#datetimepicker').datetimepicker('setEndDate','2012-01-01');
+setDaysOfWeekDisabled：设置应该禁用的周数
+    $('#datetimepicker').datetimepicker('setDaysOfWeekDisabled',[0,6]);
+remove方法：移除日期时间选择器。同时移除已经绑定的event、内部绑定的对象和HTML元素
+    $('#datetimepicker').datetimepicker('remove');
+
+事件：
+show
+hide 例:$("#planFinish").datetimepicker('hide');
+changeDate
+changeYear 当十年视图上的年视图view被改变时触发
+changeMonth 当年视图上的月视图view被改变时触发
+outOfRange 当用户选择的日期超出startDate 或endDate 时，或者通过setDate 或 setUTCDate方法设置日期超出范围时被触发。
+例：
+$("#planStart").datetimepicker({
+    clearBtn:true,
+    language:'zh-CN',
+    format : 'yyyy-mm-dd',
+    autoclose : true,
+    todayHighlight : true,
+    minView: "month",
+    pickerPosition: "bottom-right"
+}).on('changeDate',function(ev){
+    var startDate = new Date($('#planStart').val());
+    $("#planFinish").datetimepicker('setStartDate',startDate);
+    $("#planFinish").datetimepicker('hide');
+});
+
+
+
+.on("hide.bs.modal",function(e){
+    console.log(e);
+});
+.on("hide",function(e){
+    console.log(e);
+});

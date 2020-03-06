@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>datatables代码快速复制</title>
+    <style>
+        *{margin: 0;padding: 0;}ul,li{list-style:none;}
+        html{
+            padding:10px;
+        }
+        .copybox{ margin-bottom:3px; }
+        xmp{
+            position: relative;
+        }
+        .copybox:hover{
+            background:#f00;
+        }
+    </style>
+</head>
+<body>
+
+<a href="https://tophub.today/" target="_blank">今日热榜</a>
+<!-- <div class="copybox"><xmp>
+var node2454=document.getElementById("node-2454");//汽车之家
+var aList = node2454.getElementsByTagName('a');//获取所有的标签a
+for(var i=1;i<aList.length;i++){
+   aList[i].target='_blank';//定义成打开新窗口
+   aList[i].click()
+}
+</xmp></div> -->
+<div class="copybox"><xmp>
+var node221=document.getElementById("node-221");//打开抖音
+var aList = node221.getElementsByTagName('a');//获取所有的标签a
+for(var i=1;i<aList.length;i++){
+   aList[i].target='_blank';//定义成打开新窗口
+   aList[i].click()
+}
+</xmp></div>
+<a href="http://caibaojian.com/c/news" target="_blank">前端开发日报</a>
+<div class="copybox"><xmp>
+var aList = document.getElementsByClassName('tlink');//获取所有的标签a
+for(var i=0;i<aList.length;i++){
+   aList[i].click()
+}
+</xmp></div>
+<div class="copybox"><xmp>document.body.contentEditable = true;//让html处于可编辑模式</xmp></div>
+
+
+<div class="copybox"><xmp>
+sessionStorage.setItem("playbackRate", "3");//腾讯视频倍速播放
+</xmp></div> 
+
+
+<!-- 
+<div class="copybox"><xmp>
+
+</xmp></div> 
+-->
+<script src="../cssjs/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $(".copybox").on("click",function(){
+        var html = $(this).html();
+            html = html.replace(/<xmp>/g,"");
+            html = html.replace(/<\/xmp>/g,"");
+            html = html.replace(/\n/,"");
+            html = html.replace(/(\n)$/,"");
+        var ts=document.getElementById("t");
+            $("#t").html(html);
+        ts.select(); // 选择对象
+    document.execCommand("Copy"); // 执行浏览器复制命令
+    })
+    $(".textareacopy").on("focus",function(){
+        var html = $(this).val();
+        $(this).select();
+        document.execCommand("Copy"); // 执行浏览器复制命令
+    })
+})
+
+</script>
+<textarea cols="50" rows="30" id="t" style="position:fixed;left:-99999px;"></textarea>
+</body>
+</html>

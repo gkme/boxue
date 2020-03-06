@@ -1,0 +1,54 @@
+﻿安装git
+开始菜单里找到“Git”->“Git Bash”(能找到就是安装成功了)
+git config --global user.name "诸葛振坤"
+git config --global user.email "209392599@qq.com"
+
+ssh-keygen -t rsa  在C盘生成秘钥
+ssh-keygen -t rsa -C "xxxxx@xxxxx.com"  或者这样去生成关系钥匙
+进入码云设置里面的SSH公钥里面添加公钥
+
+SSH 公钥： (id_rsa.pub这个文件夹内容 参考码云网址：http://git.mydoc.io/?t=154712)
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJzOzT7D0ofRk19Do/wc5UsBeMRkowkrj0nN6kGnLWYjNIafHw3nwx+nYAZH1vdGF6eOHIV6SajMDIVtpzRUUCwV1/8au5Q4NTPyD+dQdkbyaIlHAzBrehiQNCXuJN0zCkA+VWpqWEj6JQCromnUdlONZ3uifoT3r+cDznsLHjZpjzIOFovZNGvG18fHiIJjaSkpskA2LcAXVxzR2t26d2mM2sieevv8OFPGae47cEnz2E3cPp9MsHc7u3Y1g8SwWs8k59ad5mQgJlApY8MsT10ecL/Rf78LBzMCf+dDyhMkzQMJHRWX//OToBGMsQTHojuXjhuYC+p/Nye9F+zvZV 209392599@qq.com
+
+ssh -T git@gitee.com  回车输入:yes 若返回：Welcome to Gitee.com, 诸葛振坤! 说明添加成功
+
+
+第一次提交文件步骤：
+git init
+git config --global user.name "诸葛振坤"
+git config --global user.email "209392599@qq.com"
+git add index.txt
+git commit -m "first commit"
+git remote add origin git@gitee.com:a_city_lion/boxue.git (第一次提交时关联远程仓库地址)
+git push -u origin master
+
+https://www.jianshu.com/p/3478e2a214a1  跳过sourcetree登陆方法
+
+失败：
+git pull --rebase origin master
+git push -u origin master
+
+
+版本回退： 
+git log 查看提交记录
+git reflog 查看所有分支操作记录
+git reset --hard 上一个的ID号
+
+git的学习资源：
+http://www.yiibai.com/git/
+http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
+
+
+删除git历史提交记录，使项目成为一个全新的项目(20190927又清空了一次)
+1.Checkout
+   git checkout --orphan latest_branch
+2. Add all the files
+   git add -A
+3. Commit the changes
+   git commit -am "commit message"
+4. Delete the branch
+   git branch -D master
+5.Rename the current branch to master
+   git branch -m master
+6.Finally, force update your repository
+   git push -f origin master

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>编辑器使用</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}ul,li{list-style:none;}
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+        <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png" style="max-width:100%;"/>
+    </div>
+    <button id="btn1">getJSON</button>
+
+    <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+    <script src="wangEditor.min.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+       var E = window.wangEditor
+           var editor = new E('#div1')
+           // 自定义菜单配置
+        
+            editor.customConfig.emotions = [
+                    {
+                        // tab 的标题
+                        title: '默认',
+                        // type -> 'emoji' / 'image'
+                        type: 'image',
+                        // content -> 数组
+                        content: [
+                            {
+                                alt: '[坏笑]',
+                                src: 'http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/50/pcmoren_huaixiao_org.png'
+                            },
+                            {
+                                alt: '[舔屏]',
+                                src: 'http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/pcmoren_tian_org.png'
+                            }
+                        ]
+                    },
+                    {
+                        // tab 的标题
+                        title: 'emoji',
+                        // type -> 'emoji' / 'image'
+                        type: 'emoji',
+                        // content -> 数组
+                        content: ['😀', '😃', '😄', '😁', '😆']
+                    }
+                ]
+           editor.create()
+    </script>
+</body>
+</html>

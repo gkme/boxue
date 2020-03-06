@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>datetimepicker</title> <!-- 注意bootstrap和datepicker版本匹配问题 -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap-datepicker3.min.css">
+    <link href="https://cdn.bootcss.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="bootstrap-datepicker.min.js"></script>
+    <script src="bootstrap-datepicker.zh-CN.min.js"></script>
+</head>
+<body>
+    <!-- 01年份选择 --> 
+    <div>年份的选择示例：</div>
+    <div class="col-md-12">
+        <input type="text" class="year-sel" placeholder="年份选择"/>
+    </div>
+    <script>
+        $('.year-sel').datepicker({
+            language:'zh-CN',
+            format : 'yyyy',
+            autoclose : true,
+            maxViewMode: 2,
+            minViewMode:2,
+        });
+    </script>
+
+
+    <!-- 02月份选择 --> 
+    <div>月份的选择示例：</div>
+    <div class="col-md-12">
+        <input type="text" class="month-sel" placeholder="月份选择"/>
+    </div>
+    <script>
+        $('.month-sel').datepicker({
+            language:'zh-CN',
+            format : 'mm',
+            autoclose : true,
+            maxViewMode: 1,
+            minViewMode:1,
+        });
+    </script>
+
+    <!-- 03年月日 --> 
+    <div>年月日选择示例：</div>
+    <div class="col-md-12">
+        <input type="text" class="y-m-d" placeholder="年月日"/>
+    </div>
+    <script>
+        $('.y-m-d').datepicker({
+            language:'zh-CN',
+            format : 'yyyy-mm-dd',
+            autoclose : true,
+        }).on('changeDate',function(e){ 
+            console.log($(".y-m-d").val());//时间选择后打印选择时间
+        });  
+    </script>
+    
+     <!-- 04时间范围 -->
+    <div class="col-md-6"> 
+         <div class="input-daterange input-group" id="dateselect">  
+             <input type="text" class="form-control" name="start" id="qBeginTime" />  
+             <span class="input-group-addon">至</span>  
+             <input type="text" class="form-control" name="end" id="qEndTime" />  
+         </div> 
+    </div>
+    <script>
+        $('#qBeginTime').datepicker({ 
+            language:'zh-CN',   
+            format:"yyyy-mm-dd",
+            autoclose : true,  
+            todayHighlight : true,  
+            endDate : new Date()  
+        }).on('changeDate',function(e){  
+            var startTime = e.date;
+            $('#qEndTime').datepicker('setStartDate',startTime);
+            console.log($("#qBeginTime").val());//时间选择后打印选择时间
+        });  
+        //结束时间：  
+        $('#qEndTime').datepicker({  
+            language:'zh-CN',  
+            format:"yyyy-mm-dd",
+            autoclose : true,  
+            todayHighlight : true,  
+            endDate : new Date()  
+        }).on('changeDate',function(e){  
+            var endTime = e.date;
+            $('#qBeginTime').datepicker('setEndDate',endTime);  
+        });
+    </script>
+
+    <!-- 设置时间 -->
+    <input type="text" class="set-time" />
+    <script>
+    $(function(){
+        $(".set-time").datepicker({
+            language:"zh-CN",
+            format:"yyyy-mm-dd",
+            autoclose:true
+        })
+        $(".set-time").datepicker("setDate", '2018-05-14');
+    })
+    </script>
+    <!-- $("#releasTime").datepicker('setStartDate', $("#newTime").val()); //"2018-05-01"也是可以的 -->
+    <!-- $("#effectiveDate").datepicker('hide'); -->
+</body>
+</html>

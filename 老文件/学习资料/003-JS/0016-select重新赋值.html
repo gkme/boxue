@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    
+    <select>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function(){
+$("option").each(function(index, val) {
+    console.log(this.value);
+    if(this.value == "3"){
+        $(this).attr("selected","selected");
+        return false;
+    }
+});
+        })
+    </script>
+</body>
+</html>

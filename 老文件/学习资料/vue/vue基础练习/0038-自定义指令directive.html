@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-gk="color">{{num}}</div>
+        <button @click="add">添加</button>
+    </div>
+    <button onclick="jiebang()">解绑</button>
+</body>
+<script>
+    function jiebang(){
+        app.$destroy();
+    }
+    Vue.directive("gk",{
+        bind:function(el,binding){
+            console.log("1111");
+        },
+        inserted:function(){
+            console.log("2222");
+        },
+        update:function(){
+            console.log("重新赋值");
+        },
+        componentUpdated:function(){
+            console.log("重新赋值显示");
+        },
+        unbind:function(){
+            console.log("销毁");
+        }
+    })
+    var app = new Vue({
+        el:"#app",
+        data(){
+            return {
+               num:1,
+               color:"red"
+            }
+        },
+        methods:{
+            add:function(){
+                this.num++;
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,6 @@
+http://www.runoob.com/jquery/jquery-plugin-validate.html  参考说明
+http://www.cnblogs.com/linjiqin/p/3431835.html  
+https://www.cnblogs.com/hejunrex/archive/2011/11/17/2252193.html
+
+
+使用class="{}"的方式，必须引入包：jquery.metadata.js
