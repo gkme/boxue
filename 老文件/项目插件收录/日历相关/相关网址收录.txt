@@ -1,6 +1,0 @@
-http://www.jq22.com/jquery-info13778  jQuery日历插件Calendar.js修改版
-http://www.lanrenzhijia.com/demos/39/3915/demo/  到期/预计到期标注
-http://www.jq22.com/jquery-info7758  多功能日历插件（带农历）
-http://www.datouwang.com/jiaoben/378.html 大头网带农历插件
-
-http://www.w3school.com.cn/jsref/jsref_obj_date.asp  w3c js Date对象相关api

@@ -1,3 +1,0 @@
-ÃüÁîĞĞ×ªmdÎªhtml
-npm install -g i5ting_toc
-i5ting_toc -f yourfile.md

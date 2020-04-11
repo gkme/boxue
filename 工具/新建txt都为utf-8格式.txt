@@ -1,8 +1,0 @@
-将电脑新建文本文档txt的默认编码从ANSI改为utf-8
-
-1.在桌面新建一个utf-8的txt文件----template.txt
-2.移动到C:\Windows\ShellNew文件夹下
-3.WIN+R输入regedit,打开HKEY_CLASSES_ROOT.txt\ShellNew，然后新建字符串值FileName，双击这个名字，输入C:\Windows\ShellNew\template.txt 
-
-
-参考网址：https://blog.csdn.net/chy555chy/article/details/52440366

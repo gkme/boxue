@@ -1,4 +1,0 @@
-https://www.baidufe.com/component/zoom-detect/index.html  参考网址
-
-WebpageZoomDetect.start(); //调用  详细使用方法看网页api
-

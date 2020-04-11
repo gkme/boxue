@@ -1,5 +1,0 @@
-﻿@-moz-document url-prefix() { 
-    .box{
-        margin-top:10px;
-    }
-}

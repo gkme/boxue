@@ -1,5 +1,0 @@
-io.emmet.eclipse.jar   放在eclipse\dropins    重启eclipse
-然后导入  eclipseEmmet.xml
-
-详见：
-https://blog.csdn.net/qq_34530048/article/details/81474584

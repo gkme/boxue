@@ -1,5 +1,0 @@
-触摸事件的响应顺序
-1、ontouchstart
-2、ontouchmove
-3、ontouchend
-4、onclick

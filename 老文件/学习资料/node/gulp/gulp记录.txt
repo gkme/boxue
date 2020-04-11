@@ -1,5 +1,0 @@
-﻿gulp中文网api： https://www.gulpjs.com.cn/docs/api/
-
-gulp常用功能合集:  https://www.zybuluo.com/FarmerZ/note/463838
-
-http://www.cnblogs.com/yub-fan/p/6543986.html  gulp入门---使用gulp压缩JS

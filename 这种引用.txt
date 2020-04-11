@@ -1,3 +1,0 @@
-<link rel="stylesheet" href="../../cssjs/bootstrap/css/bootstrap.min.css">
-<script src="../../cssjs/jquery.min.js"></script>
-<script src="../../cssjs/bootstrap/js/bootstrap.min.js"></script>

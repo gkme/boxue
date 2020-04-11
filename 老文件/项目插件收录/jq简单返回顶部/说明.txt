@@ -1,3 +1,0 @@
-http://www.jq22.com/jquery-info2531  网址
-
-引入js然后头部增加 <meta name="toTop" content="true">即可
