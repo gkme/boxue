@@ -1,6 +1,8 @@
+git pull
 git add .
 git status
 echo;
-set /p declation=提交说明:
+set /p declation=description:
 git commit -m "%declation%"
 git push
+exit
